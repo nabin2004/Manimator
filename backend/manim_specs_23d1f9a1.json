@@ -1,0 +1,12 @@
+{
+    "workflow_id": "23d1f9a1",
+    "timestamp": "2025-11-27T00:11:50.096371",
+    "original_request": "Explain the concept of Gradient Descent using a 3D surface plot and a rolling ball.",
+    "refined_concept": "Error: 404 Client Error: Not Found for url: http://127.0.0.1:11434/api/generate",
+    "manim_specs": [
+        {
+            "error": "Invalid JSON",
+            "raw_content": "Error: 404 Client Error: Not Found for url: http://127.0.0.1:11434/api/generate"
+        }
+    ]
+}
