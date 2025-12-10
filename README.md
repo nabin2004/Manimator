@@ -1,1 +1,1 @@
-# Animation-Workflow-Studio
+# Think-Machine-Studio
