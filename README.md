@@ -1,1 +1,1 @@
-# Think-Machine-Studio
+Small models decide, big models think.

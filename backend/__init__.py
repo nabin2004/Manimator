@@ -1,1 +1,0 @@
-"""Manimation generator backend"""

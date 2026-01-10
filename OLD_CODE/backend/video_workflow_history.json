@@ -1,0 +1,740 @@
+[
+  {
+    "workflow_id": "8d2c68c0",
+    "user_query": "Create a 10-minute educational video on Multi-layer perceptron",
+    "start_time": "2025-11-27T01:25:27.242596",
+    "agents": {
+      "agent1_prompt_refiner": {
+        "input": "Create a 10-minute educational video on Multi-layer perceptron",
+        "output": "Request failed: 404 Client Error: Not Found for url: https://api.anthropic.com/v1/messages",
+        "timestamp": "2025-11-27T01:25:27.581551"
+      },
+      "agent2_video_planner": {
+        "input": "Request failed: 404 Client Error: Not Found for url: https://api.anthropic.com/v1/messages",
+        "output": {
+          "opening": "Hook viewers in first 15 seconds",
+          "closing": "Reinforce key takeaways with call to action",
+          "mid_intervals": [
+            "Segment 1",
+            "Segment 2",
+            "Segment 3"
+          ],
+          "timestamps": {
+            "opening": "0:00-0:15",
+            "middle": "0:15-2:30",
+            "closing": "2:30-3:00"
+          },
+          "transitions": [
+            "Smooth transition between sections"
+          ],
+          "raw_plan": "Request failed: 404 Client Error: Not Found for url: https://api.anthropic.com/v1/messages",
+          "structured": true
+        },
+        "timestamp": "2025-11-27T01:25:28.836219"
+      },
+      "agent3_task_distributor": {
+        "input": {
+          "opening": "Hook viewers in first 15 seconds",
+          "closing": "Reinforce key takeaways with call to action",
+          "mid_intervals": [
+            "Segment 1",
+            "Segment 2",
+            "Segment 3"
+          ],
+          "timestamps": {
+            "opening": "0:00-0:15",
+            "middle": "0:15-2:30",
+            "closing": "2:30-3:00"
+          },
+          "transitions": [
+            "Smooth transition between sections"
+          ],
+          "raw_plan": "Request failed: 404 Client Error: Not Found for url: https://api.anthropic.com/v1/messages",
+          "structured": true
+        },
+        "output": [
+          {
+            "chunk_id": 1,
+            "segment_description": "Opening sequence with hook and introduction: Request failed: 404 Client Error: Not Found for ur...",
+            "estimated_duration": "30s",
+            "priority": "high"
+          },
+          {
+            "chunk_id": 2,
+            "segment_description": "Main content part 1 - key concepts and visuals: Request failed: 404 Client Error: Not Found for ur...",
+            "estimated_duration": "60s",
+            "priority": "medium"
+          },
+          {
+            "chunk_id": 3,
+            "segment_description": "Main content part 2 - examples and demonstrations: Request failed: 404 Client Error: Not Found for ur...",
+            "estimated_duration": "90s",
+            "priority": "medium"
+          },
+          {
+            "chunk_id": 4,
+            "segment_description": "Conclusion and call to action: Request failed: 404 Client Error: Not Found for ur...",
+            "estimated_duration": "120s",
+            "priority": "medium"
+          }
+        ],
+        "timestamp": "2025-11-27T01:25:30.238509"
+      },
+      "agent4_scene_writer": {
+        "chunks_processed": [
+          {
+            "chunk_id": 1,
+            "input": {
+              "chunk_id": 1,
+              "segment_description": "Opening sequence with hook and introduction: Request failed: 404 Client Error: Not Found for ur...",
+              "estimated_duration": "30s",
+              "priority": "high"
+            },
+            "output": {
+              "task_chunk": {
+                "chunk_id": 1,
+                "segment_description": "Opening sequence with hook and introduction: Request failed: 404 Client Error: Not Found for ur...",
+                "estimated_duration": "30s",
+                "priority": "high"
+              },
+              "scene_description": "Request failed: 404 Client Error: Not Found for url: https://api.anthropic.com/v1/messages",
+              "subtitles_integrated": true,
+              "timestamp_details": "second-by-second",
+              "visual_descriptions": "Detailed camera directions and visuals",
+              "audio_cues": "Background music and sound effects"
+            },
+            "timestamp": "2025-11-27T01:25:30.821170"
+          },
+          {
+            "chunk_id": 2,
+            "input": {
+              "chunk_id": 2,
+              "segment_description": "Main content part 1 - key concepts and visuals: Request failed: 404 Client Error: Not Found for ur...",
+              "estimated_duration": "60s",
+              "priority": "medium"
+            },
+            "output": {
+              "task_chunk": {
+                "chunk_id": 2,
+                "segment_description": "Main content part 1 - key concepts and visuals: Request failed: 404 Client Error: Not Found for ur...",
+                "estimated_duration": "60s",
+                "priority": "medium"
+              },
+              "scene_description": "Request failed: 404 Client Error: Not Found for url: https://api.anthropic.com/v1/messages",
+              "subtitles_integrated": true,
+              "timestamp_details": "second-by-second",
+              "visual_descriptions": "Detailed camera directions and visuals",
+              "audio_cues": "Background music and sound effects"
+            },
+            "timestamp": "2025-11-27T01:25:32.869673"
+          },
+          {
+            "chunk_id": 3,
+            "input": {
+              "chunk_id": 3,
+              "segment_description": "Main content part 2 - examples and demonstrations: Request failed: 404 Client Error: Not Found for ur...",
+              "estimated_duration": "90s",
+              "priority": "medium"
+            },
+            "output": {
+              "task_chunk": {
+                "chunk_id": 3,
+                "segment_description": "Main content part 2 - examples and demonstrations: Request failed: 404 Client Error: Not Found for ur...",
+                "estimated_duration": "90s",
+                "priority": "medium"
+              },
+              "scene_description": "Request failed: 404 Client Error: Not Found for url: https://api.anthropic.com/v1/messages",
+              "subtitles_integrated": true,
+              "timestamp_details": "second-by-second",
+              "visual_descriptions": "Detailed camera directions and visuals",
+              "audio_cues": "Background music and sound effects"
+            },
+            "timestamp": "2025-11-27T01:25:33.925362"
+          },
+          {
+            "chunk_id": 4,
+            "input": {
+              "chunk_id": 4,
+              "segment_description": "Conclusion and call to action: Request failed: 404 Client Error: Not Found for ur...",
+              "estimated_duration": "120s",
+              "priority": "medium"
+            },
+            "output": {
+              "task_chunk": {
+                "chunk_id": 4,
+                "segment_description": "Conclusion and call to action: Request failed: 404 Client Error: Not Found for ur...",
+                "estimated_duration": "120s",
+                "priority": "medium"
+              },
+              "scene_description": "Request failed: 404 Client Error: Not Found for url: https://api.anthropic.com/v1/messages",
+              "subtitles_integrated": true,
+              "timestamp_details": "second-by-second",
+              "visual_descriptions": "Detailed camera directions and visuals",
+              "audio_cues": "Background music and sound effects"
+            },
+            "timestamp": "2025-11-27T01:25:34.232899"
+          }
+        ],
+        "timestamp": "2025-11-27T01:25:30.238592"
+      },
+      "final_assembly": {
+        "input": [
+          {
+            "task_chunk": {
+              "chunk_id": 1,
+              "segment_description": "Opening sequence with hook and introduction: Request failed: 404 Client Error: Not Found for ur...",
+              "estimated_duration": "30s",
+              "priority": "high"
+            },
+            "scene_description": "Request failed: 404 Client Error: Not Found for url: https://api.anthropic.com/v1/messages",
+            "subtitles_integrated": true,
+            "timestamp_details": "second-by-second",
+            "visual_descriptions": "Detailed camera directions and visuals",
+            "audio_cues": "Background music and sound effects"
+          },
+          {
+            "task_chunk": {
+              "chunk_id": 2,
+              "segment_description": "Main content part 1 - key concepts and visuals: Request failed: 404 Client Error: Not Found for ur...",
+              "estimated_duration": "60s",
+              "priority": "medium"
+            },
+            "scene_description": "Request failed: 404 Client Error: Not Found for url: https://api.anthropic.com/v1/messages",
+            "subtitles_integrated": true,
+            "timestamp_details": "second-by-second",
+            "visual_descriptions": "Detailed camera directions and visuals",
+            "audio_cues": "Background music and sound effects"
+          },
+          {
+            "task_chunk": {
+              "chunk_id": 3,
+              "segment_description": "Main content part 2 - examples and demonstrations: Request failed: 404 Client Error: Not Found for ur...",
+              "estimated_duration": "90s",
+              "priority": "medium"
+            },
+            "scene_description": "Request failed: 404 Client Error: Not Found for url: https://api.anthropic.com/v1/messages",
+            "subtitles_integrated": true,
+            "timestamp_details": "second-by-second",
+            "visual_descriptions": "Detailed camera directions and visuals",
+            "audio_cues": "Background music and sound effects"
+          },
+          {
+            "task_chunk": {
+              "chunk_id": 4,
+              "segment_description": "Conclusion and call to action: Request failed: 404 Client Error: Not Found for ur...",
+              "estimated_duration": "120s",
+              "priority": "medium"
+            },
+            "scene_description": "Request failed: 404 Client Error: Not Found for url: https://api.anthropic.com/v1/messages",
+            "subtitles_integrated": true,
+            "timestamp_details": "second-by-second",
+            "visual_descriptions": "Detailed camera directions and visuals",
+            "audio_cues": "Background music and sound effects"
+          }
+        ],
+        "output": "video_b4cbb9b5_space_exploration.mp4",
+        "timestamp": "2025-11-27T01:25:34.847926"
+      }
+    },
+    "final_result": {
+      "refined_prompt": "Request failed: 404 Client Error: Not Found for url: https://api.anthropic.com/v1/messages",
+      "video_plan": {
+        "opening": "Hook viewers in first 15 seconds",
+        "closing": "Reinforce key takeaways with call to action",
+        "mid_intervals": [
+          "Segment 1",
+          "Segment 2",
+          "Segment 3"
+        ],
+        "timestamps": {
+          "opening": "0:00-0:15",
+          "middle": "0:15-2:30",
+          "closing": "2:30-3:00"
+        },
+        "transitions": [
+          "Smooth transition between sections"
+        ],
+        "raw_plan": "Request failed: 404 Client Error: Not Found for url: https://api.anthropic.com/v1/messages",
+        "structured": true
+      },
+      "task_chunks": [
+        {
+          "chunk_id": 1,
+          "segment_description": "Opening sequence with hook and introduction: Request failed: 404 Client Error: Not Found for ur...",
+          "estimated_duration": "30s",
+          "priority": "high"
+        },
+        {
+          "chunk_id": 2,
+          "segment_description": "Main content part 1 - key concepts and visuals: Request failed: 404 Client Error: Not Found for ur...",
+          "estimated_duration": "60s",
+          "priority": "medium"
+        },
+        {
+          "chunk_id": 3,
+          "segment_description": "Main content part 2 - examples and demonstrations: Request failed: 404 Client Error: Not Found for ur...",
+          "estimated_duration": "90s",
+          "priority": "medium"
+        },
+        {
+          "chunk_id": 4,
+          "segment_description": "Conclusion and call to action: Request failed: 404 Client Error: Not Found for ur...",
+          "estimated_duration": "120s",
+          "priority": "medium"
+        }
+      ],
+      "scene_descriptions": [
+        {
+          "task_chunk": {
+            "chunk_id": 1,
+            "segment_description": "Opening sequence with hook and introduction: Request failed: 404 Client Error: Not Found for ur...",
+            "estimated_duration": "30s",
+            "priority": "high"
+          },
+          "scene_description": "Request failed: 404 Client Error: Not Found for url: https://api.anthropic.com/v1/messages",
+          "subtitles_integrated": true,
+          "timestamp_details": "second-by-second",
+          "visual_descriptions": "Detailed camera directions and visuals",
+          "audio_cues": "Background music and sound effects"
+        },
+        {
+          "task_chunk": {
+            "chunk_id": 2,
+            "segment_description": "Main content part 1 - key concepts and visuals: Request failed: 404 Client Error: Not Found for ur...",
+            "estimated_duration": "60s",
+            "priority": "medium"
+          },
+          "scene_description": "Request failed: 404 Client Error: Not Found for url: https://api.anthropic.com/v1/messages",
+          "subtitles_integrated": true,
+          "timestamp_details": "second-by-second",
+          "visual_descriptions": "Detailed camera directions and visuals",
+          "audio_cues": "Background music and sound effects"
+        },
+        {
+          "task_chunk": {
+            "chunk_id": 3,
+            "segment_description": "Main content part 2 - examples and demonstrations: Request failed: 404 Client Error: Not Found for ur...",
+            "estimated_duration": "90s",
+            "priority": "medium"
+          },
+          "scene_description": "Request failed: 404 Client Error: Not Found for url: https://api.anthropic.com/v1/messages",
+          "subtitles_integrated": true,
+          "timestamp_details": "second-by-second",
+          "visual_descriptions": "Detailed camera directions and visuals",
+          "audio_cues": "Background music and sound effects"
+        },
+        {
+          "task_chunk": {
+            "chunk_id": 4,
+            "segment_description": "Conclusion and call to action: Request failed: 404 Client Error: Not Found for ur...",
+            "estimated_duration": "120s",
+            "priority": "medium"
+          },
+          "scene_description": "Request failed: 404 Client Error: Not Found for url: https://api.anthropic.com/v1/messages",
+          "subtitles_integrated": true,
+          "timestamp_details": "second-by-second",
+          "visual_descriptions": "Detailed camera directions and visuals",
+          "audio_cues": "Background music and sound effects"
+        }
+      ],
+      "final_video": "video_b4cbb9b5_space_exploration.mp4",
+      "workflow_complete": true,
+      "workflow_id": "8d2c68c0",
+      "start_time": "2025-11-27T01:25:27.242596",
+      "end_time": "2025-11-27T01:25:34.848102",
+      "duration_seconds": 7.605506
+    },
+    "end_time": "2025-11-27T01:25:34.848102",
+    "status": "completed"
+  },
+  {
+    "workflow_id": "5144c62b",
+    "user_query": "Create a 10-minute educational video on Multi-layer perceptron",
+    "start_time": "2025-11-27T01:33:43.701763",
+    "agents": {},
+    "final_result": {},
+    "end_time": "2025-11-27T01:33:44.035482",
+    "status": "failed",
+    "error": {
+      "message": "Anthropic API error: Error code: 404 - {'type': 'error', 'error': {'type': 'not_found_error', 'message': 'model: claude-3-5-sonnet-20241022'}, 'request_id': 'req_011CVX5amnD53wzjFr9Y6W75'}",
+      "type": "Exception",
+      "timestamp": "2025-11-27T01:33:44.035482"
+    }
+  },
+  {
+    "workflow_id": "adc8e86a",
+    "user_query": "Create a 10-minute educational video on Multi-layer perceptron",
+    "start_time": "2025-11-27T01:34:16.664433",
+    "agents": {},
+    "final_result": {},
+    "end_time": "2025-11-27T01:34:17.089558",
+    "status": "failed",
+    "error": {
+      "message": "Anthropic API error: Error code: 404 - {'type': 'error', 'error': {'type': 'not_found_error', 'message': 'model: claude-3-5-sonnet-20241022'}, 'request_id': 'req_011CVX5dCihayXcW1NVubHrc'}",
+      "type": "Exception",
+      "timestamp": "2025-11-27T01:34:17.089558"
+    }
+  },
+  {
+    "workflow_id": "2cfee64d",
+    "user_query": "Create a 10-minute educational video on Multi-layer perceptron",
+    "start_time": "2025-11-27T01:36:27.308644",
+    "agents": {},
+    "final_result": {},
+    "end_time": "2025-11-27T01:36:27.859989",
+    "status": "failed",
+    "error": {
+      "message": "Anthropic API error: Error code: 404 - {'type': 'error', 'error': {'type': 'not_found_error', 'message': 'model: claude-3-5-sonnet-20241022'}, 'request_id': 'req_011CVX5nqjfoy6MMBzqdu7Xm'}",
+      "type": "Exception",
+      "timestamp": "2025-11-27T01:36:27.859989"
+    }
+  },
+  {
+    "workflow_id": "b8b49b57",
+    "user_query": "Create a 10-minute educational video on Multi-layer perceptron",
+    "start_time": "2025-11-27T01:36:57.808082",
+    "agents": {
+      "agent1_prompt_refiner": {
+        "input": "Create a 10-minute educational video on Multi-layer perceptron",
+        "output": "**Educational Video Script Concept: \"Understanding Multi-Layer Perceptrons: From Neurons to Networks\"**\n\n**Target Audience & Tone:**\n- Computer science students, data science - Technical but approachable tone with clear explanations and relatable analogies\n- Assumes basic understanding of mathematics but explains neural network concepts from ground up\n\n**Key Messages & Learning Objectives:**\nBy video end, viewers will:\n- Understand what MLPs are and how they differ from single-layer perceptrons\n- Grasp the mathematical foundation of forward propagation\n- Comprehend backpropagation as the learning mechanism\n- Recognize common MLP applications and limitations\n- Feel confident to explore MLP implementation\n\n**Emotional Journey & Engagement Strategy:**\n- Hook: - Build curiosity through historical context and limitations reveal\n- Create \"aha moments\" with clear visual demonstrations\n- Maintain engagement through progressive complexity building\n- End with empowerment and next-step motivation\n\n**Detailed Content Structure:**\n\n**Segment 1: The Problem (1 minute)**\n- Open with failed single-layer perceptron trying to solve XOR problem\n- Historical context: Minsky & Papert's limitations discovery\n- Transition: \"What if we could stack these simple units?\"\n\n**Segment 2: Architecture Deep-Dive (3 minutes)**\n- Visual construction of MLP layer by layer\n- Input layer → Hidden layers → Output layer breakdown\n- Neuron anatomy: weights, bias, activation functions\n- Popular activation functions (ReLU, sigmoid, tanh) with visual graphs\n- Network topology variations and design considerations\n\n**Segment 3: Forward Propagation Mathematics (2.5 minutes)**\n- Step-by-step calculation walkthrough with animated equations\n- Matrix multiplication visualization\n- Concrete numerical example with 3-layer network\n- How information flows and transforms through layers\n\n**Segment 4: Backpropagation Learning (2.5 minutes)**\n- The learning problem: adjusting weights for better predictions\n- Gradient descent concept with loss landscape visualization\n- Chain rule application animated through network layers\n- Weight update process demonstration\n\n**Segment 5: Real-World Applications & Wrap-up (1 minute)**\n- Showcase successful MLP applications: fraud detection, medical diagnosis, recommendation systems\n- Limitations discussion: computational requirements, overfitting risks\n- Bridge to modern deep learning evolution\n- Call-to-action: implementation resources and next learning steps\n\n**Visual Style Suggestions:**\n- Clean, modern animation style with consistent color coding (blue for inputs, green for hidden layers, red for outputs)\n- Interactive network diagrams with flowing data visualization\n- Split-screen comparisons for before/after concepts\n- Mathematical equations appearing progressively with highlighted components\n- Real-world application montages with clean infographic overlays\n\n**Duration & Pacing Guidelines:**\n- Total runtime: 10 minutes with natural breathing points\n- Quick 15-second segments for complex mathematical concepts\n- 30-45 second explanatory segments for broader concepts\n- Strategic 2-3 second pauses after key revelations\n- Consistent transitions maintaining viewer attention without overwhelming\n- Final 30 seconds reserved for memorable closing and resources",
+        "timestamp": "2025-11-27T01:37:18.048665"
+      },
+      "agent2_video_planner": {
+        "input": "**Educational Video Script Concept: \"Understanding Multi-Layer Perceptrons: From Neurons to Networks\"**\n\n**Target Audience & Tone:**\n- Computer science students, data science - Technical but approachable tone with clear explanations and relatable analogies\n- Assumes basic understanding of mathematics but explains neural network concepts from ground up\n\n**Key Messages & Learning Objectives:**\nBy video end, viewers will:\n- Understand what MLPs are and how they differ from single-layer perceptrons\n- Grasp the mathematical foundation of forward propagation\n- Comprehend backpropagation as the learning mechanism\n- Recognize common MLP applications and limitations\n- Feel confident to explore MLP implementation\n\n**Emotional Journey & Engagement Strategy:**\n- Hook: - Build curiosity through historical context and limitations reveal\n- Create \"aha moments\" with clear visual demonstrations\n- Maintain engagement through progressive complexity building\n- End with empowerment and next-step motivation\n\n**Detailed Content Structure:**\n\n**Segment 1: The Problem (1 minute)**\n- Open with failed single-layer perceptron trying to solve XOR problem\n- Historical context: Minsky & Papert's limitations discovery\n- Transition: \"What if we could stack these simple units?\"\n\n**Segment 2: Architecture Deep-Dive (3 minutes)**\n- Visual construction of MLP layer by layer\n- Input layer → Hidden layers → Output layer breakdown\n- Neuron anatomy: weights, bias, activation functions\n- Popular activation functions (ReLU, sigmoid, tanh) with visual graphs\n- Network topology variations and design considerations\n\n**Segment 3: Forward Propagation Mathematics (2.5 minutes)**\n- Step-by-step calculation walkthrough with animated equations\n- Matrix multiplication visualization\n- Concrete numerical example with 3-layer network\n- How information flows and transforms through layers\n\n**Segment 4: Backpropagation Learning (2.5 minutes)**\n- The learning problem: adjusting weights for better predictions\n- Gradient descent concept with loss landscape visualization\n- Chain rule application animated through network layers\n- Weight update process demonstration\n\n**Segment 5: Real-World Applications & Wrap-up (1 minute)**\n- Showcase successful MLP applications: fraud detection, medical diagnosis, recommendation systems\n- Limitations discussion: computational requirements, overfitting risks\n- Bridge to modern deep learning evolution\n- Call-to-action: implementation resources and next learning steps\n\n**Visual Style Suggestions:**\n- Clean, modern animation style with consistent color coding (blue for inputs, green for hidden layers, red for outputs)\n- Interactive network diagrams with flowing data visualization\n- Split-screen comparisons for before/after concepts\n- Mathematical equations appearing progressively with highlighted components\n- Real-world application montages with clean infographic overlays\n\n**Duration & Pacing Guidelines:**\n- Total runtime: 10 minutes with natural breathing points\n- Quick 15-second segments for complex mathematical concepts\n- 30-45 second explanatory segments for broader concepts\n- Strategic 2-3 second pauses after key revelations\n- Consistent transitions maintaining viewer attention without overwhelming\n- Final 30 seconds reserved for memorable closing and resources",
+        "output": {
+          "opening": "Hook viewers in first 15 seconds",
+          "closing": "Reinforce key takeaways with call to action",
+          "mid_intervals": [
+            "Segment 1",
+            "Segment 2",
+            "Segment 3"
+          ],
+          "timestamps": {
+            "opening": "0:00-0:15",
+            "middle": "0:15-2:30",
+            "closing": "2:30-3:00"
+          },
+          "transitions": [
+            "Smooth transition between sections"
+          ],
+          "raw_plan": "# Video Plan: \"Understanding Multi-Layer Perceptrons: From Neurons to Networks\"\n\n## Opening Hook (0:00-0:15)\n**Visual:** Split screen showing simple XOR problem (left) and frustrated single perceptron bouncing between wrong solutions (right)\n**Audio:** Upbeat music fades to focused tone\n**Script:** \"This simple pattern stumped AI researchers for years. Two inputs, one rule: output 1 when inputs differ. Yet the most promising AI of the 1960s couldn't solve it. The solution? Stack them up.\"\n**Transition:** Animated perceptrons literally stacking into layers\n\n## Segment 1: The Limitation Revelation (0:15-1:00)\n**Objective:** Establish historical context and the \"why\" behind MLPs\n**Visual:** \n- 1960s computer lab aesthetic with Minsky & Papert photos\n- Single perceptron attempting XOR, drawing linear boundaries that fail\n- Timeline showing \"AI Winter\" period\n**Audio:** Slightly dramatic music building tension\n**Script Coverage:**\n- Perceptron's linear limitation discovery\n- \"What if we could add layers to break through this barrier?\"\n**Key Moment (0:50):** Visual of breaking through a wall labeled \"Linear Limitations\"\n\n## Segment 2: Architecture Blueprint (1:00-2:15)\n**Objective:** Build visual understanding of MLP structure\n**Visual:**\n- Animated construction: neurons appearing layer by layer\n- Color coding: Blue inputs → Green hidden layers → Red outputs\n- Zoom into single neuron showing weights, bias, activation function\n- Side-by-side activation function graphs (sigmoid, ReLU, tanh)\n**Audio:** Constructive, building music\n**Key Timestamps:**\n- 1:20 - Neuron anatomy breakdown\n- 1:45 - Activation function comparison\n- 2:00 - Complete network reveal\n**Transition:** \"But how does information actually flow through this structure?\"\n\n## Segment 3: Forward Propagation Walkthrough (2:15-3:30)\n**Objective:** Demonstrate mathematical flow with concrete example\n**Visual:**\n- Animated data flowing through network with numerical values\n- Matrix multiplication visualization with highlighted calculations\n- Step-by-step: Input [0.8, 0.3] → Hidden layer calculations → Output\n- Equations appearing progressively with animated highlighting\n**Audio:** Focused, analytical tone\n**Key Moments:**\n- 2:35 - First layer calculation with actual numbers\n- 3:00 - Activation function transformation\n- 3:15 - Final output prediction\n**Transition:** Freeze frame on prediction error: \"But what if our prediction is wrong?\"\n\n## Segment 4: Backpropagation Learning Engine (3:30-4:45)\n**Objective:** Explain the learning mechanism intuitively\n**Visual:**\n- 3D loss landscape with gradient descent ball rolling\n- Error signal propagating backward through network (red wave)\n- Weight adjustment animations with before/after comparisons\n- Chain rule visualization with connected derivative components\n**Audio:** Problem-solving music, building to resolution\n**Key Timestamps:**\n- 3:45 - Error calculation and loss landscape\n- 4:10 - Gradient computation flowing backward\n- 4:30 - Weight updates with improvement demonstration\n**Transition:** \"This learning process unlocks incredible possibilities\"\n\n## Closing & Applications (4:45-5:00)\n**Objective:** Connect to real-world impact and inspire next steps\n**Visual:**\n- Quick montage: Credit card fraud detection, medical X-ray analysis, Netflix recommendations\n- Modern deep learning evolution timeline\n- Resource links and implementation frameworks appearing\n**Audio:** Inspiring, forward-looking music\n**Script Coverage:**\n- \"From fraud detection protecting your purchases to medical AI saving lives\"\n- \"This foundation leads to today's deep learning revolution\"\n- \"\n## Technical Specifications:\n**Transitions:** 2-second smooth fades with consistent visual motifs\n**Pacing:** 15-second rule - no single concept explained longer than 15 seconds without visual change\n**Audio Cues:** \n- Mathematical segments: Clean, focused background\n- Historical segments: Slightly dramatic undertones\n- Closing: Inspiring, uplifting tone\n**Visual Consistency:** Maintain blue→green→red color scheme throughout, clean typography for equations",
+          "structured": true
+        },
+        "timestamp": "2025-11-27T01:37:43.743466"
+      },
+      "agent3_task_distributor": {
+        "input": {
+          "opening": "Hook viewers in first 15 seconds",
+          "closing": "Reinforce key takeaways with call to action",
+          "mid_intervals": [
+            "Segment 1",
+            "Segment 2",
+            "Segment 3"
+          ],
+          "timestamps": {
+            "opening": "0:00-0:15",
+            "middle": "0:15-2:30",
+            "closing": "2:30-3:00"
+          },
+          "transitions": [
+            "Smooth transition between sections"
+          ],
+          "raw_plan": "# Video Plan: \"Understanding Multi-Layer Perceptrons: From Neurons to Networks\"\n\n## Opening Hook (0:00-0:15)\n**Visual:** Split screen showing simple XOR problem (left) and frustrated single perceptron bouncing between wrong solutions (right)\n**Audio:** Upbeat music fades to focused tone\n**Script:** \"This simple pattern stumped AI researchers for years. Two inputs, one rule: output 1 when inputs differ. Yet the most promising AI of the 1960s couldn't solve it. The solution? Stack them up.\"\n**Transition:** Animated perceptrons literally stacking into layers\n\n## Segment 1: The Limitation Revelation (0:15-1:00)\n**Objective:** Establish historical context and the \"why\" behind MLPs\n**Visual:** \n- 1960s computer lab aesthetic with Minsky & Papert photos\n- Single perceptron attempting XOR, drawing linear boundaries that fail\n- Timeline showing \"AI Winter\" period\n**Audio:** Slightly dramatic music building tension\n**Script Coverage:**\n- Perceptron's linear limitation discovery\n- \"What if we could add layers to break through this barrier?\"\n**Key Moment (0:50):** Visual of breaking through a wall labeled \"Linear Limitations\"\n\n## Segment 2: Architecture Blueprint (1:00-2:15)\n**Objective:** Build visual understanding of MLP structure\n**Visual:**\n- Animated construction: neurons appearing layer by layer\n- Color coding: Blue inputs → Green hidden layers → Red outputs\n- Zoom into single neuron showing weights, bias, activation function\n- Side-by-side activation function graphs (sigmoid, ReLU, tanh)\n**Audio:** Constructive, building music\n**Key Timestamps:**\n- 1:20 - Neuron anatomy breakdown\n- 1:45 - Activation function comparison\n- 2:00 - Complete network reveal\n**Transition:** \"But how does information actually flow through this structure?\"\n\n## Segment 3: Forward Propagation Walkthrough (2:15-3:30)\n**Objective:** Demonstrate mathematical flow with concrete example\n**Visual:**\n- Animated data flowing through network with numerical values\n- Matrix multiplication visualization with highlighted calculations\n- Step-by-step: Input [0.8, 0.3] → Hidden layer calculations → Output\n- Equations appearing progressively with animated highlighting\n**Audio:** Focused, analytical tone\n**Key Moments:**\n- 2:35 - First layer calculation with actual numbers\n- 3:00 - Activation function transformation\n- 3:15 - Final output prediction\n**Transition:** Freeze frame on prediction error: \"But what if our prediction is wrong?\"\n\n## Segment 4: Backpropagation Learning Engine (3:30-4:45)\n**Objective:** Explain the learning mechanism intuitively\n**Visual:**\n- 3D loss landscape with gradient descent ball rolling\n- Error signal propagating backward through network (red wave)\n- Weight adjustment animations with before/after comparisons\n- Chain rule visualization with connected derivative components\n**Audio:** Problem-solving music, building to resolution\n**Key Timestamps:**\n- 3:45 - Error calculation and loss landscape\n- 4:10 - Gradient computation flowing backward\n- 4:30 - Weight updates with improvement demonstration\n**Transition:** \"This learning process unlocks incredible possibilities\"\n\n## Closing & Applications (4:45-5:00)\n**Objective:** Connect to real-world impact and inspire next steps\n**Visual:**\n- Quick montage: Credit card fraud detection, medical X-ray analysis, Netflix recommendations\n- Modern deep learning evolution timeline\n- Resource links and implementation frameworks appearing\n**Audio:** Inspiring, forward-looking music\n**Script Coverage:**\n- \"From fraud detection protecting your purchases to medical AI saving lives\"\n- \"This foundation leads to today's deep learning revolution\"\n- \"\n## Technical Specifications:\n**Transitions:** 2-second smooth fades with consistent visual motifs\n**Pacing:** 15-second rule - no single concept explained longer than 15 seconds without visual change\n**Audio Cues:** \n- Mathematical segments: Clean, focused background\n- Historical segments: Slightly dramatic undertones\n- Closing: Inspiring, uplifting tone\n**Visual Consistency:** Maintain blue→green→red color scheme throughout, clean typography for equations",
+          "structured": true
+        },
+        "output": [
+          {
+            "chunk_id": 1,
+            "segment_description": "Opening sequence with hook and introduction: # Scripting Task Breakdown: MLP Video\n\n## Task 1: ...",
+            "estimated_duration": "30s",
+            "priority": "high"
+          },
+          {
+            "chunk_id": 2,
+            "segment_description": "Main content part 1 - key concepts and visuals: # Scripting Task Breakdown: MLP Video\n\n## Task 1: ...",
+            "estimated_duration": "60s",
+            "priority": "medium"
+          },
+          {
+            "chunk_id": 3,
+            "segment_description": "Main content part 2 - examples and demonstrations: # Scripting Task Breakdown: MLP Video\n\n## Task 1: ...",
+            "estimated_duration": "90s",
+            "priority": "medium"
+          },
+          {
+            "chunk_id": 4,
+            "segment_description": "Conclusion and call to action: # Scripting Task Breakdown: MLP Video\n\n## Task 1: ...",
+            "estimated_duration": "120s",
+            "priority": "medium"
+          }
+        ],
+        "timestamp": "2025-11-27T01:38:04.528381"
+      },
+      "agent4_scene_writer": {
+        "chunks_processed": [
+          {
+            "chunk_id": 1,
+            "input": {
+              "chunk_id": 1,
+              "segment_description": "Opening sequence with hook and introduction: # Scripting Task Breakdown: MLP Video\n\n## Task 1: ...",
+              "estimated_duration": "30s",
+              "priority": "high"
+            },
+            "output": {
+              "task_chunk": {
+                "chunk_id": 1,
+                "segment_description": "Opening sequence with hook and introduction: # Scripting Task Breakdown: MLP Video\n\n## Task 1: ...",
+                "estimated_duration": "30s",
+                "priority": "high"
+              },
+              "scene_description": "**Scene 1: Opening Hook & Introduction (0:00 - 0:30)**\n\n**0:00-0:03**\n- FADE IN from black\n- Quick montage of MLP character close-ups flashing rapidly (0.5 sec each)\n- Sound: Dramatic orchestral sting\n- Text overlay: \"WHAT IF I TOLD YOU...\" (bold white font, center screen)\n\n**0:03-0:07** \n- Cut to: Wide shot of Ponyville town square, camera slowly zooming in\n- Narrator (energetic male voice): \"There's a hidden world of storytelling secrets...\"\n- Background music: Upbeat, mysterious orchestral theme - Text fades out\n\n**0:07-0:12**\n- Quick cuts between different MLP scenes (friendship moments, conflicts, resolutions)\n- Camera: Dynamic angle changes every 1-2 seconds\n- Narrator continues: \"...buried within every episode of My Little Pony?\"\n- Sound effects: Magical sparkle sounds punctuate each cut\n\n**0:12-0:18**\n- Medium shot: Host appears on screen (clean background, good lighting)\n- Host gestures enthusiastically toward camera\n- Host dialogue: \"I'm going to break down EXACTLY how MLP uses advanced storytelling techniques...\"\n- Lower third appears: \"STORYTELLING ANALYSIS\" (animated slide-in)\n\n**0:18-0:25**\n- Split screen: Host on left, MLP scenes compilation on right\n- Camera: Slight zoom on host for emphasis\n- Host continues: \"...that Hollywood scriptwriters charge thousands to teach!\"\n- Background music swells\n- Text overlay on MLP side: \"PROFESSIONAL TECHNIQUES\"\n\n**0:25-0:30**\n- Full screen: Host with confident expression\n- Host: \"Stay tuned - this will change how you watch cartoons forever.\"\n- Music hits dramatic crescendo then cuts to softer intro music\n- Text overlay: \"LET'S DIVE IN\" (animated typewriter effect)\n- Transition: Quick fade to next segment",
+              "subtitles_integrated": true,
+              "timestamp_details": "second-by-second",
+              "visual_descriptions": "Detailed camera directions and visuals",
+              "audio_cues": "Background music and sound effects"
+            },
+            "timestamp": "2025-11-27T01:38:19.687616"
+          },
+          {
+            "chunk_id": 2,
+            "input": {
+              "chunk_id": 2,
+              "segment_description": "Main content part 1 - key concepts and visuals: # Scripting Task Breakdown: MLP Video\n\n## Task 1: ...",
+              "estimated_duration": "60s",
+              "priority": "medium"
+            },
+            "output": {
+              "task_chunk": {
+                "chunk_id": 2,
+                "segment_description": "Main content part 1 - key concepts and visuals: # Scripting Task Breakdown: MLP Video\n\n## Task 1: ...",
+                "estimated_duration": "60s",
+                "priority": "medium"
+              },
+              "scene_description": "**SCENE 2: MAIN CONTENT PART 1 - KEY CONCEPTS AND VISUALS**\n*Duration: 60 seconds*\n\n**0:00-0:03**\n- FADE IN from previous segment\n- Medium shot of presenter at desk with laptop open\n- Soft background music continues (ambient electronic, 40% volume)\n- Presenter looks up from screen with focused expression\n\n**0:03-0:06**\n- CUT TO: Close-up of laptop screen showing \"MLP Video Scripting Task\"\n- Gentle zoom in on screen text\n- SUBTITLE APPEARS: \"Breaking Down the MLP Video Project\"\n- Light keyboard typing sound effect\n\n**0:06-0:10**\n- CUT BACK TO: Medium shot of presenter\n- Presenter gestures toward screen while speaking\n- DIALOGUE: \"Let's dive into the core concepts that will drive our MLP video content\"\n- Camera slowly pushes in to medium-close shot\n\n**0:10-0:15**\n- GRAPHIC OVERLAY: Animated mind map appearing on screen\n- Central node: \"MLP VIDEO STRATEGY\"\n- Three branches extending outward with icons\n- Soft \"whoosh\" sound effect for each branch appearance\n- Background music shifts to more structured rhythm\n\n**0:15-0:20**\n- First branch highlights: \"AUDIENCE ANALYSIS\"\n- Icon animation: Target symbol with expanding rings\n- SUBTITLE: \"Understanding Your Viewers\"\n- Presenter points to specific area of graphic\n- Light bell chime sound effect\n\n**0:20-0:25**\n- Second branch highlights: \"CONTENT STRUCTURE\"  \n- Icon animation: Building blocks stacking\n- Camera angle shifts slightly (5-degree tilt adjustment)\n- DIALOGUE: \"Structure is the backbone of engaging content\"\n- Soft mechanical sound effect\n\n**0:25-0:30**\n- Third branch highlights: \"VISUAL STORYTELLING\"\n- Icon animation: Camera lens with flowing film strip\n- SUBTITLE: \"Show, Don't Just Tell\"\n- Presenter's hand traces the connection between concepts\n- Ethereal chime sequence\n\n**0:30-0:35**\n- TRANSITION: Graphic dissolves to split-screen\n- Left side: Presenter continuing explanation\n- Right side: Example video thumbnail gallery\n- DIALOGUE: \"Each element works together to create impact\"\n- Gallery thumbnails gently pulse in sequence\n\n**0:35-0:40**\n- Right side transforms to flowchart\n- Arrows connecting: Script → Visuals → Delivery → Engagement\n- Each element highlights as presenter mentions it\n- Rhythmic \"pop\" sound for each highlight\n- Camera slowly zooms out to show full setup\n\n**0:40-0:45**\n- FULL SCREEN: Animated infographic\n- Statistics appear with smooth slide-in animations\n- \"73% better retention with structured content\"\n- \"2.5x engagement with visual storytelling\"\n- Professional data presentation sounds\n\n**0:45-0:50**\n- RETURN TO: Medium shot of presenter\n- Confident lean forward posture\n- DIALOGUE: \"These aren't just numbers - they're your roadmap to success\"\n- Background music builds slightly in intensity\n- Subtle warm color grade adjustment\n\n**0:50-0:55**\n- OVERLAY: Key takeaway points appearing as bullet list\n- Each point slides in from right with presenter's timing\n- Checkmark animations accompany each point\n- Light success chime for each checkmark\n\n**0:55-0:60**\n- Presenter closes laptop with decisive gesture\n- Camera pulls back to establish next segment setup\n- DIALOGUE: \"Now let's put these concepts into action\"\n- Music transitions to bridge for next segment\n- FADE TO: Transition card reading \"Implementation Phase\"\n\n*End Scene 2*",
+              "subtitles_integrated": true,
+              "timestamp_details": "second-by-second",
+              "visual_descriptions": "Detailed camera directions and visuals",
+              "audio_cues": "Background music and sound effects"
+            },
+            "timestamp": "2025-11-27T01:38:42.819821"
+          },
+          {
+            "chunk_id": 3,
+            "input": {
+              "chunk_id": 3,
+              "segment_description": "Main content part 2 - examples and demonstrations: # Scripting Task Breakdown: MLP Video\n\n## Task 1: ...",
+              "estimated_duration": "90s",
+              "priority": "medium"
+            },
+            "output": {
+              "task_chunk": {
+                "chunk_id": 3,
+                "segment_description": "Main content part 2 - examples and demonstrations: # Scripting Task Breakdown: MLP Video\n\n## Task 1: ...",
+                "estimated_duration": "90s",
+                "priority": "medium"
+              },
+              "scene_description": "**SCENE DESCRIPTION - CHUNK 3: MLP VIDEO MAIN CONTENT PART 2**\n*Duration: 90 seconds*\n\n**0:00-0:04**\n- FADE IN from previous chunk\n- Close-up shot of presenter's hands typing on keyboard\n- Screen capture shows code editor opening\n- Soft typing sound effects\n- Background: Subtle tech ambient music (40% volume)\n\n**0:04-0:08**\n- Camera pulls back to medium shot of presenter at desk\n- Presenter looks up at camera with confident expression\n- PRESENTER: \"Let me show you exactly how this works in practice\"\n- On-screen text appears: \"PRACTICAL EXAMPLES\"\n\n**0:08-0:15**\n- Cut to full screen capture of development environment\n- Code appears line by line with typing sound effects\n- Syntax highlighting activates in real-time\n- PRESENTER (voice-over): \"First, we'll - Cursor movements are smooth and deliberate\n\n**0:15-0:22**\n- Split screen: Code on left, visual diagram on right\n- Animated network diagram builds as code is written\n- Nodes light up in sequence\n- PRESENTER (voice-over): \"Each layer connects to the next, creating our multilayer perceptron\"\n- Soft \"whoosh\" sounds for animations\n\n**0:22-0:30**\n- Camera returns to presenter in medium shot\n- Presenter gestures toward off-screen monitor\n- PRESENTER: \"Now watch what happens when we train this model\"\n- Quick zoom on presenter's enthusiastic expression\n- Background music builds slightly\n\n**0:30-0:38**\n- Full screen: Training visualization\n- Loss function graph appears, line descending\n- Numbers updating in real-time\n- Progress bar fills from 0% to 100%\n- PRESENTER (voice-over): \"The error rate drops as the model learns patterns\"\n- Data flowing sound effects\n\n**0:38-0:45**\n- Cut to over-shoulder shot of presenter watching screen\n- Screen shows successful training completion\n- Green checkmark animation appears\n- PRESENTER: \"Perfect! Our accuracy is now at ninety-two percent\"\n- Success chime sound effect\n\n**0:45-0:53**\n- Medium shot: Presenter turns to face camera directly\n- Confident, teaching expression\n- PRESENTER: \"But here's where it gets really interesting\"\n- Slight pause for emphasis\n- Camera slowly pushes in for close-up\n\n**0:53-1:02**\n- Screen capture: New code window opens\n- More complex neural network architecture appears\n- Multiple layers with different colors\n- PRESENTER (voice-over): \"We can add complexity - more layers, different activation functions\"\n- Layered building sound effects\n\n**1:02-1:10**\n- Split screen returns: Advanced code left, 3D network visualization right\n- Network rotates in 3D space showing depth\n- Connections pulse with data flow\n- PRESENTER (voice-over): \"This deep architecture can handle much more sophisticated tasks\"\n- Ambient electronic music rises\n\n**1:10-1:18**\n- Close-up on presenter's face, excited expression\n- Quick cut to hands demonstrating on keyboard\n- PRESENTER: \"The applications are endless - image recognition, natural language processing\"\n- Quick montage of application examples on screen\n\n**1:18-1:25**\n- Wide shot of full setup - presenter, monitors, equipment\n- Multiple screens showing different aspects of the demo\n- PRESENTER: \"And the best part? You can - Camera slowly circles the workspace\n\n**1:25-1:30**\n- Return to medium shot of presenter\n- Professional, concluding tone\n- PRESENTER: \"In our next segment, we'll dive into the practical implementation\"\n- Subtle transition music \n**TRANSITION CUE at 1:30**\n- Soft fade to black preparation for next chunk\n- Music continues under for seamless transition",
+              "subtitles_integrated": true,
+              "timestamp_details": "second-by-second",
+              "visual_descriptions": "Detailed camera directions and visuals",
+              "audio_cues": "Background music and sound effects"
+            },
+            "timestamp": "2025-11-27T01:39:06.074392"
+          },
+          {
+            "chunk_id": 4,
+            "input": {
+              "chunk_id": 4,
+              "segment_description": "Conclusion and call to action: # Scripting Task Breakdown: MLP Video\n\n## Task 1: ...",
+              "estimated_duration": "120s",
+              "priority": "medium"
+            },
+            "output": {
+              "task_chunk": {
+                "chunk_id": 4,
+                "segment_description": "Conclusion and call to action: # Scripting Task Breakdown: MLP Video\n\n## Task 1: ...",
+                "estimated_duration": "120s",
+                "priority": "medium"
+              },
+              "scene_description": "**SCENE 4: CONCLUSION AND CALL TO ACTION**\n*Duration: 120 seconds*\n\n**0:00-0:03**\n- FADE IN from previous segment\n- Wide shot of presenter at desk, papers organized, confident posture\n- Soft piano music - Presenter looks directly into camera\n\n**0:03-0:08**\n- Medium close-up of presenter\n- PRESENTER: \"So there you have it - your complete roadmap to MLP video success.\"\n- Gesture toward organized papers on desk\n- Camera slowly pushes in\n\n**0:08-0:15**\n- Cut to montage: Quick cuts of key points covered\n- Graphics overlay: \"Planning • Scripting • Production • Analysis\"\n- Upbeat background music swells\n- Each graphic appears with subtle zoom effect\n\n**0:15-0:22**\n- Return to presenter, tight medium shot\n- PRESENTER: \"Remember, every great video - Confident hand gestures emphasizing key words\n- Slight camera tilt for dynamic feel\n\n**0:22-0:30**\n- Graphics package: Checklist animation\n- Text appears line by line: \"✓ Define your goals, ✓ Know your audience, ✓ Structure your content\"\n- PRESENTER (VO): \"Use these frameworks as your foundation, but don't be afraid to adapt them to your unique needs.\"\n\n**0:30-0:38**\n- Close-up of presenter, warm smile\n- PRESENTER: \"The most important step? Just getting - Camera pulls back slowly\n- Music builds to emotional peak\n\n**0:38-0:48**\n- Split screen: Presenter on left, call-to-action graphics on right\n- Text overlay: \"- PRESENTER: \"I want to hear about your projects. Drop a comment below and tell me what video you're planning next.\"\n- Pointing gesture toward camera/audience\n\n**0:48-0:58**\n- Full screen graphics: Social media handles and website\n- Animated subscribe button pulses\n- PRESENTER (VO): \"And if this helped you out, smash that subscribe button and ring the notification bell.\"\n- Sound effect: Bell chime on cue\n\n**0:58-1:08**\n- Return to presenter, standing now, more casual pose\n- PRESENTER: \"Don't forget to grab the free template pack I've linked in the description.\"\n- Camera slowly tracks right\n- Graphics overlay: \"Free Resources ↓\"\n\n**1:08-1:18**\n- Medium wide shot, presenter walking toward camera\n- PRESENTER: \"These aren't just theories - they're battle-tested strategies that work.\"\n- Background slightly blurred, focus on presenter\n- Music transitions to closing theme\n\n**1:18-1:28**\n- Close-up, final message\n- PRESENTER: \"Until next time, keep creating, keep improving, and remember - your story matters.\"\n- Warm, encouraging tone\n- Camera holds steady for emphasis\n\n**1:28-1:35**\n- Wide shot, presenter waves\n- PRESENTER: \"Thanks for watching, and I'll see you in the next one!\"\n- Freeze frame on wave\n- End screen graphics \n**1:35-1:45**\n- End screen template loads\n- Subscribe button (top right)\n- Related video thumbnails (left and right)\n- Social media icons (bottom)\n- Background music fades to 20% volume\n\n**1:45-1:55**\n- Continue end screen hold\n- Subtle animation: Subscribe button gentle pulse every 3 seconds\n- Related video thumbnails have hover effects\n- Background: Soft blur of final presenter frame\n\n**1:55-2:00**\n- Final fade to black\n- Last 2 seconds: Complete silence\n- Small logo watermark appears bottom right\n- FADE OUT\n\n**Technical Notes:**\n- Maintain 1080p quality throughout\n- Color grade for warm, professional look\n- Audio levels: Music at -25dB under dialogue\n- Ensure captions/subtitles for accessibility\n- Export with proper end screen timing for YouTube optimization",
+              "subtitles_integrated": true,
+              "timestamp_details": "second-by-second",
+              "visual_descriptions": "Detailed camera directions and visuals",
+              "audio_cues": "Background music and sound effects"
+            },
+            "timestamp": "2025-11-27T01:39:30.820566"
+          }
+        ],
+        "timestamp": "2025-11-27T01:38:04.528887"
+      },
+      "final_assembly": {
+        "input": [
+          {
+            "task_chunk": {
+              "chunk_id": 1,
+              "segment_description": "Opening sequence with hook and introduction: # Scripting Task Breakdown: MLP Video\n\n## Task 1: ...",
+              "estimated_duration": "30s",
+              "priority": "high"
+            },
+            "scene_description": "**Scene 1: Opening Hook & Introduction (0:00 - 0:30)**\n\n**0:00-0:03**\n- FADE IN from black\n- Quick montage of MLP character close-ups flashing rapidly (0.5 sec each)\n- Sound: Dramatic orchestral sting\n- Text overlay: \"WHAT IF I TOLD YOU...\" (bold white font, center screen)\n\n**0:03-0:07** \n- Cut to: Wide shot of Ponyville town square, camera slowly zooming in\n- Narrator (energetic male voice): \"There's a hidden world of storytelling secrets...\"\n- Background music: Upbeat, mysterious orchestral theme - Text fades out\n\n**0:07-0:12**\n- Quick cuts between different MLP scenes (friendship moments, conflicts, resolutions)\n- Camera: Dynamic angle changes every 1-2 seconds\n- Narrator continues: \"...buried within every episode of My Little Pony?\"\n- Sound effects: Magical sparkle sounds punctuate each cut\n\n**0:12-0:18**\n- Medium shot: Host appears on screen (clean background, good lighting)\n- Host gestures enthusiastically toward camera\n- Host dialogue: \"I'm going to break down EXACTLY how MLP uses advanced storytelling techniques...\"\n- Lower third appears: \"STORYTELLING ANALYSIS\" (animated slide-in)\n\n**0:18-0:25**\n- Split screen: Host on left, MLP scenes compilation on right\n- Camera: Slight zoom on host for emphasis\n- Host continues: \"...that Hollywood scriptwriters charge thousands to teach!\"\n- Background music swells\n- Text overlay on MLP side: \"PROFESSIONAL TECHNIQUES\"\n\n**0:25-0:30**\n- Full screen: Host with confident expression\n- Host: \"Stay tuned - this will change how you watch cartoons forever.\"\n- Music hits dramatic crescendo then cuts to softer intro music\n- Text overlay: \"LET'S DIVE IN\" (animated typewriter effect)\n- Transition: Quick fade to next segment",
+            "subtitles_integrated": true,
+            "timestamp_details": "second-by-second",
+            "visual_descriptions": "Detailed camera directions and visuals",
+            "audio_cues": "Background music and sound effects"
+          },
+          {
+            "task_chunk": {
+              "chunk_id": 2,
+              "segment_description": "Main content part 1 - key concepts and visuals: # Scripting Task Breakdown: MLP Video\n\n## Task 1: ...",
+              "estimated_duration": "60s",
+              "priority": "medium"
+            },
+            "scene_description": "**SCENE 2: MAIN CONTENT PART 1 - KEY CONCEPTS AND VISUALS**\n*Duration: 60 seconds*\n\n**0:00-0:03**\n- FADE IN from previous segment\n- Medium shot of presenter at desk with laptop open\n- Soft background music continues (ambient electronic, 40% volume)\n- Presenter looks up from screen with focused expression\n\n**0:03-0:06**\n- CUT TO: Close-up of laptop screen showing \"MLP Video Scripting Task\"\n- Gentle zoom in on screen text\n- SUBTITLE APPEARS: \"Breaking Down the MLP Video Project\"\n- Light keyboard typing sound effect\n\n**0:06-0:10**\n- CUT BACK TO: Medium shot of presenter\n- Presenter gestures toward screen while speaking\n- DIALOGUE: \"Let's dive into the core concepts that will drive our MLP video content\"\n- Camera slowly pushes in to medium-close shot\n\n**0:10-0:15**\n- GRAPHIC OVERLAY: Animated mind map appearing on screen\n- Central node: \"MLP VIDEO STRATEGY\"\n- Three branches extending outward with icons\n- Soft \"whoosh\" sound effect for each branch appearance\n- Background music shifts to more structured rhythm\n\n**0:15-0:20**\n- First branch highlights: \"AUDIENCE ANALYSIS\"\n- Icon animation: Target symbol with expanding rings\n- SUBTITLE: \"Understanding Your Viewers\"\n- Presenter points to specific area of graphic\n- Light bell chime sound effect\n\n**0:20-0:25**\n- Second branch highlights: \"CONTENT STRUCTURE\"  \n- Icon animation: Building blocks stacking\n- Camera angle shifts slightly (5-degree tilt adjustment)\n- DIALOGUE: \"Structure is the backbone of engaging content\"\n- Soft mechanical sound effect\n\n**0:25-0:30**\n- Third branch highlights: \"VISUAL STORYTELLING\"\n- Icon animation: Camera lens with flowing film strip\n- SUBTITLE: \"Show, Don't Just Tell\"\n- Presenter's hand traces the connection between concepts\n- Ethereal chime sequence\n\n**0:30-0:35**\n- TRANSITION: Graphic dissolves to split-screen\n- Left side: Presenter continuing explanation\n- Right side: Example video thumbnail gallery\n- DIALOGUE: \"Each element works together to create impact\"\n- Gallery thumbnails gently pulse in sequence\n\n**0:35-0:40**\n- Right side transforms to flowchart\n- Arrows connecting: Script → Visuals → Delivery → Engagement\n- Each element highlights as presenter mentions it\n- Rhythmic \"pop\" sound for each highlight\n- Camera slowly zooms out to show full setup\n\n**0:40-0:45**\n- FULL SCREEN: Animated infographic\n- Statistics appear with smooth slide-in animations\n- \"73% better retention with structured content\"\n- \"2.5x engagement with visual storytelling\"\n- Professional data presentation sounds\n\n**0:45-0:50**\n- RETURN TO: Medium shot of presenter\n- Confident lean forward posture\n- DIALOGUE: \"These aren't just numbers - they're your roadmap to success\"\n- Background music builds slightly in intensity\n- Subtle warm color grade adjustment\n\n**0:50-0:55**\n- OVERLAY: Key takeaway points appearing as bullet list\n- Each point slides in from right with presenter's timing\n- Checkmark animations accompany each point\n- Light success chime for each checkmark\n\n**0:55-0:60**\n- Presenter closes laptop with decisive gesture\n- Camera pulls back to establish next segment setup\n- DIALOGUE: \"Now let's put these concepts into action\"\n- Music transitions to bridge for next segment\n- FADE TO: Transition card reading \"Implementation Phase\"\n\n*End Scene 2*",
+            "subtitles_integrated": true,
+            "timestamp_details": "second-by-second",
+            "visual_descriptions": "Detailed camera directions and visuals",
+            "audio_cues": "Background music and sound effects"
+          },
+          {
+            "task_chunk": {
+              "chunk_id": 3,
+              "segment_description": "Main content part 2 - examples and demonstrations: # Scripting Task Breakdown: MLP Video\n\n## Task 1: ...",
+              "estimated_duration": "90s",
+              "priority": "medium"
+            },
+            "scene_description": "**SCENE DESCRIPTION - CHUNK 3: MLP VIDEO MAIN CONTENT PART 2**\n*Duration: 90 seconds*\n\n**0:00-0:04**\n- FADE IN from previous chunk\n- Close-up shot of presenter's hands typing on keyboard\n- Screen capture shows code editor opening\n- Soft typing sound effects\n- Background: Subtle tech ambient music (40% volume)\n\n**0:04-0:08**\n- Camera pulls back to medium shot of presenter at desk\n- Presenter looks up at camera with confident expression\n- PRESENTER: \"Let me show you exactly how this works in practice\"\n- On-screen text appears: \"PRACTICAL EXAMPLES\"\n\n**0:08-0:15**\n- Cut to full screen capture of development environment\n- Code appears line by line with typing sound effects\n- Syntax highlighting activates in real-time\n- PRESENTER (voice-over): \"First, we'll - Cursor movements are smooth and deliberate\n\n**0:15-0:22**\n- Split screen: Code on left, visual diagram on right\n- Animated network diagram builds as code is written\n- Nodes light up in sequence\n- PRESENTER (voice-over): \"Each layer connects to the next, creating our multilayer perceptron\"\n- Soft \"whoosh\" sounds for animations\n\n**0:22-0:30**\n- Camera returns to presenter in medium shot\n- Presenter gestures toward off-screen monitor\n- PRESENTER: \"Now watch what happens when we train this model\"\n- Quick zoom on presenter's enthusiastic expression\n- Background music builds slightly\n\n**0:30-0:38**\n- Full screen: Training visualization\n- Loss function graph appears, line descending\n- Numbers updating in real-time\n- Progress bar fills from 0% to 100%\n- PRESENTER (voice-over): \"The error rate drops as the model learns patterns\"\n- Data flowing sound effects\n\n**0:38-0:45**\n- Cut to over-shoulder shot of presenter watching screen\n- Screen shows successful training completion\n- Green checkmark animation appears\n- PRESENTER: \"Perfect! Our accuracy is now at ninety-two percent\"\n- Success chime sound effect\n\n**0:45-0:53**\n- Medium shot: Presenter turns to face camera directly\n- Confident, teaching expression\n- PRESENTER: \"But here's where it gets really interesting\"\n- Slight pause for emphasis\n- Camera slowly pushes in for close-up\n\n**0:53-1:02**\n- Screen capture: New code window opens\n- More complex neural network architecture appears\n- Multiple layers with different colors\n- PRESENTER (voice-over): \"We can add complexity - more layers, different activation functions\"\n- Layered building sound effects\n\n**1:02-1:10**\n- Split screen returns: Advanced code left, 3D network visualization right\n- Network rotates in 3D space showing depth\n- Connections pulse with data flow\n- PRESENTER (voice-over): \"This deep architecture can handle much more sophisticated tasks\"\n- Ambient electronic music rises\n\n**1:10-1:18**\n- Close-up on presenter's face, excited expression\n- Quick cut to hands demonstrating on keyboard\n- PRESENTER: \"The applications are endless - image recognition, natural language processing\"\n- Quick montage of application examples on screen\n\n**1:18-1:25**\n- Wide shot of full setup - presenter, monitors, equipment\n- Multiple screens showing different aspects of the demo\n- PRESENTER: \"And the best part? You can - Camera slowly circles the workspace\n\n**1:25-1:30**\n- Return to medium shot of presenter\n- Professional, concluding tone\n- PRESENTER: \"In our next segment, we'll dive into the practical implementation\"\n- Subtle transition music \n**TRANSITION CUE at 1:30**\n- Soft fade to black preparation for next chunk\n- Music continues under for seamless transition",
+            "subtitles_integrated": true,
+            "timestamp_details": "second-by-second",
+            "visual_descriptions": "Detailed camera directions and visuals",
+            "audio_cues": "Background music and sound effects"
+          },
+          {
+            "task_chunk": {
+              "chunk_id": 4,
+              "segment_description": "Conclusion and call to action: # Scripting Task Breakdown: MLP Video\n\n## Task 1: ...",
+              "estimated_duration": "120s",
+              "priority": "medium"
+            },
+            "scene_description": "**SCENE 4: CONCLUSION AND CALL TO ACTION**\n*Duration: 120 seconds*\n\n**0:00-0:03**\n- FADE IN from previous segment\n- Wide shot of presenter at desk, papers organized, confident posture\n- Soft piano music - Presenter looks directly into camera\n\n**0:03-0:08**\n- Medium close-up of presenter\n- PRESENTER: \"So there you have it - your complete roadmap to MLP video success.\"\n- Gesture toward organized papers on desk\n- Camera slowly pushes in\n\n**0:08-0:15**\n- Cut to montage: Quick cuts of key points covered\n- Graphics overlay: \"Planning • Scripting • Production • Analysis\"\n- Upbeat background music swells\n- Each graphic appears with subtle zoom effect\n\n**0:15-0:22**\n- Return to presenter, tight medium shot\n- PRESENTER: \"Remember, every great video - Confident hand gestures emphasizing key words\n- Slight camera tilt for dynamic feel\n\n**0:22-0:30**\n- Graphics package: Checklist animation\n- Text appears line by line: \"✓ Define your goals, ✓ Know your audience, ✓ Structure your content\"\n- PRESENTER (VO): \"Use these frameworks as your foundation, but don't be afraid to adapt them to your unique needs.\"\n\n**0:30-0:38**\n- Close-up of presenter, warm smile\n- PRESENTER: \"The most important step? Just getting - Camera pulls back slowly\n- Music builds to emotional peak\n\n**0:38-0:48**\n- Split screen: Presenter on left, call-to-action graphics on right\n- Text overlay: \"- PRESENTER: \"I want to hear about your projects. Drop a comment below and tell me what video you're planning next.\"\n- Pointing gesture toward camera/audience\n\n**0:48-0:58**\n- Full screen graphics: Social media handles and website\n- Animated subscribe button pulses\n- PRESENTER (VO): \"And if this helped you out, smash that subscribe button and ring the notification bell.\"\n- Sound effect: Bell chime on cue\n\n**0:58-1:08**\n- Return to presenter, standing now, more casual pose\n- PRESENTER: \"Don't forget to grab the free template pack I've linked in the description.\"\n- Camera slowly tracks right\n- Graphics overlay: \"Free Resources ↓\"\n\n**1:08-1:18**\n- Medium wide shot, presenter walking toward camera\n- PRESENTER: \"These aren't just theories - they're battle-tested strategies that work.\"\n- Background slightly blurred, focus on presenter\n- Music transitions to closing theme\n\n**1:18-1:28**\n- Close-up, final message\n- PRESENTER: \"Until next time, keep creating, keep improving, and remember - your story matters.\"\n- Warm, encouraging tone\n- Camera holds steady for emphasis\n\n**1:28-1:35**\n- Wide shot, presenter waves\n- PRESENTER: \"Thanks for watching, and I'll see you in the next one!\"\n- Freeze frame on wave\n- End screen graphics \n**1:35-1:45**\n- End screen template loads\n- Subscribe button (top right)\n- Related video thumbnails (left and right)\n- Social media icons (bottom)\n- Background music fades to 20% volume\n\n**1:45-1:55**\n- Continue end screen hold\n- Subtle animation: Subscribe button gentle pulse every 3 seconds\n- Related video thumbnails have hover effects\n- Background: Soft blur of final presenter frame\n\n**1:55-2:00**\n- Final fade to black\n- Last 2 seconds: Complete silence\n- Small logo watermark appears bottom right\n- FADE OUT\n\n**Technical Notes:**\n- Maintain 1080p quality throughout\n- Color grade for warm, professional look\n- Audio levels: Music at -25dB under dialogue\n- Ensure captions/subtitles for accessibility\n- Export with proper end screen timing for YouTube optimization",
+            "subtitles_integrated": true,
+            "timestamp_details": "second-by-second",
+            "visual_descriptions": "Detailed camera directions and visuals",
+            "audio_cues": "Background music and sound effects"
+          }
+        ],
+        "output": "video_dc20951f_space_exploration.mp4",
+        "timestamp": "2025-11-27T01:40:02.197244"
+      }
+    },
+    "final_result": {
+      "refined_prompt": "**Educational Video Script Concept: \"Understanding Multi-Layer Perceptrons: From Neurons to Networks\"**\n\n**Target Audience & Tone:**\n- Computer science students, data science - Technical but approachable tone with clear explanations and relatable analogies\n- Assumes basic understanding of mathematics but explains neural network concepts from ground up\n\n**Key Messages & Learning Objectives:**\nBy video end, viewers will:\n- Understand what MLPs are and how they differ from single-layer perceptrons\n- Grasp the mathematical foundation of forward propagation\n- Comprehend backpropagation as the learning mechanism\n- Recognize common MLP applications and limitations\n- Feel confident to explore MLP implementation\n\n**Emotional Journey & Engagement Strategy:**\n- Hook: - Build curiosity through historical context and limitations reveal\n- Create \"aha moments\" with clear visual demonstrations\n- Maintain engagement through progressive complexity building\n- End with empowerment and next-step motivation\n\n**Detailed Content Structure:**\n\n**Segment 1: The Problem (1 minute)**\n- Open with failed single-layer perceptron trying to solve XOR problem\n- Historical context: Minsky & Papert's limitations discovery\n- Transition: \"What if we could stack these simple units?\"\n\n**Segment 2: Architecture Deep-Dive (3 minutes)**\n- Visual construction of MLP layer by layer\n- Input layer → Hidden layers → Output layer breakdown\n- Neuron anatomy: weights, bias, activation functions\n- Popular activation functions (ReLU, sigmoid, tanh) with visual graphs\n- Network topology variations and design considerations\n\n**Segment 3: Forward Propagation Mathematics (2.5 minutes)**\n- Step-by-step calculation walkthrough with animated equations\n- Matrix multiplication visualization\n- Concrete numerical example with 3-layer network\n- How information flows and transforms through layers\n\n**Segment 4: Backpropagation Learning (2.5 minutes)**\n- The learning problem: adjusting weights for better predictions\n- Gradient descent concept with loss landscape visualization\n- Chain rule application animated through network layers\n- Weight update process demonstration\n\n**Segment 5: Real-World Applications & Wrap-up (1 minute)**\n- Showcase successful MLP applications: fraud detection, medical diagnosis, recommendation systems\n- Limitations discussion: computational requirements, overfitting risks\n- Bridge to modern deep learning evolution\n- Call-to-action: implementation resources and next learning steps\n\n**Visual Style Suggestions:**\n- Clean, modern animation style with consistent color coding (blue for inputs, green for hidden layers, red for outputs)\n- Interactive network diagrams with flowing data visualization\n- Split-screen comparisons for before/after concepts\n- Mathematical equations appearing progressively with highlighted components\n- Real-world application montages with clean infographic overlays\n\n**Duration & Pacing Guidelines:**\n- Total runtime: 10 minutes with natural breathing points\n- Quick 15-second segments for complex mathematical concepts\n- 30-45 second explanatory segments for broader concepts\n- Strategic 2-3 second pauses after key revelations\n- Consistent transitions maintaining viewer attention without overwhelming\n- Final 30 seconds reserved for memorable closing and resources",
+      "video_plan": {
+        "opening": "Hook viewers in first 15 seconds",
+        "closing": "Reinforce key takeaways with call to action",
+        "mid_intervals": [
+          "Segment 1",
+          "Segment 2",
+          "Segment 3"
+        ],
+        "timestamps": {
+          "opening": "0:00-0:15",
+          "middle": "0:15-2:30",
+          "closing": "2:30-3:00"
+        },
+        "transitions": [
+          "Smooth transition between sections"
+        ],
+        "raw_plan": "# Video Plan: \"Understanding Multi-Layer Perceptrons: From Neurons to Networks\"\n\n## Opening Hook (0:00-0:15)\n**Visual:** Split screen showing simple XOR problem (left) and frustrated single perceptron bouncing between wrong solutions (right)\n**Audio:** Upbeat music fades to focused tone\n**Script:** \"This simple pattern stumped AI researchers for years. Two inputs, one rule: output 1 when inputs differ. Yet the most promising AI of the 1960s couldn't solve it. The solution? Stack them up.\"\n**Transition:** Animated perceptrons literally stacking into layers\n\n## Segment 1: The Limitation Revelation (0:15-1:00)\n**Objective:** Establish historical context and the \"why\" behind MLPs\n**Visual:** \n- 1960s computer lab aesthetic with Minsky & Papert photos\n- Single perceptron attempting XOR, drawing linear boundaries that fail\n- Timeline showing \"AI Winter\" period\n**Audio:** Slightly dramatic music building tension\n**Script Coverage:**\n- Perceptron's linear limitation discovery\n- \"What if we could add layers to break through this barrier?\"\n**Key Moment (0:50):** Visual of breaking through a wall labeled \"Linear Limitations\"\n\n## Segment 2: Architecture Blueprint (1:00-2:15)\n**Objective:** Build visual understanding of MLP structure\n**Visual:**\n- Animated construction: neurons appearing layer by layer\n- Color coding: Blue inputs → Green hidden layers → Red outputs\n- Zoom into single neuron showing weights, bias, activation function\n- Side-by-side activation function graphs (sigmoid, ReLU, tanh)\n**Audio:** Constructive, building music\n**Key Timestamps:**\n- 1:20 - Neuron anatomy breakdown\n- 1:45 - Activation function comparison\n- 2:00 - Complete network reveal\n**Transition:** \"But how does information actually flow through this structure?\"\n\n## Segment 3: Forward Propagation Walkthrough (2:15-3:30)\n**Objective:** Demonstrate mathematical flow with concrete example\n**Visual:**\n- Animated data flowing through network with numerical values\n- Matrix multiplication visualization with highlighted calculations\n- Step-by-step: Input [0.8, 0.3] → Hidden layer calculations → Output\n- Equations appearing progressively with animated highlighting\n**Audio:** Focused, analytical tone\n**Key Moments:**\n- 2:35 - First layer calculation with actual numbers\n- 3:00 - Activation function transformation\n- 3:15 - Final output prediction\n**Transition:** Freeze frame on prediction error: \"But what if our prediction is wrong?\"\n\n## Segment 4: Backpropagation Learning Engine (3:30-4:45)\n**Objective:** Explain the learning mechanism intuitively\n**Visual:**\n- 3D loss landscape with gradient descent ball rolling\n- Error signal propagating backward through network (red wave)\n- Weight adjustment animations with before/after comparisons\n- Chain rule visualization with connected derivative components\n**Audio:** Problem-solving music, building to resolution\n**Key Timestamps:**\n- 3:45 - Error calculation and loss landscape\n- 4:10 - Gradient computation flowing backward\n- 4:30 - Weight updates with improvement demonstration\n**Transition:** \"This learning process unlocks incredible possibilities\"\n\n## Closing & Applications (4:45-5:00)\n**Objective:** Connect to real-world impact and inspire next steps\n**Visual:**\n- Quick montage: Credit card fraud detection, medical X-ray analysis, Netflix recommendations\n- Modern deep learning evolution timeline\n- Resource links and implementation frameworks appearing\n**Audio:** Inspiring, forward-looking music\n**Script Coverage:**\n- \"From fraud detection protecting your purchases to medical AI saving lives\"\n- \"This foundation leads to today's deep learning revolution\"\n- \"\n## Technical Specifications:\n**Transitions:** 2-second smooth fades with consistent visual motifs\n**Pacing:** 15-second rule - no single concept explained longer than 15 seconds without visual change\n**Audio Cues:** \n- Mathematical segments: Clean, focused background\n- Historical segments: Slightly dramatic undertones\n- Closing: Inspiring, uplifting tone\n**Visual Consistency:** Maintain blue→green→red color scheme throughout, clean typography for equations",
+        "structured": true
+      },
+      "task_chunks": [
+        {
+          "chunk_id": 1,
+          "segment_description": "Opening sequence with hook and introduction: # Scripting Task Breakdown: MLP Video\n\n## Task 1: ...",
+          "estimated_duration": "30s",
+          "priority": "high"
+        },
+        {
+          "chunk_id": 2,
+          "segment_description": "Main content part 1 - key concepts and visuals: # Scripting Task Breakdown: MLP Video\n\n## Task 1: ...",
+          "estimated_duration": "60s",
+          "priority": "medium"
+        },
+        {
+          "chunk_id": 3,
+          "segment_description": "Main content part 2 - examples and demonstrations: # Scripting Task Breakdown: MLP Video\n\n## Task 1: ...",
+          "estimated_duration": "90s",
+          "priority": "medium"
+        },
+        {
+          "chunk_id": 4,
+          "segment_description": "Conclusion and call to action: # Scripting Task Breakdown: MLP Video\n\n## Task 1: ...",
+          "estimated_duration": "120s",
+          "priority": "medium"
+        }
+      ],
+      "scene_descriptions": [
+        {
+          "task_chunk": {
+            "chunk_id": 1,
+            "segment_description": "Opening sequence with hook and introduction: # Scripting Task Breakdown: MLP Video\n\n## Task 1: ...",
+            "estimated_duration": "30s",
+            "priority": "high"
+          },
+          "scene_description": "**Scene 1: Opening Hook & Introduction (0:00 - 0:30)**\n\n**0:00-0:03**\n- FADE IN from black\n- Quick montage of MLP character close-ups flashing rapidly (0.5 sec each)\n- Sound: Dramatic orchestral sting\n- Text overlay: \"WHAT IF I TOLD YOU...\" (bold white font, center screen)\n\n**0:03-0:07** \n- Cut to: Wide shot of Ponyville town square, camera slowly zooming in\n- Narrator (energetic male voice): \"There's a hidden world of storytelling secrets...\"\n- Background music: Upbeat, mysterious orchestral theme - Text fades out\n\n**0:07-0:12**\n- Quick cuts between different MLP scenes (friendship moments, conflicts, resolutions)\n- Camera: Dynamic angle changes every 1-2 seconds\n- Narrator continues: \"...buried within every episode of My Little Pony?\"\n- Sound effects: Magical sparkle sounds punctuate each cut\n\n**0:12-0:18**\n- Medium shot: Host appears on screen (clean background, good lighting)\n- Host gestures enthusiastically toward camera\n- Host dialogue: \"I'm going to break down EXACTLY how MLP uses advanced storytelling techniques...\"\n- Lower third appears: \"STORYTELLING ANALYSIS\" (animated slide-in)\n\n**0:18-0:25**\n- Split screen: Host on left, MLP scenes compilation on right\n- Camera: Slight zoom on host for emphasis\n- Host continues: \"...that Hollywood scriptwriters charge thousands to teach!\"\n- Background music swells\n- Text overlay on MLP side: \"PROFESSIONAL TECHNIQUES\"\n\n**0:25-0:30**\n- Full screen: Host with confident expression\n- Host: \"Stay tuned - this will change how you watch cartoons forever.\"\n- Music hits dramatic crescendo then cuts to softer intro music\n- Text overlay: \"LET'S DIVE IN\" (animated typewriter effect)\n- Transition: Quick fade to next segment",
+          "subtitles_integrated": true,
+          "timestamp_details": "second-by-second",
+          "visual_descriptions": "Detailed camera directions and visuals",
+          "audio_cues": "Background music and sound effects"
+        },
+        {
+          "task_chunk": {
+            "chunk_id": 2,
+            "segment_description": "Main content part 1 - key concepts and visuals: # Scripting Task Breakdown: MLP Video\n\n## Task 1: ...",
+            "estimated_duration": "60s",
+            "priority": "medium"
+          },
+          "scene_description": "**SCENE 2: MAIN CONTENT PART 1 - KEY CONCEPTS AND VISUALS**\n*Duration: 60 seconds*\n\n**0:00-0:03**\n- FADE IN from previous segment\n- Medium shot of presenter at desk with laptop open\n- Soft background music continues (ambient electronic, 40% volume)\n- Presenter looks up from screen with focused expression\n\n**0:03-0:06**\n- CUT TO: Close-up of laptop screen showing \"MLP Video Scripting Task\"\n- Gentle zoom in on screen text\n- SUBTITLE APPEARS: \"Breaking Down the MLP Video Project\"\n- Light keyboard typing sound effect\n\n**0:06-0:10**\n- CUT BACK TO: Medium shot of presenter\n- Presenter gestures toward screen while speaking\n- DIALOGUE: \"Let's dive into the core concepts that will drive our MLP video content\"\n- Camera slowly pushes in to medium-close shot\n\n**0:10-0:15**\n- GRAPHIC OVERLAY: Animated mind map appearing on screen\n- Central node: \"MLP VIDEO STRATEGY\"\n- Three branches extending outward with icons\n- Soft \"whoosh\" sound effect for each branch appearance\n- Background music shifts to more structured rhythm\n\n**0:15-0:20**\n- First branch highlights: \"AUDIENCE ANALYSIS\"\n- Icon animation: Target symbol with expanding rings\n- SUBTITLE: \"Understanding Your Viewers\"\n- Presenter points to specific area of graphic\n- Light bell chime sound effect\n\n**0:20-0:25**\n- Second branch highlights: \"CONTENT STRUCTURE\"  \n- Icon animation: Building blocks stacking\n- Camera angle shifts slightly (5-degree tilt adjustment)\n- DIALOGUE: \"Structure is the backbone of engaging content\"\n- Soft mechanical sound effect\n\n**0:25-0:30**\n- Third branch highlights: \"VISUAL STORYTELLING\"\n- Icon animation: Camera lens with flowing film strip\n- SUBTITLE: \"Show, Don't Just Tell\"\n- Presenter's hand traces the connection between concepts\n- Ethereal chime sequence\n\n**0:30-0:35**\n- TRANSITION: Graphic dissolves to split-screen\n- Left side: Presenter continuing explanation\n- Right side: Example video thumbnail gallery\n- DIALOGUE: \"Each element works together to create impact\"\n- Gallery thumbnails gently pulse in sequence\n\n**0:35-0:40**\n- Right side transforms to flowchart\n- Arrows connecting: Script → Visuals → Delivery → Engagement\n- Each element highlights as presenter mentions it\n- Rhythmic \"pop\" sound for each highlight\n- Camera slowly zooms out to show full setup\n\n**0:40-0:45**\n- FULL SCREEN: Animated infographic\n- Statistics appear with smooth slide-in animations\n- \"73% better retention with structured content\"\n- \"2.5x engagement with visual storytelling\"\n- Professional data presentation sounds\n\n**0:45-0:50**\n- RETURN TO: Medium shot of presenter\n- Confident lean forward posture\n- DIALOGUE: \"These aren't just numbers - they're your roadmap to success\"\n- Background music builds slightly in intensity\n- Subtle warm color grade adjustment\n\n**0:50-0:55**\n- OVERLAY: Key takeaway points appearing as bullet list\n- Each point slides in from right with presenter's timing\n- Checkmark animations accompany each point\n- Light success chime for each checkmark\n\n**0:55-0:60**\n- Presenter closes laptop with decisive gesture\n- Camera pulls back to establish next segment setup\n- DIALOGUE: \"Now let's put these concepts into action\"\n- Music transitions to bridge for next segment\n- FADE TO: Transition card reading \"Implementation Phase\"\n\n*End Scene 2*",
+          "subtitles_integrated": true,
+          "timestamp_details": "second-by-second",
+          "visual_descriptions": "Detailed camera directions and visuals",
+          "audio_cues": "Background music and sound effects"
+        },
+        {
+          "task_chunk": {
+            "chunk_id": 3,
+            "segment_description": "Main content part 2 - examples and demonstrations: # Scripting Task Breakdown: MLP Video\n\n## Task 1: ...",
+            "estimated_duration": "90s",
+            "priority": "medium"
+          },
+          "scene_description": "**SCENE DESCRIPTION - CHUNK 3: MLP VIDEO MAIN CONTENT PART 2**\n*Duration: 90 seconds*\n\n**0:00-0:04**\n- FADE IN from previous chunk\n- Close-up shot of presenter's hands typing on keyboard\n- Screen capture shows code editor opening\n- Soft typing sound effects\n- Background: Subtle tech ambient music (40% volume)\n\n**0:04-0:08**\n- Camera pulls back to medium shot of presenter at desk\n- Presenter looks up at camera with confident expression\n- PRESENTER: \"Let me show you exactly how this works in practice\"\n- On-screen text appears: \"PRACTICAL EXAMPLES\"\n\n**0:08-0:15**\n- Cut to full screen capture of development environment\n- Code appears line by line with typing sound effects\n- Syntax highlighting activates in real-time\n- PRESENTER (voice-over): \"First, we'll - Cursor movements are smooth and deliberate\n\n**0:15-0:22**\n- Split screen: Code on left, visual diagram on right\n- Animated network diagram builds as code is written\n- Nodes light up in sequence\n- PRESENTER (voice-over): \"Each layer connects to the next, creating our multilayer perceptron\"\n- Soft \"whoosh\" sounds for animations\n\n**0:22-0:30**\n- Camera returns to presenter in medium shot\n- Presenter gestures toward off-screen monitor\n- PRESENTER: \"Now watch what happens when we train this model\"\n- Quick zoom on presenter's enthusiastic expression\n- Background music builds slightly\n\n**0:30-0:38**\n- Full screen: Training visualization\n- Loss function graph appears, line descending\n- Numbers updating in real-time\n- Progress bar fills from 0% to 100%\n- PRESENTER (voice-over): \"The error rate drops as the model learns patterns\"\n- Data flowing sound effects\n\n**0:38-0:45**\n- Cut to over-shoulder shot of presenter watching screen\n- Screen shows successful training completion\n- Green checkmark animation appears\n- PRESENTER: \"Perfect! Our accuracy is now at ninety-two percent\"\n- Success chime sound effect\n\n**0:45-0:53**\n- Medium shot: Presenter turns to face camera directly\n- Confident, teaching expression\n- PRESENTER: \"But here's where it gets really interesting\"\n- Slight pause for emphasis\n- Camera slowly pushes in for close-up\n\n**0:53-1:02**\n- Screen capture: New code window opens\n- More complex neural network architecture appears\n- Multiple layers with different colors\n- PRESENTER (voice-over): \"We can add complexity - more layers, different activation functions\"\n- Layered building sound effects\n\n**1:02-1:10**\n- Split screen returns: Advanced code left, 3D network visualization right\n- Network rotates in 3D space showing depth\n- Connections pulse with data flow\n- PRESENTER (voice-over): \"This deep architecture can handle much more sophisticated tasks\"\n- Ambient electronic music rises\n\n**1:10-1:18**\n- Close-up on presenter's face, excited expression\n- Quick cut to hands demonstrating on keyboard\n- PRESENTER: \"The applications are endless - image recognition, natural language processing\"\n- Quick montage of application examples on screen\n\n**1:18-1:25**\n- Wide shot of full setup - presenter, monitors, equipment\n- Multiple screens showing different aspects of the demo\n- PRESENTER: \"And the best part? You can - Camera slowly circles the workspace\n\n**1:25-1:30**\n- Return to medium shot of presenter\n- Professional, concluding tone\n- PRESENTER: \"In our next segment, we'll dive into the practical implementation\"\n- Subtle transition music \n**TRANSITION CUE at 1:30**\n- Soft fade to black preparation for next chunk\n- Music continues under for seamless transition",
+          "subtitles_integrated": true,
+          "timestamp_details": "second-by-second",
+          "visual_descriptions": "Detailed camera directions and visuals",
+          "audio_cues": "Background music and sound effects"
+        },
+        {
+          "task_chunk": {
+            "chunk_id": 4,
+            "segment_description": "Conclusion and call to action: # Scripting Task Breakdown: MLP Video\n\n## Task 1: ...",
+            "estimated_duration": "120s",
+            "priority": "medium"
+          },
+          "scene_description": "**SCENE 4: CONCLUSION AND CALL TO ACTION**\n*Duration: 120 seconds*\n\n**0:00-0:03**\n- FADE IN from previous segment\n- Wide shot of presenter at desk, papers organized, confident posture\n- Soft piano music - Presenter looks directly into camera\n\n**0:03-0:08**\n- Medium close-up of presenter\n- PRESENTER: \"So there you have it - your complete roadmap to MLP video success.\"\n- Gesture toward organized papers on desk\n- Camera slowly pushes in\n\n**0:08-0:15**\n- Cut to montage: Quick cuts of key points covered\n- Graphics overlay: \"Planning • Scripting • Production • Analysis\"\n- Upbeat background music swells\n- Each graphic appears with subtle zoom effect\n\n**0:15-0:22**\n- Return to presenter, tight medium shot\n- PRESENTER: \"Remember, every great video - Confident hand gestures emphasizing key words\n- Slight camera tilt for dynamic feel\n\n**0:22-0:30**\n- Graphics package: Checklist animation\n- Text appears line by line: \"✓ Define your goals, ✓ Know your audience, ✓ Structure your content\"\n- PRESENTER (VO): \"Use these frameworks as your foundation, but don't be afraid to adapt them to your unique needs.\"\n\n**0:30-0:38**\n- Close-up of presenter, warm smile\n- PRESENTER: \"The most important step? Just getting - Camera pulls back slowly\n- Music builds to emotional peak\n\n**0:38-0:48**\n- Split screen: Presenter on left, call-to-action graphics on right\n- Text overlay: \"- PRESENTER: \"I want to hear about your projects. Drop a comment below and tell me what video you're planning next.\"\n- Pointing gesture toward camera/audience\n\n**0:48-0:58**\n- Full screen graphics: Social media handles and website\n- Animated subscribe button pulses\n- PRESENTER (VO): \"And if this helped you out, smash that subscribe button and ring the notification bell.\"\n- Sound effect: Bell chime on cue\n\n**0:58-1:08**\n- Return to presenter, standing now, more casual pose\n- PRESENTER: \"Don't forget to grab the free template pack I've linked in the description.\"\n- Camera slowly tracks right\n- Graphics overlay: \"Free Resources ↓\"\n\n**1:08-1:18**\n- Medium wide shot, presenter walking toward camera\n- PRESENTER: \"These aren't just theories - they're battle-tested strategies that work.\"\n- Background slightly blurred, focus on presenter\n- Music transitions to closing theme\n\n**1:18-1:28**\n- Close-up, final message\n- PRESENTER: \"Until next time, keep creating, keep improving, and remember - your story matters.\"\n- Warm, encouraging tone\n- Camera holds steady for emphasis\n\n**1:28-1:35**\n- Wide shot, presenter waves\n- PRESENTER: \"Thanks for watching, and I'll see you in the next one!\"\n- Freeze frame on wave\n- End screen graphics \n**1:35-1:45**\n- End screen template loads\n- Subscribe button (top right)\n- Related video thumbnails (left and right)\n- Social media icons (bottom)\n- Background music fades to 20% volume\n\n**1:45-1:55**\n- Continue end screen hold\n- Subtle animation: Subscribe button gentle pulse every 3 seconds\n- Related video thumbnails have hover effects\n- Background: Soft blur of final presenter frame\n\n**1:55-2:00**\n- Final fade to black\n- Last 2 seconds: Complete silence\n- Small logo watermark appears bottom right\n- FADE OUT\n\n**Technical Notes:**\n- Maintain 1080p quality throughout\n- Color grade for warm, professional look\n- Audio levels: Music at -25dB under dialogue\n- Ensure captions/subtitles for accessibility\n- Export with proper end screen timing for YouTube optimization",
+          "subtitles_integrated": true,
+          "timestamp_details": "second-by-second",
+          "visual_descriptions": "Detailed camera directions and visuals",
+          "audio_cues": "Background music and sound effects"
+        }
+      ],
+      "final_video": "video_dc20951f_space_exploration.mp4",
+      "workflow_complete": true,
+      "workflow_id": "b8b49b57",
+      "start_time": "2025-11-27T01:36:57.808082",
+      "end_time": "2025-11-27T01:40:02.198513",
+      "duration_seconds": 184.390431
+    },
+    "end_time": "2025-11-27T01:40:02.198513",
+    "status": "completed"
+  }
+]
