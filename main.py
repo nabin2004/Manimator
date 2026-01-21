@@ -1,16 +1,18 @@
-from manimator.orchestration.langgraph_pipeline import run_pipeline
-from manimator.intent.resolve import resolve_intent
-from manimator.planner.resolve import plan_topic
+from src.manimator.orchestration.langgraph_pipeline import run_pipeline
+from src.manimator.intent.resolve import resolve_intent
+from src.manimator.planner.resolve import plan_topic
 import os
 from langchain_openai import ChatOpenAI
+from dotenv import load_dotenv
 
+load_dotenv()
 
 def main():
     print("Hello from Manimator!")
 
 def test_pipeline():
     os.environ["OPENAI_API_KEY"] = os.getenv("OPENROUTER_API_KEY")
-    os.environ["OPENAI_BASE_URL"] = "https://openrouter.ai/api/v1"
+    os.environ["OPENAI_BASE_URL"] = os.getenv("OPENAI_BASE_URL")
 
     llm = ChatOpenAI(model="liquid/lfm-2.5-1.2b-instruct:free",temperature=0.0)
  
