@@ -1,12 +1,19 @@
-from .schemas import ScenePlan, ObjectPlan, MotionPlan
+from planner.schema import SceneSpec, ScriptPlan
 
-def plan_scene(intent: str) -> ScenePlan:
-    if "circle whirling sinusoidal" in intent.lower():
-        obj = ObjectPlan(id="circle1", type="circle", radius=0.4)
-        motions = [
-            MotionPlan(target="circle1", motion="sinusoidal_path", params={"amplitude": 2, "frequency": 1}),
-            MotionPlan(target="circle1", motion="rotation", params={"angular_speed": 4}),
-        ]
-        return ScenePlan(objects=[obj], motions=motions, duration=6)
-    
-    return ScenePlan(objects=[], motions=[], duration=5)
+def create_basic_plan(topic: str, total_duration_sec: int = 120) -> ScriptPlan:
+    scenes = [
+        SceneSpec(
+            scene_id=f"scene_{i+1:02}",
+            goal=f"Explain part {i+1} of {topic}",
+            visual_elements=["text", "arrow"],
+            estimated_duration_sec=total_duration_sec // 3,
+            narrative_intent=f"Introduce concept {i+1}"
+        )
+        for i in range(3)
+    ]
+
+    return ScriptPlan(
+        topic=topic,
+        total_duration_sec=total_duration_sec,
+        scenes=scenes
+    )
