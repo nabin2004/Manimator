@@ -1,4 +1,4 @@
-from intent.schema import UserIntent
+from manimator.intent.schema import UserIntent
 
 INTENT_PROMPT = """
 Classify the topic below into structured fields.

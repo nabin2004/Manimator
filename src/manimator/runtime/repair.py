@@ -1,4 +1,4 @@
-from runtime.validate import validate_scene_code
+from manimator.runtime.validate import validate_scene_code
 
 MAX_RETRIES = 3
 

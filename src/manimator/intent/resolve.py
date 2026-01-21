@@ -1,6 +1,6 @@
-from intent.schema import UserIntent
-from intent.normalize import normalize_topic, infer_domain
-from intent.llm_classifier import classify_with_llm
+from manimator.intent.schema import UserIntent
+from manimator.intent.normalize import normalize_topic, infer_domain
+from manimator.intent.llm_classifier import classify_with_llm
 
 
 def resolve_intent(raw_topic: str, llm=None) -> UserIntent:

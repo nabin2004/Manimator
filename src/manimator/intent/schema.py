@@ -7,4 +7,3 @@ class UserIntent(BaseModel):
     audience: Literal["school", "undergrad", "grad", "general"]
     visual_density: Literal["low", "medium", "high"]
     preferred_style: Literal["intuition", "formal", "mixed"]
-

@@ -1,7 +1,7 @@
 import os
-from runtime.render import render_scene
-from runtime.repair import repair_scene
-from runtime.validate import validate_scene_code
+from manimator.runtime.render import render_scene
+from manimator.runtime.repair import repair_scene
+from manimator.runtime.validate import validate_scene_code
 
 def run_runtime(llm, scene_files: list, output_dir: str):
     rendered_videos = []

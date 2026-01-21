@@ -1,4 +1,4 @@
-from planner.schema import SceneSpec, ScriptPlan
+from manimator.planner.schema import SceneSpec, ScriptPlan
 
 LLM_SCENE_PROMPT = """
 Given a topic "{topic}" and constraints:

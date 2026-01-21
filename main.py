@@ -1,17 +1,35 @@
-from src.manimator.planner.scene_planner import plan_scene
-from src.manimator.codegen.scene import generate_manim_code
+from manimator.orchestration.langgraph_pipeline import run_pipeline
+from manimator.intent.resolve import resolve_intent
+from manimator.planner.resolve import plan_topic
+import os
+from langchain_openai import ChatOpenAI
 
 
 def main():
-    print("Hello from manimator!")
+    print("Hello from Manimator!")
 
-def test_code_generation():
-    intent = "Circle whirling sinusoidal"
-    scene_plan = plan_scene(intent)
-    code = generate_manim_code(scene_plan)
-    print(code)
+def test_pipeline():
+    os.environ["OPENAI_API_KEY"] = os.getenv("OPENROUTER_API_KEY")
+    os.environ["OPENAI_BASE_URL"] = "https://openrouter.ai/api/v1"
 
+    llm = ChatOpenAI(model="liquid/lfm-2.5-1.2b-instruct:free",temperature=0.0)
+ 
+    # Step 1: User input
+    topic = "Explain the concept of recursion in computer science."
+
+    # Step 2: Intent resolution
+    intent = resolve_intent(topic, llm=llm)
+
+    # Step 3: Planner generates ScriptPlan
+    plan = plan_topic(intent, llm=llm)
+
+    # Step 4: Run the LangGraph orchestration
+    output_dir = "./storage"
+    pipeline_state = run_pipeline(llm=llm, plan=plan, output_dir=output_dir)
+
+    print("Pipeline finished!")
+    print(pipeline_state.json(indent=2))
 
 if __name__ == "__main__":
     main()
-    test_code_generation()
+    test_pipeline()

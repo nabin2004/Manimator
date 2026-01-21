@@ -1,5 +1,5 @@
-from orchestration.state import SceneStatus, SceneState, PipelineState
-from runtime.resolve import run_runtime
+from manimator.orchestration.state import SceneStatus, SceneState, PipelineState
+from manimator.runtime.resolve import run_runtime
 
 MAX_RETRIES = 3
 
