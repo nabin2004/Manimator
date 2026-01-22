@@ -1,0 +1,18 @@
+[ 2026-01-22 22:00:23,844 ] 24 root - INFO - Classifying topic with LLM: explain the concept of recursion in computer science.
+[ 2026-01-22 22:00:25,520 ] 1025 httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+[ 2026-01-22 22:00:25,728 ] 26 root - INFO - LLM classification completed.
+[ 2026-01-22 22:00:25,729 ] 39 root - ERROR - LLM output does not match UserIntent schema
+Location: /home/nabin2004/Manimator/.venv/lib/python3.11/site-packages/pydantic/main.py:250
+Context:
+   - topic: explain the concept of recursion in computer science.
+   - llm_output: {
+  "domain": "AI/CS",
+  "audience": "undergrad",
+  "visual_density": "medium",
+  "preferred_style": "intuition"
+}
+   - validation_errors: [{'type': 'missing', 'loc': ('topic',), 'msg': 'Field required', 'input': {'domain': 'AI/CS', 'audience': 'undergrad', 'visual_density': 'medium', 'preferred_style': 'intuition'}, 'url': 'https://errors.pydantic.dev/2.12/v/missing'}]
+Cause: ValidationError: 1 validation error for UserIntent
+topic
+  Field required [type=missing, input_value={'domain': 'AI/CS', 'audi...red_style': 'intuition'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing

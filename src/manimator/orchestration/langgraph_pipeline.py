@@ -20,6 +20,8 @@ class SceneStateLG(BaseModel):
 class PipelineStateLG(BaseModel):
     topic: str
     scenes: List[SceneStateLG]
+    output_dir: str
+
 
 # ----------------------------
 # Define nodes
@@ -77,7 +79,8 @@ def build_pipeline_graph(llm, plan, output_dir):
     # Initialize pipeline state
     pipeline_state = PipelineStateLG(
         topic=plan.topic,
-        scenes=[SceneStateLG(scene_id=s.scene_id) for s in plan.scenes]
+        scenes=[SceneStateLG(scene_id=s.scene_id) for s in plan.scenes],
+        output_dir=output_dir,
     )
     # store output_dir in state
     pipeline_state.output_dir = output_dir

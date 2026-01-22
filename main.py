@@ -14,16 +14,19 @@ def test_pipeline():
     os.environ["OPENAI_API_KEY"] = os.getenv("OPENROUTER_API_KEY")
     os.environ["OPENAI_BASE_URL"] = os.getenv("OPENAI_BASE_URL")
 
-    llm = ChatOpenAI(model="liquid/lfm-2.5-1.2b-instruct:free",temperature=0.0)
+    llm = ChatOpenAI(model="xiaomi/mimo-v2-flash:free",temperature=0.0)
  
     # Step 1: User input
     topic = "Explain the concept of recursion in computer science."
 
     # Step 2: Intent resolution
     intent = resolve_intent(topic, llm=llm)
+    print("Resolved Intent:", type(intent))
 
     # Step 3: Planner generates ScriptPlan
     plan = plan_topic(intent, llm=llm)
+    print("Generated Plan type:", type(plan))
+    print("Generated Plan JSON:", plan)
 
     # Step 4: Run the LangGraph orchestration
     output_dir = "./storage"

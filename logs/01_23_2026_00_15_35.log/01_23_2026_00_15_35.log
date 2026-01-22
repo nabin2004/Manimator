@@ -1,0 +1,4 @@
+[ 2026-01-23 00:15:36,112 ] 24 root - INFO - Classifying topic with LLM: explain the concept of recursion in computer science.
+[ 2026-01-23 00:15:48,584 ] 1025 httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
+[ 2026-01-23 00:16:03,644 ] 26 root - INFO - LLM classification completed.
+[ 2026-01-23 00:16:09,576 ] 1025 httpx - INFO - HTTP Request: POST https://openrouter.ai/api/v1/chat/completions "HTTP/1.1 200 OK"
