@@ -1,0 +1,64 @@
+{
+  "scenes": [
+    {
+      "scene_id": "1",
+      "goal": "Introduce recursion as a problem-solving technique.",
+      "visual_elements": [
+        "Title card: 'Recursion in Computer Science'",
+        "Simple diagram: A function calling itself"
+      ],
+      "estimated_duration_sec": 15,
+      "narrative_intent": "Define recursion and state its core idea: a function calling itself."
+    },
+    {
+      "scene_id": "2",
+      "goal": "Explain the base case.",
+      "visual_elements": [
+        "Flowchart: Start -> Check Base Case? -> Yes -> Stop",
+        "Text: 'Base Case: The condition that stops recursion'"
+      ],
+      "estimated_duration_sec": 20,
+      "narrative_intent": "Explain that every recursive function needs a base case to prevent infinite loops."
+    },
+    {
+      "scene_id": "3",
+      "goal": "Explain the recursive step.",
+      "visual_elements": [
+        "Flowchart: Check Base Case? -> No -> Perform Action -> Call Function Again",
+        "Text: 'Recursive Step: The part that calls the function again'"
+      ],
+      "estimated_duration_sec": 20,
+      "narrative_intent": "Describe how the function calls itself with modified arguments to progress toward the base case."
+    },
+    {
+      "scene_id": "4",
+      "goal": "Visualize the call stack.",
+      "visual_elements": [
+        "Stack diagram: Pushing frames for each call, popping when returning",
+        "Animation: Function calls stacking up and unwinding"
+      ],
+      "estimated_duration_sec": 25,
+      "narrative_intent": "Illustrate how the computer manages recursive calls using the call stack."
+    },
+    {
+      "scene_id": "5",
+      "goal": "Walk through a classic example: Factorial.",
+      "visual_elements": [
+        "Code snippet: def factorial(n): return 1 if n <= 1 else n * factorial(n-1)",
+        "Step-by-step calculation: 5! -> 5 * 4! -> ... -> 1!"
+      ],
+      "estimated_duration_sec": 25,
+      "narrative_intent": "Demonstrate recursion with a concrete mathematical example."
+    },
+    {
+      "scene_id": "6",
+      "goal": "Compare recursion to iteration.",
+      "visual_elements": [
+        "Side-by-side: Recursive factorial vs. Iterative factorial (loop)",
+        "Pros/Cons list: Readability vs. Memory usage"
+      ],
+      "estimated_duration_sec": 15,
+      "narrative_intent": "Highlight when recursion is preferable over loops and vice versa."
+    }
+  ]
+}

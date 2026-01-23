@@ -17,7 +17,6 @@ def resolve_intent(raw_topic: str, llm=None) -> UserIntent:
         )
 
     llm_data = classify_with_llm(llm, topic)
-    print("LLM Data:", llm_data)
     # print("Resolved Intent:", llm_data.content)
     # dicted = llm_data
     # print("As dict:", dicted)

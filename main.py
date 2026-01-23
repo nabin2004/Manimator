@@ -21,19 +21,16 @@ def test_pipeline():
 
     # Step 2: Intent resolution
     intent = resolve_intent(topic, llm=llm)
-    print("Resolved Intent:", type(intent))
 
     # Step 3: Planner generates ScriptPlan
     plan = plan_topic(intent, llm=llm)
-    print("Generated Plan type:", type(plan))
-    print("Generated Plan JSON:", plan)
 
     # Step 4: Run the LangGraph orchestration
     output_dir = "./storage"
     pipeline_state = run_pipeline(llm=llm, plan=plan, output_dir=output_dir)
 
     print("Pipeline finished!")
-    print(pipeline_state.json(indent=2))
+    # print(pipeline_state.json(indent=2))
 
 if __name__ == "__main__":
     main()

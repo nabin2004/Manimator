@@ -1,0 +1,70 @@
+{
+  "scenes": [
+    {
+      "scene_id": "scene_01",
+      "goal": "Introduce recursion as a problem-solving technique",
+      "visual_elements": [
+        "Title text: 'Recursion'",
+        "Simple diagram of a function calling itself",
+        "Question mark icon"
+      ],
+      "estimated_duration_sec": 15,
+      "narrative_intent": "Hook the audience by defining recursion and showing its self-referential nature."
+    },
+    {
+      "scene_id": "scene_02",
+      "goal": "Explain the base case",
+      "visual_elements": [
+        "Stop sign icon",
+        "Code snippet: 'if n == 0: return 0'",
+        "Arrow pointing to stop"
+      ],
+      "estimated_duration_sec": 20,
+      "narrative_intent": "Define the base case as the condition that stops recursion to prevent infinite loops."
+    },
+    {
+      "scene_id": "scene_03",
+      "goal": "Explain the recursive step",
+      "visual_elements": [
+        "Code snippet: 'return n + factorial(n-1)'",
+        "Arrow looping back to function",
+        "Stack of blocks labeled 'n-1'"
+      ],
+      "estimated_duration_sec": 20,
+      "narrative_intent": "Show how the function calls itself with a smaller input, moving toward the base case."
+    },
+    {
+      "scene_id": "scene_04",
+      "goal": "Visualize the call stack",
+      "visual_elements": [
+        "Stack of frames labeled 'factorial(3)', 'factorial(2)', 'factorial(1)', 'factorial(0)'",
+        "Push/pop arrows",
+        "Memory diagram"
+      ],
+      "estimated_duration_sec": 25,
+      "narrative_intent": "Illustrate how recursive calls build a call stack and unwind when the base case is reached."
+    },
+    {
+      "scene_id": "scene_05",
+      "goal": "Compare recursion to iteration",
+      "visual_elements": [
+        "Side-by-side: recursive tree vs. loop counter",
+        "Code snippets: recursive and iterative factorial",
+        "Flow arrows"
+      ],
+      "estimated_duration_sec": 20,
+      "narrative_intent": "Highlight similarities and differences, emphasizing trade-offs like readability vs. overhead."
+    },
+    {
+      "scene_id": "scene_06",
+      "goal": "Common pitfalls and best practices",
+      "visual_elements": [
+        "Warning icon",
+        "Stack overflow graphic",
+        "Checklist: base case, progress toward base case, tail recursion note"
+      ],
+      "estimated_duration_sec": 20,
+      "narrative_intent": "Warn about infinite recursion and stack overflow; give tips for safe recursion."
+    }
+  ]
+}

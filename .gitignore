@@ -5,3 +5,10 @@ __pycache__/
 build/
 *.egg-info/
 logs/**.log
+
+*.mp4
+
+storage/images
+storage/videos
+storage/Tex
+storage/texts
