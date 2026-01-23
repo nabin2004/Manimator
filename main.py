@@ -4,6 +4,7 @@ from src.manimator.planner.resolve import plan_topic
 import os
 from langchain_openai import ChatOpenAI
 from dotenv import load_dotenv
+import json
 
 load_dotenv()
 
@@ -15,6 +16,11 @@ def test_pipeline():
     os.environ["OPENAI_BASE_URL"] = os.getenv("OPENAI_BASE_URL")
 
     llm = ChatOpenAI(model="xiaomi/mimo-v2-flash:free",temperature=0.0)
+
+    result = llm.invoke("How are you today?")
+    print("DIR DIR DIR DIR:", result.response_metadata)
+    json.dump(result.response_metadata, open("metadata.json", "w"), indent=2)
+    quit()
  
     # Step 1: User input
     topic = "Explain the concept of recursion in computer science."

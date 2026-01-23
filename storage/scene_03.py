@@ -4,92 +4,101 @@ from manim import *
 class Scene_03(Scene):
     def construct(self):
         # Title
-        title = Text("Recursive Step", font_size=48)
+        title = Text("Call Stack for factorial(3)", font_size=48)
         title.to_edge(UP)
         self.play(Write(title))
         self.wait(0.5)
 
-        # Code snippet
-        code_str = "return n + factorial(n-1)"
-        code = Code(
-            code=code_str,
-            language="python",
-            font="Monospace",
-            background="rectangle",
-            background_stroke_color=BLUE_D,
-            background_stroke_width=2,
-            background_fill_color=BLACK,
-            background_fill_opacity=0.8,
-            insert_line_no=False,
-            style="monokai",
-            font_size=32,
-            tab_width=4
-        )
-        code.scale(0.8)
-        code.shift(LEFT * 3.5)
-        self.play(Write(code))
+        # Stack container
+        stack_group = VGroup()
+        stack_group.move_to(ORIGIN).shift(DOWN * 0.5)
+
+        # Colors for stack frames
+        colors = [BLUE, GREEN, YELLOW]
+
+        # Helper to create a stack frame box
+        def create_frame(label_text, index):
+            rect = Rectangle(width=4, height=1.2, color=colors[index], fill_opacity=0.2, stroke_width=3)
+            text = Text(label_text, font_size=24)
+            text.move_to(rect.get_center())
+            frame = VGroup(rect, text)
+            return frame
+
+        # Initial state: Empty stack
+        empty_text = Text("Stack: Empty", font_size=24).move_to(ORIGIN)
+        self.play(Write(empty_text))
         self.wait(0.5)
 
-        # Arrow looping back
-        arrow = Arc(
-            start_angle=PI/2,
-            angle=-PI,
-            radius=1.5,
-            color=YELLOW
-        )
-        arrow.shift(RIGHT * 2.5 + DOWN * 0.5)
-        arrow_label = Text("call", font_size=24, color=YELLOW)
-        arrow_label.next_to(arrow, UP, buff=0.1)
-        self.play(Create(arrow), Write(arrow_label))
+        # Step 1: Push factorial(3)
+        self.play(FadeOut(empty_text))
+        
+        frame_3 = create_frame("factorial(3)", 0)
+        frame_3.move_to(stack_group.get_center())
+        
+        # Arrow for push
+        arrow_push_3 = Arrow(LEFT * 3, frame_3.get_left(), buff=0.1, color=WHITE)
+        label_push_3 = Text("push", font_size=20).next_to(arrow_push_3, UP, buff=0.1)
+
+        self.play(GrowArrow(arrow_push_3), Write(label_push_3))
+        self.play(FadeIn(frame_3))
         self.wait(0.5)
+        self.play(FadeOut(arrow_push_3), FadeOut(label_push_3))
 
-        # Stack of blocks labeled 'n-1'
-        # Create a stack of 3 blocks
-        block_width = 1.2
-        block_height = 0.6
-        block_color = TEAL
-        block_stroke_color = WHITE
-        block_stroke_width = 2
+        # Step 2: Push factorial(2)
+        frame_2 = create_frame("factorial(2)", 1)
+        frame_2.next_to(frame_3, DOWN, buff=0.2)
+        
+        arrow_push_2 = Arrow(LEFT * 3, frame_2.get_left(), buff=0.1, color=WHITE)
+        label_push_2 = Text("push", font_size=20).next_to(arrow_push_2, UP, buff=0.1)
 
-        blocks = VGroup()
-        for i in range(3):
-            rect = Rectangle(
-                width=block_width,
-                height=block_height,
-                fill_color=block_color,
-                fill_opacity=0.8,
-                stroke_color=block_stroke_color,
-                stroke_width=block_stroke_width
-            )
-            label = Text(f"n-{i}", font_size=24)
-            label.move_to(rect.get_center())
-            block_group = VGroup(rect, label)
-            block_group.shift(RIGHT * 2.5 + DOWN * (1.5 + i * 0.7))
-            blocks.add(block_group)
-
-        self.play(FadeIn(blocks, shift=UP))
+        self.play(GrowArrow(arrow_push_2), Write(label_push_2))
+        self.play(FadeIn(frame_2))
         self.wait(0.5)
+        self.play(FadeOut(arrow_push_2), FadeOut(label_push_2))
 
-        # Animate the arrow pointing to the stack
-        self.play(
-            arrow.animate.scale(0.8).move_to(blocks[0].get_top() + UP * 0.3),
-            arrow_label.animate.scale(0.8).move_to(blocks[0].get_top() + UP * 0.8)
-        )
+        # Step 3: Push factorial(1)
+        frame_1 = create_frame("factorial(1)", 2)
+        frame_1.next_to(frame_2, DOWN, buff=0.2)
+        
+        arrow_push_1 = Arrow(LEFT * 3, frame_1.get_left(), buff=0.1, color=WHITE)
+        label_push_1 = Text("push", font_size=20).next_to(arrow_push_1, UP, buff=0.1)
+
+        self.play(GrowArrow(arrow_push_1), Write(label_push_1))
+        self.play(FadeIn(frame_1))
+        self.wait(0.5)
+        self.play(FadeOut(arrow_push_1), FadeOut(label_push_1))
+
+        # Wait to show full stack
         self.wait(1)
 
-        # Highlight the recursive call
-        self.play(
-            code[0][10:22].animate.set_color(YELLOW),
-            run_time=0.5
-        )
-        self.wait(0.5)
+        # Step 4: Pop factorial(1)
+        arrow_pop_1 = Arrow(frame_1.get_right(), RIGHT * 3, buff=0.1, color=WHITE)
+        label_pop_1 = Text("pop", font_size=20).next_to(arrow_pop_1, UP, buff=0.1)
 
-        # Fade out
-        self.play(
-            FadeOut(title),
-            FadeOut(code),
-            FadeOut(arrow),
-            FadeOut(arrow_label),
-            FadeOut(blocks)
-        )
+        self.play(GrowArrow(arrow_pop_1), Write(label_pop_1))
+        self.play(FadeOut(frame_1))
         self.wait(0.5)
+        self.play(FadeOut(arrow_pop_1), FadeOut(label_pop_1))
+
+        # Step 5: Pop factorial(2)
+        arrow_pop_2 = Arrow(frame_2.get_right(), RIGHT * 3, buff=0.1, color=WHITE)
+        label_pop_2 = Text("pop", font_size=20).next_to(arrow_pop_2, UP, buff=0.1)
+
+        self.play(GrowArrow(arrow_pop_2), Write(label_pop_2))
+        self.play(FadeOut(frame_2))
+        self.wait(0.5)
+        self.play(FadeOut(arrow_pop_2), FadeOut(label_pop_2))
+
+        # Step 6: Pop factorial(3)
+        arrow_pop_3 = Arrow(frame_3.get_right(), RIGHT * 3, buff=0.1, color=WHITE)
+        label_pop_3 = Text("pop", font_size=20).next_to(arrow_pop_3, UP, buff=0.1)
+
+        self.play(GrowArrow(arrow_pop_3), Write(label_pop_3))
+        self.play(FadeOut(frame_3))
+        self.wait(0.5)
+        self.play(FadeOut(arrow_pop_3), FadeOut(label_pop_3))
+
+        # Final state: Stack empty
+        final_text = Text("Stack: Empty", font_size=24).move_to(ORIGIN)
+        self.play(Write(final_text))
+        self.wait(1)

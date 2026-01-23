@@ -1,0 +1,13 @@
+{
+  "run_id": "run_2026_01_24_001",
+  "timestamp": "2026-01-23T19:48:35.212368",
+  "metrics": {
+    "greeting": {
+      "calls": 1,
+      "prompt_tokens": 42,
+      "completion_tokens": 55,
+      "latency_s": 10.215322494506836,
+      "retries": 0
+    }
+  }
+}
