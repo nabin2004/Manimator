@@ -1,6 +1,7 @@
 
-from codegen.template import MANIM_SCENE_TEMPLATE, indent_code
-from planner.schema import SceneSpec
+from manimator.codegen.template import MANIM_SCENE_TEMPLATE, indent_code
+from manimator.planner.schema import SceneSpec
+import json
 
 LLM_CODE_PROMPT = """
 Generate Manim Python code for a scene with the following spec:
@@ -14,6 +15,8 @@ Constraints:
 - Indent properly
 - No file IO, no shell, no randomness
 - Return code only
+- Don't include any explanations or comments
+- Don't include ````python` or any markdown formatting
 """
 
 def generate_scene_code(llm, scene: SceneSpec) -> str:
@@ -25,7 +28,8 @@ def generate_scene_code(llm, scene: SceneSpec) -> str:
         scene_class_name=scene_class_name
     )
     scene_body = llm.invoke(prompt)
+    response = scene_body.content
     return MANIM_SCENE_TEMPLATE.format(
         scene_class_name=scene_class_name,
-        scene_body=indent_code(scene_body)
+        scene_body=indent_code(response)
     )

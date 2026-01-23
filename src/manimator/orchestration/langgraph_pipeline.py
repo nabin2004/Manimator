@@ -4,6 +4,7 @@ from typing import List
 from manimator.runtime.resolve import run_runtime
 from manimator.runtime.validate import validate_scene_code
 from manimator.runtime.repair import repair_scene
+from manimator.codegen.resolve import generate_code_for_plan
 
 MAX_RETRIES = 3
 
@@ -27,8 +28,9 @@ class PipelineStateLG(BaseModel):
 # Define nodes
 # ----------------------------
 
-def codegen_node(state):
-    # Marks all scenes as CODE_GENERATED
+def codegen_node(state, llm, plan):
+    generate_code_for_plan(llm, plan, state.output_dir)
+
     for scene in state.scenes:
         scene.status = "CODE_GENERATED"
     return state
@@ -88,7 +90,7 @@ def build_pipeline_graph(llm, plan, output_dir):
     graph = StateGraph(PipelineStateLG)
 
     # Add nodes
-    graph.add_node("codegen", codegen_node)
+    graph.add_node("codegen", lambda s: codegen_node(s, llm, plan))
     graph.add_node("validate", validate_node)
     graph.add_node("repair", lambda s: repair_node(s, llm))
     graph.add_node("render", lambda s: render_node(s, llm))
