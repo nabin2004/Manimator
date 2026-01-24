@@ -3,92 +3,56 @@ from manim import *
 
 class Scene_03(Scene):
     def construct(self):
-        # Title
-        title = Text("Recursive Step", font_size=48)
+        title = Text("Recursive Step: Reduce the problem size", font_size=48)
         title.to_edge(UP)
         self.play(Write(title))
         self.wait(1)
 
-        # Flowchart setup
-        flowchart_group = VGroup()
-        
-        # Box for current call
-        current_box = Rectangle(width=3, height=1.5, color=BLUE, fill_opacity=0.2)
-        current_text = Text("factorial(n)", font_size=24).move_to(current_box)
-        current_group = VGroup(current_box, current_text)
-        current_group.move_to(LEFT * 4 + UP * 1)
-        
-        # Box for recursive call
-        recursive_box = Rectangle(width=3, height=1.5, color=GREEN, fill_opacity=0.2)
-        recursive_text = Text("factorial(n-1)", font_size=24).move_to(recursive_box)
-        recursive_group = VGroup(recursive_box, recursive_text)
-        recursive_group.move_to(RIGHT * 4 + DOWN * 1)
-        
-        # Arrow from current to recursive
-        arrow_down = Arrow(current_box.get_bottom(), recursive_box.get_top(), buff=0.1, color=YELLOW)
-        arrow_down_label = Text("Recursive Call", font_size=20).next_to(arrow_down, RIGHT)
-        
-        # Arrow looping back (curved)
-        arrow_loop = CurvedArrow(recursive_box.get_left(), current_box.get_left(), angle=PI/2, color=RED)
-        arrow_loop_label = Text("Loop Back", font_size=20).next_to(arrow_loop, LEFT)
-        
-        flowchart_group.add(current_group, recursive_group, arrow_down, arrow_down_label, arrow_loop, arrow_loop_label)
-        
-        self.play(Create(current_group), Create(recursive_group))
-        self.play(GrowArrow(arrow_down), Write(arrow_down_label))
-        self.play(GrowArrow(arrow_loop), Write(arrow_loop_label))
-        self.wait(2)
-        
-        # Equation
-        equation = MathTex(r"\text{factorial}(n) = n \times \text{factorial}(n-1)", font_size=40)
-        equation.next_to(flowchart_group, DOWN, buff=1)
-        
-        self.play(Write(equation))
-        self.wait(2)
-        
-        # Stack of blocks representing calls
-        # Create 3 blocks for n, n-1, n-2
-        stack_group = VGroup()
-        blocks = []
-        labels = []
-        
-        for i in range(3):
-            block = Rectangle(width=2.5, height=0.8, color=PURPLE, fill_opacity=0.3)
-            if i == 0:
-                label = MathTex(r"n", font_size=24)
-            elif i == 1:
-                label = MathTex(r"n-1", font_size=24)
-            else:
-                label = MathTex(r"n-2", font_size=24)
-            label.move_to(block)
-            block_group = VGroup(block, label)
-            blocks.append(block_group)
-            labels.append(label)
-        
-        # Position stack to the right
-        stack_pos = RIGHT * 4 + UP * 1
-        blocks[0].move_to(stack_pos)
-        blocks[1].move_to(stack_pos + DOWN * 1)
-        blocks[2].move_to(stack_pos + DOWN * 2)
-        
-        stack_group.add(*blocks)
-        
-        # Animate stack building
-        self.play(FadeOut(flowchart_group), FadeOut(equation))
-        self.play(Write(Text("Stack of Calls", font_size=30).move_to(UP * 3)))
-        
-        self.play(Create(blocks[0]))
-        self.wait(0.5)
-        self.play(Create(blocks[1]))
-        self.wait(0.5)
-        self.play(Create(blocks[2]))
-        self.wait(2)
-        
-        # Highlight the recursive step in the stack
-        self.play(blocks[1].animate.set_fill(RED, opacity=0.5))
+        # Arrow diagram: n -> n-1
+        n_text = MathTex("n", font_size=72)
+        n_text.move_to(LEFT * 3)
+        arrow1 = Arrow(n_text.get_right(), n_text.get_right() + RIGHT * 2, buff=0.1)
+        n_minus_1_text = MathTex("n-1", font_size=72)
+        n_minus_1_text.next_to(arrow1, RIGHT)
+
+        self.play(Write(n_text))
+        self.play(GrowArrow(arrow1), Write(n_minus_1_text))
         self.wait(1)
-        self.play(blocks[1].animate.set_fill(PURPLE, opacity=0.3))
-        
-        # Fade out
-        self.play(FadeOut(stack_group))
+
+        # Code snippet
+        code_str = "return n + factorial(n-1)"
+        code = Code(code=code_str, language="python", font="Monospace", background="rectangle", background_stroke_color=WHITE, background_stroke_width=1, background_fill_color=BLACK, background_fill_opacity=0.8, insert_line_no=False, style="monokai")
+        code.scale(0.8)
+        code.next_to(n_minus_1_text, DOWN, buff=1)
+
+        self.play(Write(code))
+        self.wait(2)
+
+        # Highlight the recursive call part
+        # Since Code object doesn't support direct sub-selection easily, we'll overlay a highlight box
+        # We approximate the position of "factorial(n-1)" within the code
+        # The code is a single line, so we can highlight the whole line or just the relevant part
+        # Let's highlight the whole line to emphasize the return statement
+        highlight_box = SurroundingRectangle(code, color=YELLOW, buff=0.1)
+        self.play(Create(highlight_box))
         self.wait(1)
+
+        # Animate the reduction
+        # Create a copy of n-1 and move it to the position of n for the next step
+        n_minus_1_copy = n_minus_1_text.copy()
+        n_minus_1_copy.move_to(n_text.get_center())
+        
+        self.play(
+            Transform(n_minus_1_text, n_minus_1_copy),
+            FadeOut(arrow1),
+            FadeOut(n_text),
+            FadeOut(highlight_box),
+            FadeOut(code)
+        )
+        self.wait(1)
+
+        # Show the base case implication
+        base_case_text = Text("... until base case", font_size=36)
+        base_case_text.next_to(n_minus_1_text, DOWN, buff=1)
+        self.play(Write(base_case_text))
+        self.wait(2)

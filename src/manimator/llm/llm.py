@@ -9,6 +9,8 @@ from langchain_openai import ChatOpenAI
 from manimator.metrics.run_metrics import RunMetrics
 from manimator.metrics.sink import write_run_metrics
 from manimator.llm.metrics_utils import normalize_llm_metadata
+from hashlib import sha256
+
 
 load_dotenv()
 
@@ -58,9 +60,15 @@ class LLMWithMetrics:
             "latency_s": latency,
             **metrics,
             "raw_metadata": raw_metadata,
-            "prompt": prompt,
-            "prompt_version": prompt_version,
+            
+            "prompt": {
+                "prompt": prompt,
+                "prompt_version": prompt_version,
+                "hash": sha256(prompt.encode()).hexdigest(),
+            },
+
             "result": result.content,
+            
         }
 
         # Persist aggregated metrics (non-overwriting)
