@@ -13,7 +13,8 @@ Generate Manim Python code for a scene with the following spec:
 - Narrative intent: {narrative}
 
 Constraints:
-- Only use classes from manim import *
+- Only use classes from manim import * for manim scenes
+- You can import standard python libraries if needed
 - Scene class name must be {scene_class_name}
 - Indent properly
 - No file IO, no shell, no randomness
