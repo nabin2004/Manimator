@@ -13,3 +13,5 @@ storage/images
 storage/videos
 storage/Tex
 storage/texts
+
+metrics_logs/*

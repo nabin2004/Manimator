@@ -34,7 +34,7 @@ class LLMWithMetrics:
         # time + uuid keeps ordering and uniqueness
         return f"run_{int(time.time())}_{uuid.uuid4().hex[:8]}"
 
-    def invoke(self, prompt: str, phase: str | None = None, run_id: str | None = None):
+    def invoke(self, prompt: str, prompt_version: str, phase: str | None = None, run_id: str | None = None):
         phase = phase or self.default_phase
         run_id = run_id or self._generate_run_id()
 
@@ -58,6 +58,8 @@ class LLMWithMetrics:
             "latency_s": latency,
             **metrics,
             "raw_metadata": raw_metadata,
+            "prompt": prompt,
+            "prompt_version": prompt_version,
             "result": result.content,
         }
 

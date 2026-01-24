@@ -2,6 +2,8 @@ from cmath import phase
 from manimator.planner.schema import SceneSpec, ScriptPlan
 import json 
 
+PROMPT_VERSION = "plan_generation_v1"
+
 LLM_SCENE_PROMPT = """
 You are generating a structured animation plan.
 
@@ -44,7 +46,7 @@ def create_llm_plan(llm, intent) -> ScriptPlan:
         audience=intent.audience,
         density=intent.visual_density
     )
-    response = llm.invoke(prompt, phase="plan_generation")
+    response = llm.invoke(prompt, phase="plan_generation", prompt_version=PROMPT_VERSION)
     
     response = json.loads(response.content)
 

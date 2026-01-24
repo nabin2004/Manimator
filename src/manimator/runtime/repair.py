@@ -11,7 +11,9 @@ def repair_scene(llm, scene_file: str, scene_code: str):
             return scene_code  # valid
         except Exception as e:
             error_log = str(e)
+            
             # ask LLM to fix ONLY the broken code
+            PROMPT_VERSION="scene_repair_v1"
             prompt = f"""
             Scene code failed validation:
             Error: {error_log}
@@ -20,7 +22,7 @@ def repair_scene(llm, scene_file: str, scene_code: str):
 
             Fix the code. Only return Python code, no explanation.
             """
-            scene_code = llm.invoke(prompt, phase="scene_repair")
+            scene_code = llm.invoke(prompt, phase="scene_repair", prompt_version=PROMPT_VERSION)
             retries += 1
 
     raise RuntimeError(f"Scene failed after {MAX_RETRIES} retries")

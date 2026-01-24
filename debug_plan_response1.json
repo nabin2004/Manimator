@@ -1,70 +1,70 @@
 {
   "scenes": [
     {
-      "scene_id": "scene_01",
-      "goal": "Introduce recursion as a problem-solving technique",
+      "scene_id": "intro_recursion",
+      "goal": "Introduce recursion as a problem-solving technique where a function calls itself.",
       "visual_elements": [
-        "Title text: 'Recursion in Computer Science'",
-        "Simple diagram of a function calling itself",
-        "Question mark icon"
+        "Title card: 'Recursion in Computer Science'",
+        "Simple flowchart showing a function calling itself",
+        "Text: 'Solving a problem by breaking it into smaller, similar problems'"
       ],
       "estimated_duration_sec": 15,
-      "narrative_intent": "Hook the audience by defining recursion and showing its core idea visually."
+      "narrative_intent": "Set the stage and define recursion in simple terms."
     },
     {
-      "scene_id": "scene_02",
-      "goal": "Explain the base case concept",
+      "scene_id": "base_case",
+      "goal": "Explain the critical concept of the base case to stop recursion.",
       "visual_elements": [
-        "Flowchart with a 'Base Case' stop node",
-        "Checklist icon labeled 'Base Case'",
-        "Example: factorial(0) = 1"
+        "Diagram of a recursive function with a highlighted 'Base Case' condition",
+        "Animation: A countdown from 5 to 0, stopping at 0",
+        "Text: 'Without a base case: Infinite recursion (Stack Overflow)'"
       ],
       "estimated_duration_sec": 20,
-      "narrative_intent": "Clarify that recursion needs a stopping condition to prevent infinite loops."
+      "narrative_intent": "Emphasize the necessity of a stopping condition."
     },
     {
-      "scene_id": "scene_03",
-      "goal": "Explain the recursive step",
+      "scene_id": "factorial_example",
+      "goal": "Demonstrate recursion using the classic factorial example (n!).",
       "visual_elements": [
-        "Flowchart with 'Recursive Step' arrow looping back",
-        "Equation: factorial(n) = n * factorial(n-1)",
-        "Stack of blocks representing calls"
-      ],
-      "estimated_duration_sec": 20,
-      "narrative_intent": "Show how a problem is broken into smaller subproblems via a recursive call."
-    },
-    {
-      "scene_id": "scene_04",
-      "goal": "Visualize the call stack",
-      "visual_elements": [
-        "Stack diagram with frames labeled factorial(3), factorial(2), factorial(1), factorial(0)",
-        "Arrow showing push/pop operations",
-        "Highlight top frame"
+        "Mathematical definition: n! = n * (n-1)!",
+        "Visual tree: Factorial(4) branching to Factorial(3), etc.",
+        "Step-by-step calculation overlay: 4 -> 3 -> 2 -> 1 -> 1"
       ],
       "estimated_duration_sec": 25,
-      "narrative_intent": "Demonstrate how the runtime manages function calls and returns."
+      "narrative_intent": "Walk through a concrete mathematical example."
     },
     {
-      "scene_id": "scene_05",
-      "goal": "Compare recursion vs iteration",
+      "scene_id": "call_stack",
+      "goal": "Visualize how the call stack manages memory during recursion.",
       "visual_elements": [
-        "Side-by-side panels: recursion flowchart vs for-loop diagram",
-        "Code snippets: recursive factorial vs iterative factorial",
-        "Pros/Cons icons"
+        "Stack diagram growing downwards",
+        "Labels: 'Factorial(3) pushed', 'Factorial(2) pushed', 'Factorial(1) pushed'",
+        "Animation: Stack unwinding as values return"
       ],
-      "estimated_duration_sec": 20,
-      "narrative_intent": "Highlight trade-offs and when to choose recursion over iteration."
+      "estimated_duration_sec": 25,
+      "narrative_intent": "Explain the memory overhead and execution flow."
     },
     {
-      "scene_id": "scene_06",
-      "goal": "Common pitfalls and best practices",
+      "scene_id": "recursion_vs_iteration",
+      "goal": "Compare recursion with iteration (loops).",
       "visual_elements": [
-        "Warning sign icon",
-        "Diagram of infinite recursion loop",
-        "Checklist: define base case, ensure progress, watch stack depth"
+        "Side-by-side code snippets: Recursive vs Iterative Factorial",
+        "Comparison table: Pros (readability) vs Cons (stack depth)",
+        "Graphic: 'Many problems are naturally recursive (Trees, DFS)'"
       ],
       "estimated_duration_sec": 20,
-      "narrative_intent": "Warn about stack overflow and emphasize careful design."
+      "narrative_intent": "Contextualize when to use recursion over loops."
+    },
+    {
+      "scene_id": "summary",
+      "goal": "Summarize key takeaways.",
+      "visual_elements": [
+        "Checklist: Base Case, Recursive Step, Call Stack",
+        "Final graphic: 'Think: Divide and Conquer'",
+        "Credits/End screen"
+      ],
+      "estimated_duration_sec": 15,
+      "narrative_intent": "Reinforce learning objectives."
     }
   ]
 }

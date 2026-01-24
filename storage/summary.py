@@ -8,83 +8,62 @@ class Summary(Scene):
         self.wait(0.5)
 
         checklist_items = [
-            "Base Case",
-            "Recursive Step",
-            "Call Stack",
-            "Divide and Conquer strategy"
+            "Base Case: The stopping condition",
+            "Recursive Step: Reducing the problem size",
+            "Call Stack: Managing function calls",
+            "Think: Divide and Conquer"
         ]
 
-        checklist_group = VGroup()
-        for i, item in enumerate(checklist_items):
-            if item == "Divide and Conquer strategy":
-                text = Text(item, font_size=32, color=TEAL)
+        checklist = VGroup()
+        for i, item_text in enumerate(checklist_items):
+            if i == 3:
+                # Make the final item distinct
+                text = Text(item_text, font_size=36, color=GREEN)
             else:
-                text = Text(item, font_size=32)
+                text = Text(item_text, font_size=36)
             
-            if i < 3:
-                box = Square(side_length=0.4, color=WHITE, stroke_width=2)
-                box.next_to(text, LEFT, buff=0.5)
-                item_group = VGroup(box, text)
-            else:
-                # Special formatting for the strategy text
-                text.shift(DOWN * 0.5)
-                item_group = VGroup(text)
+            # Create a checkbox
+            box = Square(side_length=0.5, color=WHITE, stroke_width=2)
+            check = VGroup(
+                Line(box.get_corner(UL) + UR * 0.2, box.get_center() + DR * 0.1, color=GREEN, stroke_width=4),
+                Line(box.get_center() + DR * 0.1, box.get_corner(DR) + UL * 0.2, color=GREEN, stroke_width=4)
+            )
+            
+            item = VGroup(box, check, text)
+            item.arrange(RIGHT, buff=0.5)
+            item.move_to(UP * (1.5 - i * 1.2))
+            checklist.add(item)
 
-            checklist_group.add(item_group)
-
-        checklist_group.arrange(DOWN, aligned_edge=LEFT, buff=0.8)
-        checklist_group.next_to(title, DOWN, buff=1)
-
-        self.play(LaggedStartMap(FadeIn, checklist_group, lag_ratio=0.3))
-        self.wait(1)
-
-        # Highlight items one by one
-        for i in range(3):
-            box = checklist_group[i][0]
-            self.play(box.animate.set_fill(GREEN, opacity=0.5), run_time=0.5)
+        # Animate checklist items
+        for item in checklist:
+            self.play(
+                Create(item[0]), 
+                Create(item[1]), 
+                Write(item[2]), 
+                run_time=0.8
+            )
             self.wait(0.2)
-            self.play(box.animate.set_fill(opacity=0), run_time=0.5)
-        
-        # Highlight strategy
-        strategy_text = checklist_group[3][0]
-        self.play(Indicate(strategy_text, color=TEAL))
+
         self.wait(1)
 
-        # Transition to closing visual
+        # Transition to Credits/End Screen
         self.play(
             FadeOut(title),
-            FadeOut(checklist_group),
+            FadeOut(checklist),
             run_time=1
         )
 
-        # Create closing visual: Function calling itself in a loop
-        func_name = Text("factorial(n)", font_size=36, color=BLUE)
-        func_name.move_to(UP * 1)
-        
-        arrow_down = Arrow(UP, DOWN, color=WHITE).next_to(func_name, DOWN)
-        
-        recursive_call = Text("factorial(n-1)", font_size=32, color=YELLOW)
-        recursive_call.next_to(arrow_down, DOWN)
-        
-        arrow_loop = CurvedArrow(
-            recursive_call.get_right() + RIGHT * 0.5,
-            func_name.get_right() + RIGHT * 0.5,
-            angle=-PI/2,
-            color=GREEN
-        )
-        
-        loop_text = Text("Loop", font_size=24, color=GREEN).next_to(arrow_loop, RIGHT, buff=0.2)
+        # Credits/End Screen
+        end_text = Text("Credits", font_size=40, color=BLUE).to_edge(UP)
+        credits = VGroup(
+            Text("Created with Manim", font_size=32),
+            Text("Reinforce Learning Objectives", font_size=32, color=YELLOW)
+        ).arrange(DOWN, buff=0.5).move_to(ORIGIN)
 
-        self.play(Write(func_name))
-        self.play(Create(arrow_down))
-        self.play(Write(recursive_call))
-        self.play(Create(arrow_loop))
-        self.play(Write(loop_text))
-        
+        self.play(Write(end_text))
+        self.play(FadeIn(credits, shift=UP))
         self.wait(2)
 
-        # Final message
-        conclusion = Text("Recursion mastered!", font_size=40, color=GOLD)
-        conclusion.to_edge(DOWN)
-        self.play(Write(conclusion))
-        self.wait(2)
+        # Final fade out
+        self.play(FadeOut(end_text), FadeOut(credits))
+        self.wait(0.5)

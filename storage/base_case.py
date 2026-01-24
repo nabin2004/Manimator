@@ -3,82 +3,103 @@ from manim import *
 
 class Base_case(Scene):
     def construct(self):
-        title = Text("Base Case: The stopping condition", font_size=48)
+        title = Text("The Base Case: Stopping Recursion", font_size=48)
+        title.to_edge(UP)
         self.play(Write(title))
-        self.wait(2)
-        self.play(FadeOut(title))
+        self.wait(1)
 
+        # Diagram of recursive function
+        diagram_group = VGroup()
+        boxes = VGroup()
+        labels = VGroup()
+        
+        # Create stacked boxes to represent recursion stack
+        for i in range(4):
+            box = RoundedRectangle(height=1.5, width=4, corner_radius=0.2)
+            box.set_fill(BLUE, opacity=0.2)
+            box.set_stroke(BLUE, width=2)
+            box.shift(DOWN * (i * 1.8))
+            boxes.add(box)
+            
+            label = Text(f"call({i+1})", font_size=24)
+            label.move_to(box.get_center())
+            labels.add(label)
+            diagram_group.add(box, label)
+
+        # Position the diagram
+        diagram_group.shift(LEFT * 3.5)
+        self.play(Create(boxes), Write(labels))
+        self.wait(1)
+
+        # Highlight base case condition
+        base_case_box = RoundedRectangle(height=1.5, width=4, corner_radius=0.2)
+        base_case_box.set_fill(GREEN, opacity=0.4)
+        base_case_box.set_stroke(GREEN, width=3)
+        base_case_box.next_to(boxes[-1], DOWN, buff=0.2)
+        
+        base_case_text = Text("Base Case: n == 0", font_size=24, color=GREEN)
+        base_case_text.move_to(base_case_box.get_center())
+        
+        arrow = Arrow(boxes[-1].get_bottom(), base_case_box.get_top(), buff=0.1, color=GREEN)
+        
+        self.play(
+            Create(base_case_box),
+            Write(base_case_text),
+            Create(arrow)
+        )
+        self.wait(1)
+
+        # Countdown animation
         countdown_group = VGroup()
-        numbers = ["3", "2", "1", "0"]
-        countdown_texts = []
+        countdown_title = Text("Countdown Example", font_size=32)
+        countdown_title.next_to(diagram_group, RIGHT, buff=1)
+        countdown_title.shift(UP * 2)
+        self.play(Write(countdown_title))
         
-        for i, num in enumerate(numbers):
-            text = Text(num, font_size=120)
-            countdown_texts.append(text)
-            countdown_group.add(text)
-            if i == 0:
-                self.play(Write(text))
-            else:
-                self.play(Transform(countdown_texts[i-1], text))
-            self.wait(0.8)
-        
-        stop_text = Text("Stop", font_size=120, color=RED)
-        self.play(Transform(countdown_texts[-1], stop_text))
-        self.wait(1.5)
-        
-        self.play(FadeOut(countdown_group))
+        countdown_num = Text("5", font_size=72, color=YELLOW)
+        countdown_num.next_to(countdown_title, DOWN, buff=0.5)
+        self.play(Write(countdown_num))
+        self.wait(0.5)
 
-        # Diagram showing recursive chain terminating at base case
-        # Create nodes
-        node_font_size = 36
-        node_radius = 0.5
+        # Animate countdown from 5 to 0
+        for i in range(5, -1, -1):
+            new_num = Text(str(i), font_size=72, color=YELLOW)
+            new_num.move_to(countdown_num.get_center())
+            
+            if i == 0:
+                # Highlight stopping at 0
+                self.play(
+                    Transform(countdown_num, new_num),
+                    countdown_num.animate.set_color(GREEN).scale(1.2)
+                )
+                stop_text = Text("STOPPED", font_size=36, color=GREEN)
+                stop_text.next_to(countdown_num, DOWN, buff=0.3)
+                self.play(Write(stop_text))
+            else:
+                self.play(Transform(countdown_num, new_num))
+            self.wait(0.3)
+
+        self.wait(1)
+
+        # Warning about infinite recursion
+        warning_text = Text("Without a base case:", font_size=36, color=RED)
+        warning_text.next_to(countdown_title, DOWN, buff=2)
         
-        # Recursive calls
-        node1 = Circle(radius=node_radius, color=BLUE).set_fill(BLUE, opacity=0.5)
-        text1 = Text("f(n)", font_size=node_font_size)
-        group1 = VGroup(node1, text1).move_to(UP * 3 + LEFT * 3)
+        infinite_text = Text("Infinite Recursion", font_size=48, color=RED)
+        infinite_text.next_to(warning_text, DOWN, buff=0.3)
         
-        node2 = Circle(radius=node_radius, color=BLUE).set_fill(BLUE, opacity=0.5)
-        text2 = Text("f(n-1)", font_size=node_font_size)
-        group2 = VGroup(node2, text2).next_to(group1, DOWN, buff=1.5)
+        stack_text = Text("(Stack Overflow)", font_size=32, color=ORANGE)
+        stack_text.next_to(infinite_text, DOWN, buff=0.2)
         
-        node3 = Circle(radius=node_radius, color=BLUE).set_fill(BLUE, opacity=0.5)
-        text3 = Text("f(n-2)", font_size=node_font_size)
-        group3 = VGroup(node3, text3).next_to(group2, DOWN, buff=1.5)
-        
-        # Base case
-        node_base = Circle(radius=node_radius, color=GREEN).set_fill(GREEN, opacity=0.5)
-        text_base = Text("f(0)", font_size=node_font_size)
-        group_base = VGroup(node_base, text_base).next_to(group3, DOWN, buff=1.5)
-        
-        # Arrows
-        arrow1 = Arrow(group1.get_bottom(), group2.get_top(), buff=0.1)
-        arrow2 = Arrow(group2.get_bottom(), group3.get_top(), buff=0.1)
-        arrow3 = Arrow(group3.get_bottom(), group_base.get_top(), buff=0.1)
-        
-        # Labels
-        label_recursive = Text("Recursive calls", font_size=28).next_to(group2, RIGHT, buff=1)
-        label_base_case = Text("Base case (terminates)", font_size=28, color=GREEN).next_to(group_base, RIGHT, buff=1)
-        
-        # Animate
-        self.play(Create(group1))
+        self.play(Write(warning_text))
         self.wait(0.5)
-        self.play(Create(arrow1))
-        self.play(Create(group2))
+        self.play(Write(infinite_text))
         self.wait(0.5)
-        self.play(Create(arrow2))
-        self.play(Create(group3))
-        self.wait(0.5)
-        self.play(Create(arrow3))
-        self.play(Create(group_base))
-        
-        self.play(Write(label_recursive))
-        self.play(Write(label_base_case))
-        
-        self.wait(3)
-        
-        # Highlight the termination
-        self.play(node_base.animate.scale(1.2), run_time=0.5)
-        self.play(node_base.animate.scale(1/1.2), run_time=0.5)
-        
+        self.play(Write(stack_text))
+        self.wait(2)
+
+        # Final emphasis
+        conclusion = Text("Always define a base case!", font_size=40, color=GREEN)
+        conclusion.to_edge(DOWN)
+        self.play(Write(conclusion))
         self.wait(2)

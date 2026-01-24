@@ -4,6 +4,8 @@ from manimator.codegen.template import MANIM_SCENE_TEMPLATE, indent_code
 from manimator.planner.schema import SceneSpec
 import json
 
+PROMPT_VERSION = "scene_code_generation_v1"
+
 LLM_CODE_PROMPT = """
 Generate Manim Python code for a scene with the following spec:
 - Goal: {goal}
@@ -28,7 +30,7 @@ def generate_scene_code(llm, scene: SceneSpec) -> str:
         narrative=scene.narrative_intent,
         scene_class_name=scene_class_name
     )
-    scene_body = llm.invoke(prompt, phase="scene_code_generation")
+    scene_body = llm.invoke(prompt, prompt_version=PROMPT_VERSION, phase="scene_code_generation")
     response = scene_body.content
     return MANIM_SCENE_TEMPLATE.format(
         scene_class_name=scene_class_name,

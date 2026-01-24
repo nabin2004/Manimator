@@ -4,39 +4,37 @@ from manim import *
 class Intro_recursion(Scene):
     def construct(self):
         title = Text("Recursion in Computer Science", font_size=48, color=BLUE)
-        title.to_edge(UP)
         self.play(Write(title))
-        self.wait(1)
-
-        definition = Text("A function that calls itself", font_size=36, color=YELLOW)
-        definition.next_to(title, DOWN, buff=1)
-        self.play(FadeIn(definition, shift=UP))
-        self.wait(1)
-
-        # Create a visual representation of recursion
-        # A function box calling another identical function box
-        
-        # Outer function box
-        outer_box = Rectangle(width=4, height=2, color=WHITE, stroke_width=2)
-        outer_label = Text("func()", font_size=24).move_to(outer_box)
-        outer_group = VGroup(outer_box, outer_label)
-        outer_group.move_to(LEFT * 3)
-
-        # Inner function box (representing the recursive call)
-        inner_box = Rectangle(width=4, height=2, color=WHITE, stroke_width=2)
-        inner_label = Text("func()", font_size=24).move_to(inner_box)
-        inner_group = VGroup(inner_box, inner_label)
-        inner_group.move_to(RIGHT * 3)
-
-        # Arrow indicating the call
-        arrow = Arrow(outer_box.get_right(), inner_box.get_left(), buff=0.5, color=GREEN)
-        arrow_label = Text("calls", font_size=20, color=GREEN).next_to(arrow, UP)
-
-        self.play(Create(outer_group))
-        self.wait(0.5)
-        self.play(GrowArrow(arrow), Write(arrow_label))
-        self.play(Create(inner_group))
         self.wait(2)
+        self.play(title.animate.to_edge(UP))
 
-        # Fade out to end the scene
-        self.play(FadeOut(VGroup(title, definition, outer_group, inner_group, arrow, arrow_label)))
+        flowchart_group = VGroup()
+        
+        func_box = Rectangle(width=3, height=1.5, color=WHITE, fill_opacity=0.2)
+        func_text = Text("Function", font_size=24).move_to(func_box)
+        func_group = VGroup(func_box, func_text)
+        
+        arrow = Arrow(start=func_box.get_bottom(), end=func_box.get_bottom() + DOWN * 1.5, buff=0.1)
+        
+        self_box = Rectangle(width=3, height=1.5, color=YELLOW, fill_opacity=0.2)
+        self_text = Text("Function (Self)", font_size=24).move_to(self_box)
+        self_group = VGroup(self_box, self_text)
+        self_group.next_to(arrow, DOWN)
+
+        flowchart_group.add(func_group, arrow, self_group)
+        flowchart_group.move_to(ORIGIN).shift(DOWN * 0.5)
+
+        self.play(Create(func_box), Write(func_text))
+        self.play(Create(arrow))
+        self.play(Create(self_box), Write(self_text))
+
+        description = Text(
+            "Solving a problem by breaking it into\nsmaller, similar problems",
+            font_size=32,
+            color=GREEN,
+            line_spacing=1.2
+        )
+        description.next_to(flowchart_group, DOWN, buff=1)
+
+        self.play(Write(description))
+        self.wait(3)

@@ -3,108 +3,99 @@ from manim import *
 
 class Call_stack(Scene):
     def construct(self):
-        # Title
-        title = Text("Function Call Stack", font_size=48)
+        title = Text("Call Stack for Factorial(3)", font_size=36)
         title.to_edge(UP)
         self.play(Write(title))
+        self.wait(0.5)
+
+        # Define stack positions (growing downwards)
+        # Top of stack is at y=1, bottom at y=-2
+        positions = [
+            [0, 1, 0],    # Factorial(3)
+            [0, 0, 0],    # Factorial(2)
+            [0, -1, 0],   # Factorial(1)
+            [0, -2, 0]    # Factorial(0) / Base case return
+        ]
+
+        # Create stack frames
+        frame_3 = self.create_stack_frame("Factorial(3)", positions[0])
+        frame_2 = self.create_stack_frame("Factorial(2)", positions[1])
+        frame_1 = self.create_stack_frame("Factorial(1)", positions[2])
+
+        # Animation: Pushing frames onto stack
+        self.play(Create(frame_3))
+        self.play(Write(Text("Factorial(3) pushed", font_size=24).next_to(frame_3, LEFT, buff=0.5)))
+        self.wait(0.5)
+
+        self.play(Create(frame_2))
+        self.play(Write(Text("Factorial(2) pushed", font_size=24).next_to(frame_2, LEFT, buff=0.5)))
+        self.wait(0.5)
+
+        self.play(Create(frame_1))
+        self.play(Write(Text("Factorial(1) pushed", font_size=24).next_to(frame_1, LEFT, buff=0.5)))
         self.wait(1)
 
-        # Stack container (visual representation of memory)
-        stack_container = Rectangle(width=3, height=6, color=BLUE, fill_opacity=0.2)
-        stack_container.to_edge(RIGHT, buff=1)
-        stack_label = Text("Stack Memory", font_size=24).next_to(stack_container, UP)
-        
-        self.play(Create(stack_container), Write(stack_label))
+        # Base case reached / Return value logic
+        # Visualize return value 1 appearing in Factorial(1) frame
+        return_val_1 = Text("ret: 1", color=YELLOW, font_size=20).move_to(positions[2])
+        self.play(Write(return_val_1))
         self.wait(0.5)
 
-        # Helper to create a function block
-        def create_block(name, color, height=0.8):
-            block = Rectangle(width=2.5, height=height, color=color, fill_opacity=0.8)
-            text = Text(name, font_size=20, color=BLACK).move_to(block)
-            return VGroup(block, text)
-
-        # Initial stack pointer indicator
-        sp_label = Text("SP", font_size=24, color=YELLOW).next_to(stack_container, LEFT)
-        sp_arrow = Arrow(start=sp_label.get_right(), end=stack_container.get_left(), buff=0.1, color=YELLOW)
-        self.play(Write(sp_label), Create(sp_arrow))
-
-        # Positions for stacking (bottom to top)
-        # Stack container goes from y=-3 to y=3. 
-        # We will stack from bottom up.
-        base_y = stack_container.get_bottom()[1] + 0.4
-        
-        # --- Scenario: Recursive calls (Factorial) ---
-        # Call factorial(3) -> factorial(2) -> factorial(1)
-        
-        # 1. Call factorial(3)
-        block_3 = create_block("factorial(3)", RED)
-        block_3.move_to(stack_container.get_bottom() + UP * 0.4)
-        
+        # Unwinding: Factorial(1) pops
         self.play(
-            FadeIn(block_3),
-            sp_arrow.animate.next_to(block_3, LEFT, buff=0.1)
+            FadeOut(frame_1),
+            FadeOut(return_val_1),
+            FadeOut(Text("Factorial(1) pushed", font_size=24).next_to(frame_1, LEFT, buff=0.5))
         )
+        
+        # Show return value passing to Factorial(2)
+        # Animate a small dot moving from position 2 to position 1
+        ret_dot = Circle(radius=0.1, color=YELLOW, fill_opacity=1).move_to(positions[2])
+        self.play(Create(ret_dot))
+        self.play(ret_dot.animate.move_to(positions[1]))
+        self.play(FadeOut(ret_dot))
+
+        # Update Factorial(2) with return value
+        return_val_2 = Text("ret: 2", color=YELLOW, font_size=20).move_to(positions[1])
+        self.play(Write(return_val_2))
         self.wait(0.5)
 
-        # 2. Call factorial(2)
-        block_2 = create_block("factorial(2)", GREEN)
-        block_2.next_to(block_3, UP, buff=0)
-        
+        # Unwinding: Factorial(2) pops
         self.play(
-            FadeIn(block_2),
-            sp_arrow.animate.next_to(block_2, LEFT, buff=0.1)
+            FadeOut(frame_2),
+            FadeOut(return_val_2),
+            FadeOut(Text("Factorial(2) pushed", font_size=24).next_to(frame_2, LEFT, buff=0.5))
         )
+
+        # Animate return value passing to Factorial(3)
+        ret_dot_2 = Circle(radius=0.1, color=YELLOW, fill_opacity=1).move_to(positions[1])
+        self.play(Create(ret_dot_2))
+        self.play(ret_dot_2.animate.move_to(positions[0]))
+        self.play(FadeOut(ret_dot_2))
+
+        # Update Factorial(3) with final return value
+        return_val_3 = Text("ret: 6", color=YELLOW, font_size=20).move_to(positions[0])
+        self.play(Write(return_val_3))
         self.wait(0.5)
 
-        # 3. Call factorial(1)
-        block_1 = create_block("factorial(1)", BLUE)
-        block_1.next_to(block_2, UP, buff=0)
-        
+        # Unwinding: Factorial(3) pops
         self.play(
-            FadeIn(block_1),
-            sp_arrow.animate.next_to(block_1, LEFT, buff=0.1)
+            FadeOut(frame_3),
+            FadeOut(return_val_3),
+            FadeOut(Text("Factorial(3) pushed", font_size=24).next_to(frame_3, LEFT, buff=0.5))
         )
-        self.wait(1)
 
-        # Highlight LIFO property
-        lifo_text = Text("LIFO: Last In, First Out", font_size=30, color=YELLOW)
-        lifo_text.to_edge(LEFT).shift(UP*2)
-        self.play(Write(lifo_text))
-        self.wait(1)
-
-        # --- Return Phase ---
-        # 1. factorial(1) returns
-        self.play(
-            FadeOut(block_1),
-            sp_arrow.animate.next_to(block_2, LEFT, buff=0.1)
-        )
-        self.wait(0.5)
-
-        # 2. factorial(2) returns
-        self.play(
-            FadeOut(block_2),
-            sp_arrow.animate.next_to(block_3, LEFT, buff=0.1)
-        )
-        self.wait(0.5)
-
-        # 3. factorial(3) returns
-        self.play(
-            FadeOut(block_3),
-            sp_arrow.animate.next_to(stack_container.get_bottom() + UP*0.1, LEFT, buff=0.1)
-        )
-        self.wait(1)
-
-        # Cleanup
-        self.play(
-            FadeOut(stack_container),
-            FadeOut(stack_label),
-            FadeOut(sp_label),
-            FadeOut(sp_arrow),
-            FadeOut(lifo_text),
-            FadeOut(title)
-        )
-        
         # Final explanation text
-        final_text = Text("Stack frames manage execution context", font_size=36)
+        final_text = Text("Stack unwound. Result: 6", font_size=32, color=GREEN)
         self.play(Write(final_text))
         self.wait(2)
+
+    def create_stack_frame(self, label, position):
+        # Create a visual representation of a stack frame
+        rect = RoundedRectangle(width=3, height=0.8, color=BLUE, fill_color=BLUE_D, fill_opacity=0.5)
+        rect.move_to(position)
+        
+        text = Text(label, font_size=20)
+        text.move_to(position)
+        
+        return VGroup(rect, text)
