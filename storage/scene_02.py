@@ -3,38 +3,38 @@ from manim import *
 
 class Scene_02(Scene):
     def construct(self):
-        title = Text("Base Case: The stopping condition", font_size=48)
+        title = Text("Components of a Recursive Function", font_size=48)
         title.to_edge(UP)
         self.play(Write(title))
-        self.wait(1)
+        self.wait(0.5)
 
-        # Flowchart node
-        node_box = RoundedRectangle(height=2, width=4, color=GREEN, fill_opacity=0.2)
-        node_text = Text("Base Case", font_size=36)
-        node_group = VGroup(node_box, node_text).move_to(LEFT * 3.5)
-        
-        checkmark = Checkmark(color=GREEN).scale(1.5)
-        checkmark.next_to(node_group, RIGHT, buff=0.5)
-        
-        self.play(Create(node_box), Write(node_text))
-        self.play(Create(checkmark))
-        self.wait(1)
+        # Checklist graphic
+        checklist_box = Square(side_length=0.5, color=BLUE, fill_opacity=0.2)
+        check1 = VGroup(checklist_box.copy(), LabeledDot("1", color=BLUE, radius=0.25)).arrange(RIGHT, buff=0.5)
+        check2 = VGroup(checklist_box.copy(), LabeledDot("2", color=BLUE, radius=0.25)).arrange(RIGHT, buff=0.5)
+        checklist = VGroup(check1, check2).arrange(DOWN, aligned_edge=LEFT, buff=0.8)
+        checklist.next_to(title, DOWN, buff=1)
 
-        # Counter example
-        example_title = Text("Example:", font_size=32, color=YELLOW)
-        example_title.next_to(node_group, DOWN, buff=1)
-        
-        code_text = Text("countdown(0) stops", font_size=36)
-        code_text.next_to(example_title, DOWN, buff=0.5)
-        
-        self.play(Write(example_title))
-        self.play(Write(code_text))
-        self.wait(1)
+        self.play(Create(checklist))
+        self.wait(0.5)
 
-        # Emphasis text
-        emphasis = Text("Every recursive solution needs a base case\nto prevent infinite recursion.", 
-                       font_size=32, color=RED, line_spacing=1.2)
-        emphasis.to_edge(DOWN)
+        # Base Case Text
+        base_text = Text("Base Case: The stopping condition", font_size=36, color=GREEN)
+        base_text.next_to(check1, RIGHT, buff=0.8)
         
-        self.play(Write(emphasis))
+        # Recursive Step Text
+        recursive_text = Text("Recursive Step: The function calls itself", font_size=36, color=YELLOW)
+        recursive_text.next_to(check2, RIGHT, buff=0.8)
+
+        self.play(Write(base_text))
+        self.wait(1)
+        self.play(Write(recursive_text))
         self.wait(2)
+
+        # Highlight the importance
+        self.play(
+            Indent(base_text, 0.5, rate_func=there_and_back),
+            Indent(recursive_text, 0.5, rate_func=there_and_back),
+            run_time=1.5
+        )
+        self.wait(1)

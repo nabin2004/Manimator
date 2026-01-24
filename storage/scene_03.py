@@ -3,56 +3,97 @@ from manim import *
 
 class Scene_03(Scene):
     def construct(self):
-        title = Text("Recursive Step: Reduce the problem size", font_size=48)
+        # Title
+        title = Text("Call Stack Mechanism", font_size=48)
         title.to_edge(UP)
         self.play(Write(title))
         self.wait(1)
 
-        # Arrow diagram: n -> n-1
-        n_text = MathTex("n", font_size=72)
-        n_text.move_to(LEFT * 3)
-        arrow1 = Arrow(n_text.get_right(), n_text.get_right() + RIGHT * 2, buff=0.1)
-        n_minus_1_text = MathTex("n-1", font_size=72)
-        n_minus_1_text.next_to(arrow1, RIGHT)
-
-        self.play(Write(n_text))
-        self.play(GrowArrow(arrow1), Write(n_minus_1_text))
-        self.wait(1)
-
-        # Code snippet
-        code_str = "return n + factorial(n-1)"
-        code = Code(code=code_str, language="python", font="Monospace", background="rectangle", background_stroke_color=WHITE, background_stroke_width=1, background_fill_color=BLACK, background_fill_opacity=0.8, insert_line_no=False, style="monokai")
-        code.scale(0.8)
-        code.next_to(n_minus_1_text, DOWN, buff=1)
-
-        self.play(Write(code))
-        self.wait(2)
-
-        # Highlight the recursive call part
-        # Since Code object doesn't support direct sub-selection easily, we'll overlay a highlight box
-        # We approximate the position of "factorial(n-1)" within the code
-        # The code is a single line, so we can highlight the whole line or just the relevant part
-        # Let's highlight the whole line to emphasize the return statement
-        highlight_box = SurroundingRectangle(code, color=YELLOW, buff=0.1)
-        self.play(Create(highlight_box))
-        self.wait(1)
-
-        # Animate the reduction
-        # Create a copy of n-1 and move it to the position of n for the next step
-        n_minus_1_copy = n_minus_1_text.copy()
-        n_minus_1_copy.move_to(n_text.get_center())
+        # Code snippet area (top right)
+        code_text = Text("def func1():\n    func2()\n\ndef func2():\n    return", font_size=24)
+        code_text.scale(0.8)
+        code_text.to_corner(UR)
+        code_box = SurroundingRectangle(code_text, color=BLUE, buff=0.2)
+        code_group = VGroup(code_text, code_box)
         
-        self.play(
-            Transform(n_minus_1_text, n_minus_1_copy),
-            FadeOut(arrow1),
-            FadeOut(n_text),
-            FadeOut(highlight_box),
-            FadeOut(code)
-        )
+        self.play(Create(code_box), Write(code_text))
         self.wait(1)
 
-        # Show the base case implication
-        base_case_text = Text("... until base case", font_size=36)
-        base_case_text.next_to(n_minus_1_text, DOWN, buff=1)
-        self.play(Write(base_case_text))
+        # Stack area (left side)
+        stack_label = Text("Call Stack", font_size=30)
+        stack_label.move_to(LEFT * 4.5 + UP * 2)
+        self.play(Write(stack_label))
+
+        # Initial empty stack indicator
+        empty_stack = Text("(Empty)", font_size=24, color=GRAY)
+        empty_stack.move_to(LEFT * 4.5)
+        self.play(FadeIn(empty_stack))
+        self.wait(1)
+
+        # Define frame creation function
+        def create_frame(label_text, color):
+            frame = Rectangle(width=3, height=1, color=color, fill_opacity=0.2, fill_color=color)
+            text = Text(label_text, font_size=24)
+            text.move_to(frame.get_center())
+            return VGroup(frame, text)
+
+        # Animation sequence
+        
+        # 1. Push Frame 1
+        self.play(FadeOut(empty_stack))
+        
+        arrow_down_1 = Arrow(start=LEFT * 4.5 + UP * 1, end=LEFT * 4.5 + UP * 0.2, color=YELLOW)
+        self.play(GrowArrow(arrow_down_1))
+        self.wait(0.5)
+
+        frame1 = create_frame("Frame 1", RED)
+        frame1.move_to(LEFT * 4.5 + UP * 0.5)
+        
+        self.play(Transform(arrow_down_1, frame1))
+        self.wait(1)
+
+        # 2. Push Frame 2
+        arrow_down_2 = Arrow(start=LEFT * 4.5 + UP * 0.5, end=LEFT * 4.5 + DOWN * 0.3, color=YELLOW)
+        self.play(GrowArrow(arrow_down_2))
+        self.wait(0.5)
+
+        frame2 = create_frame("Frame 2", GREEN)
+        frame2.move_to(LEFT * 4.5 + DOWN * 0.5)
+        
+        self.play(Transform(arrow_down_2, frame2))
+        self.wait(1)
+
+        # Highlight code execution
+        self.play(code_text[0:8].animate.set_color(YELLOW))
+        self.wait(0.5)
+        self.play(code_text[0:8].animate.set_color(WHITE))
+        self.play(code_text[9:16].animate.set_color(YELLOW))
+        self.wait(0.5)
+        self.play(code_text[9:16].animate.set_color(WHITE))
+        self.wait(1)
+
+        # 3. Pop Frame 2
+        arrow_up_1 = Arrow(start=LEFT * 4.5 + DOWN * 0.5, end=LEFT * 4.5 + UP * 0.3, color=ORANGE)
+        self.play(GrowArrow(arrow_up_1))
+        self.wait(0.5)
+
+        self.play(FadeOut(frame2), FadeOut(arrow_up_1))
+        self.wait(0.5)
+
+        # 4. Pop Frame 1
+        arrow_up_2 = Arrow(start=LEFT * 4.5 + UP * 0.5, end=LEFT * 4.5 + UP * 1.3, color=ORANGE)
+        self.play(GrowArrow(arrow_up_2))
+        self.wait(0.5)
+
+        self.play(FadeOut(frame1), FadeOut(arrow_up_2))
+        self.wait(0.5)
+
+        # Show stack is empty again
+        self.play(FadeIn(empty_stack))
+        self.wait(1)
+
+        # Final message
+        final_text = Text("Stack manages function execution order", font_size=32, color=BLUE)
+        final_text.move_to(DOWN * 2)
+        self.play(Write(final_text))
         self.wait(2)

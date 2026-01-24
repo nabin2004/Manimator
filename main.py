@@ -1,5 +1,6 @@
 from manimator.llm.llm import LLMWithMetrics
-from src.manimator.orchestration.langgraph_pipeline import run_pipeline
+# from src.manimator.orchestration.langgraph_pipeline import run_pipeline
+from src.manimator.orchestration.new_langgraph import run_pipeline
 from src.manimator.intent.resolve import resolve_intent
 from src.manimator.planner.resolve import plan_topic
 import os

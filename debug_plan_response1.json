@@ -6,65 +6,76 @@
       "visual_elements": [
         "Title text: 'Recursion in Computer Science'",
         "Simple diagram of a function calling itself",
-        "Icon of a mirror reflecting itself"
+        "Question mark icon"
       ],
       "estimated_duration_sec": 15,
-      "narrative_intent": "Define recursion and present the core idea of a function calling itself to solve a problem."
+      "narrative_intent": "Hook the audience by presenting recursion as a powerful concept where a function solves a problem by calling itself."
     },
     {
       "scene_id": "scene_02",
-      "goal": "Explain the base case",
+      "goal": "Define the two essential components of a recursive function",
       "visual_elements": [
         "Text: 'Base Case: The stopping condition'",
-        "Flowchart node labeled 'Base Case' with a green checkmark",
-        "Counter example: countdown(0) stops"
+        "Text: 'Recursive Step: The function calls itself'",
+        "Checklist graphic"
       ],
-      "estimated_duration_sec": 20,
-      "narrative_intent": "Emphasize that every recursive solution needs a base case to prevent infinite recursion."
+      "estimated_duration_sec": 15,
+      "narrative_intent": "Explain that every recursive function must have a base case to terminate and a recursive step to progress."
     },
     {
       "scene_id": "scene_03",
-      "goal": "Explain the recursive step",
+      "goal": "Visualize the call stack mechanism",
       "visual_elements": [
-        "Text: 'Recursive Step: Reduce the problem size'",
-        "Arrow diagram showing n -> n-1",
-        "Code snippet: return n + factorial(n-1)"
+        "Stack of boxes labeled 'Frame 1', 'Frame 2', ...",
+        "Arrow pointing down for 'push' and up for 'pop'",
+        "Function call code snippet"
       ],
       "estimated_duration_sec": 20,
-      "narrative_intent": "Show how the recursive step moves the problem toward the base case."
+      "narrative_intent": "Show how the computer manages function calls using a stack, pushing new frames and popping them as they return."
     },
     {
       "scene_id": "scene_04",
-      "goal": "Visualize the call stack",
+      "goal": "Walk through a classic example: Factorial(n)",
       "visual_elements": [
-        "Stack diagram with boxes labeled 'factorial(3)', 'factorial(2)', 'factorial(1)', 'factorial(0)'",
-        "Arrow showing push and pop operations",
-        "Highlight of the topmost frame"
+        "Mathematical formula: n! = n * (n-1)!",
+        "Animated countdown from 5 to 0",
+        "Stack frames appearing and disappearing"
       ],
       "estimated_duration_sec": 25,
-      "narrative_intent": "Illustrate how the call stack builds during recursion and unwinds when the base case is reached."
+      "narrative_intent": "Demonstrate recursion step-by-step using the factorial function, highlighting the base case and recursive calls."
     },
     {
       "scene_id": "scene_05",
-      "goal": "Compare recursion vs iteration",
+      "goal": "Compare recursion with iteration",
       "visual_elements": [
-        "Side-by-side panels: 'Recursive' and 'Iterative'",
-        "Code for factorial using recursion and a for-loop",
-        "Complexity labels: O(n) time, O(n) space vs O(n) time, O(1) space"
+        "Side-by-side diagrams: Recursive tree vs. Loop counter",
+        "Code snippets: recursive function vs. for-loop",
+        "Pros/Cons table"
       ],
       "estimated_duration_sec": 20,
-      "narrative_intent": "Highlight similarities and differences, including trade-offs in readability and memory usage."
+      "narrative_intent": "Clarify when recursion is preferable to iteration and vice versa, discussing readability and performance."
     },
     {
       "scene_id": "scene_06",
-      "goal": "Common pitfalls and best practices",
+      "goal": "Common pitfalls and how to avoid them",
       "visual_elements": [
-        "Warning icon with text: 'Missing base case'",
-        "Stack overflow animation with growing stack",
-        "Checklist: Define base case, ensure progress, consider tail recursion"
+        "Warning icon",
+        "Infinite loop animation (spinning circle)",
+        "Example of missing base case"
       ],
-      "estimated_duration_sec": 20,
-      "narrative_intent": "Warn about infinite recursion and stack overflow, and suggest strategies to avoid them."
+      "estimated_duration_sec": 15,
+      "narrative_intent": "Warn about stack overflow and infinite recursion, emphasizing the importance of a correct base case."
+    },
+    {
+      "scene_id": "scene_07",
+      "goal": "Wrap-up and real-world applications",
+      "visual_elements": [
+        "List of applications: Tree traversal, Divide and Conquer, Backtracking",
+        "Summary bullet points",
+        "Call-to-action: 'Practice writing recursive functions!'"
+      ],
+      "estimated_duration_sec": 10,
+      "narrative_intent": "Reinforce key takeaways and encourage further exploration of recursion in algorithms and data structures."
     }
   ]
 }
