@@ -4,82 +4,135 @@ from manim import *
 class Scene_04(Scene):
     def construct(self):
         # Title
-        title = Text("Factorial Computation Trace", font_size=48)
+        title = Text("Call Stack Visualization", font_size=48)
         title.to_edge(UP)
         self.play(Write(title))
-        self.wait(0.5)
-
-        # --- Setup Flowchart Nodes ---
-        # Coordinates for the flowchart (vertical stack)
-        y_positions = [2.5, 1.0, -0.5, -2.0]
-        
-        # Node 1: factorial(3)
-        node1_rect = RoundedRectangle(width=3, height=1, corner_radius=0.2, color=BLUE)
-        node1_text = MathTex(r"\text{factorial}(3)", font_size=36)
-        node1_group = VGroup(node1_rect, node1_text).move_to([0, y_positions[0], 0])
-        
-        # Node 2: factorial(2)
-        node2_rect = RoundedRectangle(width=3, height=1, corner_radius=0.2, color=BLUE)
-        node2_text = MathTex(r"\text{factorial}(2)", font_size=36)
-        node2_group = VGroup(node2_rect, node2_text).move_to([0, y_positions[1], 0])
-        
-        # Node 3: factorial(1)
-        node3_rect = RoundedRectangle(width=3, height=1, corner_radius=0.2, color=BLUE)
-        node3_text = MathTex(r"\text{factorial}(1)", font_size=36)
-        node3_group = VGroup(node3_rect, node3_text).move_to([0, y_positions[2], 0])
-        
-        # Node 4: Base Case (1)
-        node4_rect = RoundedRectangle(width=3, height=1, corner_radius=0.2, color=GREEN)
-        node4_text = MathTex(r"\text{Base Case: return } 1", font_size=36)
-        node4_group = VGroup(node4_rect, node4_text).move_to([0, y_positions[3], 0])
-
-        # --- Animate Flowchart Construction (Downward) ---
-        self.play(Create(node1_rect), Write(node1_text))
-        self.wait(0.2)
-        
-        arrow1 = Arrow(node1_group.get_bottom(), node2_group.get_top(), buff=0.1, color=WHITE)
-        self.play(GrowArrow(arrow1))
-        self.play(Create(node2_rect), Write(node2_text))
-        self.wait(0.2)
-        
-        arrow2 = Arrow(node2_group.get_bottom(), node3_group.get_top(), buff=0.1, color=WHITE)
-        self.play(GrowArrow(arrow2))
-        self.play(Create(node3_rect), Write(node3_text))
-        self.wait(0.2)
-        
-        arrow3 = Arrow(node3_group.get_bottom(), node4_group.get_top(), buff=0.1, color=WHITE)
-        self.play(GrowArrow(arrow3))
-        self.play(Create(node4_rect), Write(node4_text))
-        self.wait(0.5)
-
-        # --- Animate Stack Unwinding (Upward) with Multiplication ---
-        
-        # Step 1: factorial(1) returns 1
-        ret_val_1 = MathTex(r"\Rightarrow 1", color=GREEN).next_to(node4_group, RIGHT, buff=0.2)
-        self.play(Write(ret_val_1))
-        self.wait(0.5)
-
-        # Step 2: factorial(2) calculation
-        # Show multiplication: 2 * 1
-        calc_2 = MathTex(r"2 \times 1 = 2", color=YELLOW).move_to([-4, y_positions[1], 0])
-        self.play(Write(calc_2))
-        
-        # Return value for factorial(2)
-        ret_val_2 = MathTex(r"\Rightarrow 2", color=GREEN).next_to(node2_group, RIGHT, buff=0.2)
-        self.play(Transform(calc_2, ret_val_2))
-        self.wait(0.5)
-
-        # Step 3: factorial(3) calculation
-        # Show multiplication: 3 * 2
-        calc_3 = MathTex(r"3 \times 2 = 6", color=YELLOW).move_to([-4, y_positions[0], 0])
-        self.play(Write(calc_3))
-        
-        # Return value for factorial(3)
-        ret_val_3 = MathTex(r"\Rightarrow 6", color=GREEN).next_to(node1_group, RIGHT, buff=0.2)
-        self.play(Transform(calc_3, ret_val_3))
         self.wait(1)
 
-        # Final highlight
-        final_result = Text("Result: 6", font_size=40, color=GOLD).move_to([0, -3.5, 0])
-        self.play(Write(final_result))
+        # Stack container (bottom to top)
+        stack_group = VGroup()
+        stack_group.next_to(title, DOWN, buff=1)
+
+        # Colors for frames
+        colors = [BLUE, GREEN, YELLOW, RED]
+        
+        # Helper to create a frame
+        def create_frame(label_text, color):
+            rect = Rectangle(width=4, height=0.8, color=color, fill_opacity=0.2)
+            text = Text(label_text, font_size=24)
+            text.move_to(rect.get_center())
+            frame = VGroup(rect, text)
+            return frame
+
+        # Helper to update stack positions
+        def update_stack_positions():
+            for i, frame in enumerate(stack_group):
+                target_y = stack_group.get_bottom()[1] + i * 0.9
+                frame.move_to([0, target_y, 0], aligned_edge=DOWN)
+
+        # Initial state: Stack is empty
+        self.wait(1)
+
+        # Push factorial(3)
+        frame_3 = create_frame("factorial(3)", colors[0])
+        arrow_push_3 = Arrow(start=LEFT * 3 + UP * 2, end=frame_3.get_top(), buff=0.1, color=WHITE)
+        
+        self.play(GrowArrow(arrow_push_3))
+        self.play(FadeIn(frame_3))
+        stack_group.add(frame_3)
+        self.play(Transform(arrow_push_3, Arrow(start=arrow_push_3.get_start(), end=frame_3.get_top(), buff=0.1, color=WHITE)))
+        self.play(FadeOut(arrow_push_3))
+        self.wait(0.5)
+
+        # Highlight top frame (factorial(3))
+        self.play(frame_3[0].animate.set_fill(opacity=0.5))
+        self.wait(1)
+        self.play(frame_3[0].animate.set_fill(opacity=0.2))
+
+        # Push factorial(2)
+        frame_2 = create_frame("factorial(2)", colors[1])
+        frame_2.next_to(frame_3, DOWN, buff=0)
+        arrow_push_2 = Arrow(start=LEFT * 3 + UP * 2, end=frame_2.get_top(), buff=0.1, color=WHITE)
+        
+        self.play(GrowArrow(arrow_push_2))
+        self.play(FadeIn(frame_2))
+        stack_group.add(frame_2)
+        update_stack_positions()
+        self.play(Transform(arrow_push_2, Arrow(start=arrow_push_2.get_start(), end=frame_2.get_top(), buff=0.1, color=WHITE)))
+        self.play(FadeOut(arrow_push_2))
+        self.wait(0.5)
+
+        # Highlight top frame (factorial(2))
+        self.play(frame_2[0].animate.set_fill(opacity=0.5))
+        self.wait(1)
+        self.play(frame_2[0].animate.set_fill(opacity=0.2))
+
+        # Push factorial(1)
+        frame_1 = create_frame("factorial(1)", colors[2])
+        frame_1.next_to(frame_2, DOWN, buff=0)
+        arrow_push_1 = Arrow(start=LEFT * 3 + UP * 2, end=frame_1.get_top(), buff=0.1, color=WHITE)
+        
+        self.play(GrowArrow(arrow_push_1))
+        self.play(FadeIn(frame_1))
+        stack_group.add(frame_1)
+        update_stack_positions()
+        self.play(Transform(arrow_push_1, Arrow(start=arrow_push_1.get_start(), end=frame_1.get_top(), buff=0.1, color=WHITE)))
+        self.play(FadeOut(arrow_push_1))
+        self.wait(0.5)
+
+        # Highlight top frame (factorial(1))
+        self.play(frame_1[0].animate.set_fill(opacity=0.5))
+        self.wait(1)
+        self.play(frame_1[0].animate.set_fill(opacity=0.2))
+
+        # Push factorial(0)
+        frame_0 = create_frame("factorial(0)", colors[3])
+        frame_0.next_to(frame_1, DOWN, buff=0)
+        arrow_push_0 = Arrow(start=LEFT * 3 + UP * 2, end=frame_0.get_top(), buff=0.1, color=WHITE)
+        
+        self.play(GrowArrow(arrow_push_0))
+        self.play(FadeIn(frame_0))
+        stack_group.add(frame_0)
+        update_stack_positions()
+        self.play(Transform(arrow_push_0, Arrow(start=arrow_push_0.get_start(), end=frame_0.get_top(), buff=0.1, color=WHITE)))
+        self.play(FadeOut(arrow_push_0))
+        self.wait(0.5)
+
+        # Highlight top frame (factorial(0))
+        self.play(frame_0[0].animate.set_fill(opacity=0.5))
+        self.wait(1)
+        self.play(frame_0[0].animate.set_fill(opacity=0.2))
+
+        # Pop factorial(0)
+        arrow_pop_0 = Arrow(start=frame_0.get_bottom(), end=LEFT * 3 + DOWN * 2, buff=0.1, color=WHITE)
+        self.play(GrowArrow(arrow_pop_0))
+        self.play(FadeOut(frame_0), FadeOut(arrow_pop_0))
+        stack_group.remove(frame_0)
+        self.wait(0.5)
+
+        # Pop factorial(1)
+        arrow_pop_1 = Arrow(start=frame_1.get_bottom(), end=LEFT * 3 + DOWN * 2, buff=0.1, color=WHITE)
+        self.play(GrowArrow(arrow_pop_1))
+        self.play(FadeOut(frame_1), FadeOut(arrow_pop_1))
+        stack_group.remove(frame_1)
+        self.wait(0.5)
+
+        # Pop factorial(2)
+        arrow_pop_2 = Arrow(start=frame_2.get_bottom(), end=LEFT * 3 + DOWN * 2, buff=0.1, color=WHITE)
+        self.play(GrowArrow(arrow_pop_2))
+        self.play(FadeOut(frame_2), FadeOut(arrow_pop_2))
+        stack_group.remove(frame_2)
+        self.wait(0.5)
+
+        # Pop factorial(3)
+        arrow_pop_3 = Arrow(start=frame_3.get_bottom(), end=LEFT * 3 + DOWN * 2, buff=0.1, color=WHITE)
+        self.play(GrowArrow(arrow_pop_3))
+        self.play(FadeOut(frame_3), FadeOut(arrow_pop_3))
+        stack_group.remove(frame_3)
+        self.wait(0.5)
+
+        # End text
+        end_text = Text("Stack Empty", font_size=36)
+        end_text.move_to(ORIGIN)
+        self.play(Write(end_text))
         self.wait(2)

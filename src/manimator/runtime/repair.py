@@ -20,7 +20,7 @@ def repair_scene(llm, scene_file: str, scene_code: str):
 
             Fix the code. Only return Python code, no explanation.
             """
-            scene_code = llm.invoke(prompt)
+            scene_code = llm.invoke(prompt, phase="scene_repair")
             retries += 1
 
     raise RuntimeError(f"Scene failed after {MAX_RETRIES} retries")

@@ -1,0 +1,53 @@
+{
+  "run_id": "run_1769254201_949f140f",
+  "timestamp": "2026-01-24T11:30:45.766561",
+  "metrics": {
+    "run_id": "run_1769254201_949f140f",
+    "phase": "scene_code_generation",
+    "latency_s": 44.34440636634827,
+    "model_provider": "openai",
+    "model_name": "xiaomi/mimo-v2-flash:free",
+    "request_id": "gen-1769254201-99gCfjPYnQKe7XJ274Ys",
+    "finish_reason": "stop",
+    "prompt_tokens": 174,
+    "completion_tokens": 1542,
+    "total_tokens": 1716,
+    "cached_tokens": 31,
+    "reasoning_tokens": 0,
+    "cost": 0,
+    "is_byok": false,
+    "raw_metadata": {
+      "token_usage": {
+        "completion_tokens": 1542,
+        "prompt_tokens": 174,
+        "total_tokens": 1716,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": null,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": null,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 31,
+          "video_tokens": 0
+        },
+        "cost": 0,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": null,
+          "upstream_inference_prompt_cost": 0,
+          "upstream_inference_completions_cost": 0
+        }
+      },
+      "model_provider": "openai",
+      "model_name": "xiaomi/mimo-v2-flash:free",
+      "system_fingerprint": null,
+      "id": "gen-1769254201-99gCfjPYnQKe7XJ274Ys",
+      "finish_reason": "stop",
+      "logprobs": null
+    },
+    "result": "from manim import *\n\nclass Scene_04(Scene):\n    def construct(self):\n        # Title\n        title = Text(\"Call Stack Visualization\", font_size=48)\n        title.to_edge(UP)\n        self.play(Write(title))\n        self.wait(1)\n\n        # Stack container (bottom to top)\n        stack_group = VGroup()\n        stack_group.next_to(title, DOWN, buff=1)\n\n        # Colors for frames\n        colors = [BLUE, GREEN, YELLOW, RED]\n        \n        # Helper to create a frame\n        def create_frame(label_text, color):\n            rect = Rectangle(width=4, height=0.8, color=color, fill_opacity=0.2)\n            text = Text(label_text, font_size=24)\n            text.move_to(rect.get_center())\n            frame = VGroup(rect, text)\n            return frame\n\n        # Helper to update stack positions\n        def update_stack_positions():\n            for i, frame in enumerate(stack_group):\n                target_y = stack_group.get_bottom()[1] + i * 0.9\n                frame.move_to([0, target_y, 0], aligned_edge=DOWN)\n\n        # Initial state: Stack is empty\n        self.wait(1)\n\n        # Push factorial(3)\n        frame_3 = create_frame(\"factorial(3)\", colors[0])\n        arrow_push_3 = Arrow(start=LEFT * 3 + UP * 2, end=frame_3.get_top(), buff=0.1, color=WHITE)\n        \n        self.play(GrowArrow(arrow_push_3))\n        self.play(FadeIn(frame_3))\n        stack_group.add(frame_3)\n        self.play(Transform(arrow_push_3, Arrow(start=arrow_push_3.get_start(), end=frame_3.get_top(), buff=0.1, color=WHITE)))\n        self.play(FadeOut(arrow_push_3))\n        self.wait(0.5)\n\n        # Highlight top frame (factorial(3))\n        self.play(frame_3[0].animate.set_fill(opacity=0.5))\n        self.wait(1)\n        self.play(frame_3[0].animate.set_fill(opacity=0.2))\n\n        # Push factorial(2)\n        frame_2 = create_frame(\"factorial(2)\", colors[1])\n        frame_2.next_to(frame_3, DOWN, buff=0)\n        arrow_push_2 = Arrow(start=LEFT * 3 + UP * 2, end=frame_2.get_top(), buff=0.1, color=WHITE)\n        \n        self.play(GrowArrow(arrow_push_2))\n        self.play(FadeIn(frame_2))\n        stack_group.add(frame_2)\n        update_stack_positions()\n        self.play(Transform(arrow_push_2, Arrow(start=arrow_push_2.get_start(), end=frame_2.get_top(), buff=0.1, color=WHITE)))\n        self.play(FadeOut(arrow_push_2))\n        self.wait(0.5)\n\n        # Highlight top frame (factorial(2))\n        self.play(frame_2[0].animate.set_fill(opacity=0.5))\n        self.wait(1)\n        self.play(frame_2[0].animate.set_fill(opacity=0.2))\n\n        # Push factorial(1)\n        frame_1 = create_frame(\"factorial(1)\", colors[2])\n        frame_1.next_to(frame_2, DOWN, buff=0)\n        arrow_push_1 = Arrow(start=LEFT * 3 + UP * 2, end=frame_1.get_top(), buff=0.1, color=WHITE)\n        \n        self.play(GrowArrow(arrow_push_1))\n        self.play(FadeIn(frame_1))\n        stack_group.add(frame_1)\n        update_stack_positions()\n        self.play(Transform(arrow_push_1, Arrow(start=arrow_push_1.get_start(), end=frame_1.get_top(), buff=0.1, color=WHITE)))\n        self.play(FadeOut(arrow_push_1))\n        self.wait(0.5)\n\n        # Highlight top frame (factorial(1))\n        self.play(frame_1[0].animate.set_fill(opacity=0.5))\n        self.wait(1)\n        self.play(frame_1[0].animate.set_fill(opacity=0.2))\n\n        # Push factorial(0)\n        frame_0 = create_frame(\"factorial(0)\", colors[3])\n        frame_0.next_to(frame_1, DOWN, buff=0)\n        arrow_push_0 = Arrow(start=LEFT * 3 + UP * 2, end=frame_0.get_top(), buff=0.1, color=WHITE)\n        \n        self.play(GrowArrow(arrow_push_0))\n        self.play(FadeIn(frame_0))\n        stack_group.add(frame_0)\n        update_stack_positions()\n        self.play(Transform(arrow_push_0, Arrow(start=arrow_push_0.get_start(), end=frame_0.get_top(), buff=0.1, color=WHITE)))\n        self.play(FadeOut(arrow_push_0))\n        self.wait(0.5)\n\n        # Highlight top frame (factorial(0))\n        self.play(frame_0[0].animate.set_fill(opacity=0.5))\n        self.wait(1)\n        self.play(frame_0[0].animate.set_fill(opacity=0.2))\n\n        # Pop factorial(0)\n        arrow_pop_0 = Arrow(start=frame_0.get_bottom(), end=LEFT * 3 + DOWN * 2, buff=0.1, color=WHITE)\n        self.play(GrowArrow(arrow_pop_0))\n        self.play(FadeOut(frame_0), FadeOut(arrow_pop_0))\n        stack_group.remove(frame_0)\n        self.wait(0.5)\n\n        # Pop factorial(1)\n        arrow_pop_1 = Arrow(start=frame_1.get_bottom(), end=LEFT * 3 + DOWN * 2, buff=0.1, color=WHITE)\n        self.play(GrowArrow(arrow_pop_1))\n        self.play(FadeOut(frame_1), FadeOut(arrow_pop_1))\n        stack_group.remove(frame_1)\n        self.wait(0.5)\n\n        # Pop factorial(2)\n        arrow_pop_2 = Arrow(start=frame_2.get_bottom(), end=LEFT * 3 + DOWN * 2, buff=0.1, color=WHITE)\n        self.play(GrowArrow(arrow_pop_2))\n        self.play(FadeOut(frame_2), FadeOut(arrow_pop_2))\n        stack_group.remove(frame_2)\n        self.wait(0.5)\n\n        # Pop factorial(3)\n        arrow_pop_3 = Arrow(start=frame_3.get_bottom(), end=LEFT * 3 + DOWN * 2, buff=0.1, color=WHITE)\n        self.play(GrowArrow(arrow_pop_3))\n        self.play(FadeOut(frame_3), FadeOut(arrow_pop_3))\n        stack_group.remove(frame_3)\n        self.wait(0.5)\n\n        # End text\n        end_text = Text(\"Stack Empty\", font_size=36)\n        end_text.move_to(ORIGIN)\n        self.play(Write(end_text))\n        self.wait(2)"
+  }
+}

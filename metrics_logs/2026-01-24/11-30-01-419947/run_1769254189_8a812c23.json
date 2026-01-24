@@ -1,0 +1,53 @@
+{
+  "run_id": "run_1769254189_8a812c23",
+  "timestamp": "2026-01-24T11:30:01.419947",
+  "metrics": {
+    "run_id": "run_1769254189_8a812c23",
+    "phase": "scene_code_generation",
+    "latency_s": 11.586491823196411,
+    "model_provider": "openai",
+    "model_name": "xiaomi/mimo-v2-flash:free",
+    "request_id": "gen-1769254190-yYdlJRFChAi3RaneUZ3y",
+    "finish_reason": "stop",
+    "prompt_tokens": 176,
+    "completion_tokens": 921,
+    "total_tokens": 1097,
+    "cached_tokens": 31,
+    "reasoning_tokens": 0,
+    "cost": 0,
+    "is_byok": false,
+    "raw_metadata": {
+      "token_usage": {
+        "completion_tokens": 921,
+        "prompt_tokens": 176,
+        "total_tokens": 1097,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": null,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": null,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 31,
+          "video_tokens": 0
+        },
+        "cost": 0,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": null,
+          "upstream_inference_prompt_cost": 0,
+          "upstream_inference_completions_cost": 0
+        }
+      },
+      "model_provider": "openai",
+      "model_name": "xiaomi/mimo-v2-flash:free",
+      "system_fingerprint": null,
+      "id": "gen-1769254190-yYdlJRFChAi3RaneUZ3y",
+      "finish_reason": "stop",
+      "logprobs": null
+    },
+    "result": "from manim import *\n\nclass Scene_03(Scene):\n    def construct(self):\n        # Title\n        title = Text(\"Recursive Step\", font_size=48)\n        title.to_edge(UP)\n        self.play(Write(title))\n        self.wait(1)\n\n        # Flowchart setup\n        flowchart_group = VGroup()\n        \n        # Box for current call\n        current_box = Rectangle(width=3, height=1.5, color=BLUE, fill_opacity=0.2)\n        current_text = Text(\"factorial(n)\", font_size=24).move_to(current_box)\n        current_group = VGroup(current_box, current_text)\n        current_group.move_to(LEFT * 4 + UP * 1)\n        \n        # Box for recursive call\n        recursive_box = Rectangle(width=3, height=1.5, color=GREEN, fill_opacity=0.2)\n        recursive_text = Text(\"factorial(n-1)\", font_size=24).move_to(recursive_box)\n        recursive_group = VGroup(recursive_box, recursive_text)\n        recursive_group.move_to(RIGHT * 4 + DOWN * 1)\n        \n        # Arrow from current to recursive\n        arrow_down = Arrow(current_box.get_bottom(), recursive_box.get_top(), buff=0.1, color=YELLOW)\n        arrow_down_label = Text(\"Recursive Call\", font_size=20).next_to(arrow_down, RIGHT)\n        \n        # Arrow looping back (curved)\n        arrow_loop = CurvedArrow(recursive_box.get_left(), current_box.get_left(), angle=PI/2, color=RED)\n        arrow_loop_label = Text(\"Loop Back\", font_size=20).next_to(arrow_loop, LEFT)\n        \n        flowchart_group.add(current_group, recursive_group, arrow_down, arrow_down_label, arrow_loop, arrow_loop_label)\n        \n        self.play(Create(current_group), Create(recursive_group))\n        self.play(GrowArrow(arrow_down), Write(arrow_down_label))\n        self.play(GrowArrow(arrow_loop), Write(arrow_loop_label))\n        self.wait(2)\n        \n        # Equation\n        equation = MathTex(r\"\\text{factorial}(n) = n \\times \\text{factorial}(n-1)\", font_size=40)\n        equation.next_to(flowchart_group, DOWN, buff=1)\n        \n        self.play(Write(equation))\n        self.wait(2)\n        \n        # Stack of blocks representing calls\n        # Create 3 blocks for n, n-1, n-2\n        stack_group = VGroup()\n        blocks = []\n        labels = []\n        \n        for i in range(3):\n            block = Rectangle(width=2.5, height=0.8, color=PURPLE, fill_opacity=0.3)\n            if i == 0:\n                label = MathTex(r\"n\", font_size=24)\n            elif i == 1:\n                label = MathTex(r\"n-1\", font_size=24)\n            else:\n                label = MathTex(r\"n-2\", font_size=24)\n            label.move_to(block)\n            block_group = VGroup(block, label)\n            blocks.append(block_group)\n            labels.append(label)\n        \n        # Position stack to the right\n        stack_pos = RIGHT * 4 + UP * 1\n        blocks[0].move_to(stack_pos)\n        blocks[1].move_to(stack_pos + DOWN * 1)\n        blocks[2].move_to(stack_pos + DOWN * 2)\n        \n        stack_group.add(*blocks)\n        \n        # Animate stack building\n        self.play(FadeOut(flowchart_group), FadeOut(equation))\n        self.play(Write(Text(\"Stack of Calls\", font_size=30).move_to(UP * 3)))\n        \n        self.play(Create(blocks[0]))\n        self.wait(0.5)\n        self.play(Create(blocks[1]))\n        self.wait(0.5)\n        self.play(Create(blocks[2]))\n        self.wait(2)\n        \n        # Highlight the recursive step in the stack\n        self.play(blocks[1].animate.set_fill(RED, opacity=0.5))\n        self.wait(1)\n        self.play(blocks[1].animate.set_fill(PURPLE, opacity=0.3))\n        \n        # Fade out\n        self.play(FadeOut(stack_group))\n        self.wait(1)"
+  }
+}

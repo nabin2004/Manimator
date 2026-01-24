@@ -1,32 +1,47 @@
 {
-  "token_usage": {
-    "completion_tokens": 55,
-    "prompt_tokens": 42,
-    "total_tokens": 97,
-    "completion_tokens_details": {
-      "accepted_prediction_tokens": null,
-      "audio_tokens": null,
-      "reasoning_tokens": 0,
-      "rejected_prediction_tokens": null,
-      "image_tokens": 0
-    },
-    "prompt_tokens_details": {
-      "audio_tokens": 0,
-      "cached_tokens": 31,
-      "video_tokens": 0
-    },
-    "cost": 0,
-    "is_byok": false,
-    "cost_details": {
-      "upstream_inference_cost": null,
-      "upstream_inference_prompt_cost": 0,
-      "upstream_inference_completions_cost": 0
-    }
-  },
+  "phase": "greeting",
+  "latency_s": 6.607696533203125,
   "model_provider": "openai",
   "model_name": "xiaomi/mimo-v2-flash:free",
-  "system_fingerprint": null,
-  "id": "gen-1769197706-zPUkpgqknOW2eQbFFSxK",
+  "request_id": "gen-1769240228-KSEjwwPAC4oHa7FzEm3s",
   "finish_reason": "stop",
-  "logprobs": null
+  "prompt_tokens": 42,
+  "completion_tokens": 66,
+  "total_tokens": 108,
+  "cached_tokens": 31,
+  "reasoning_tokens": 0,
+  "cost": 0,
+  "is_byok": false,
+  "raw_metadata": {
+    "token_usage": {
+      "completion_tokens": 66,
+      "prompt_tokens": 42,
+      "total_tokens": 108,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 31,
+        "video_tokens": 0
+      },
+      "cost": 0,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      }
+    },
+    "model_provider": "openai",
+    "model_name": "xiaomi/mimo-v2-flash:free",
+    "system_fingerprint": null,
+    "id": "gen-1769240228-KSEjwwPAC4oHa7FzEm3s",
+    "finish_reason": "stop",
+    "logprobs": null
+  }
 }

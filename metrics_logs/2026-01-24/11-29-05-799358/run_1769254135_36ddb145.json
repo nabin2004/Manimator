@@ -1,0 +1,53 @@
+{
+  "run_id": "run_1769254135_36ddb145",
+  "timestamp": "2026-01-24T11:29:05.799358",
+  "metrics": {
+    "run_id": "run_1769254135_36ddb145",
+    "phase": "plan_generation",
+    "latency_s": 10.311845779418945,
+    "model_provider": "openai",
+    "model_name": "xiaomi/mimo-v2-flash:free",
+    "request_id": "gen-1769254135-9Jo38JV0s1IHri82tBmd",
+    "finish_reason": "stop",
+    "prompt_tokens": 214,
+    "completion_tokens": 561,
+    "total_tokens": 775,
+    "cached_tokens": 31,
+    "reasoning_tokens": 0,
+    "cost": 0,
+    "is_byok": false,
+    "raw_metadata": {
+      "token_usage": {
+        "completion_tokens": 561,
+        "prompt_tokens": 214,
+        "total_tokens": 775,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": null,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": null,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 31,
+          "video_tokens": 0
+        },
+        "cost": 0,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": null,
+          "upstream_inference_prompt_cost": 0,
+          "upstream_inference_completions_cost": 0
+        }
+      },
+      "model_provider": "openai",
+      "model_name": "xiaomi/mimo-v2-flash:free",
+      "system_fingerprint": null,
+      "id": "gen-1769254135-9Jo38JV0s1IHri82tBmd",
+      "finish_reason": "stop",
+      "logprobs": null
+    },
+    "result": "{\n  \"scenes\": [\n    {\n      \"scene_id\": \"scene_01\",\n      \"goal\": \"Introduce recursion as a problem-solving technique\",\n      \"visual_elements\": [\"Title text: 'Recursion in Computer Science'\", \"Simple diagram of a function calling itself\", \"Question mark icon\"],\n      \"estimated_duration_sec\": 15,\n      \"narrative_intent\": \"Hook the audience by defining recursion and showing its core idea visually.\"\n    },\n    {\n      \"scene_id\": \"scene_02\",\n      \"goal\": \"Explain the base case concept\",\n      \"visual_elements\": [\"Flowchart with a 'Base Case' stop node\", \"Checklist icon labeled 'Base Case'\", \"Example: factorial(0) = 1\"],\n      \"estimated_duration_sec\": 20,\n      \"narrative_intent\": \"Clarify that recursion needs a stopping condition to prevent infinite loops.\"\n    },\n    {\n      \"scene_id\": \"scene_03\",\n      \"goal\": \"Explain the recursive step\",\n      \"visual_elements\": [\"Flowchart with 'Recursive Step' arrow looping back\", \"Equation: factorial(n) = n * factorial(n-1)\", \"Stack of blocks representing calls\"],\n      \"estimated_duration_sec\": 20,\n      \"narrative_intent\": \"Show how a problem is broken into smaller subproblems via a recursive call.\"\n    },\n    {\n      \"scene_id\": \"scene_04\",\n      \"goal\": \"Visualize the call stack\",\n      \"visual_elements\": [\"Stack diagram with frames labeled factorial(3), factorial(2), factorial(1), factorial(0)\", \"Arrow showing push/pop operations\", \"Highlight top frame\"],\n      \"estimated_duration_sec\": 25,\n      \"narrative_intent\": \"Demonstrate how the runtime manages function calls and returns.\"\n    },\n    {\n      \"scene_id\": \"scene_05\",\n      \"goal\": \"Compare recursion vs iteration\",\n      \"visual_elements\": [\"Side-by-side panels: recursion flowchart vs for-loop diagram\", \"Code snippets: recursive factorial vs iterative factorial\", \"Pros/Cons icons\"],\n      \"estimated_duration_sec\": 20,\n      \"narrative_intent\": \"Highlight trade-offs and when to choose recursion over iteration.\"\n    },\n    {\n      \"scene_id\": \"scene_06\",\n      \"goal\": \"Common pitfalls and best practices\",\n      \"visual_elements\": [\"Warning sign icon\", \"Diagram of infinite recursion loop\", \"Checklist: define base case, ensure progress, watch stack depth\"],\n      \"estimated_duration_sec\": 20,\n      \"narrative_intent\": \"Warn about stack overflow and emphasize careful design.\"\n    }\n  ]\n}"
+  }
+}

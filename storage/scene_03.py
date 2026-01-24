@@ -4,101 +4,91 @@ from manim import *
 class Scene_03(Scene):
     def construct(self):
         # Title
-        title = Text("Call Stack for factorial(3)", font_size=48)
+        title = Text("Recursive Step", font_size=48)
         title.to_edge(UP)
         self.play(Write(title))
-        self.wait(0.5)
-
-        # Stack container
-        stack_group = VGroup()
-        stack_group.move_to(ORIGIN).shift(DOWN * 0.5)
-
-        # Colors for stack frames
-        colors = [BLUE, GREEN, YELLOW]
-
-        # Helper to create a stack frame box
-        def create_frame(label_text, index):
-            rect = Rectangle(width=4, height=1.2, color=colors[index], fill_opacity=0.2, stroke_width=3)
-            text = Text(label_text, font_size=24)
-            text.move_to(rect.get_center())
-            frame = VGroup(rect, text)
-            return frame
-
-        # Initial state: Empty stack
-        empty_text = Text("Stack: Empty", font_size=24).move_to(ORIGIN)
-        self.play(Write(empty_text))
-        self.wait(0.5)
-
-        # Step 1: Push factorial(3)
-        self.play(FadeOut(empty_text))
-        
-        frame_3 = create_frame("factorial(3)", 0)
-        frame_3.move_to(stack_group.get_center())
-        
-        # Arrow for push
-        arrow_push_3 = Arrow(LEFT * 3, frame_3.get_left(), buff=0.1, color=WHITE)
-        label_push_3 = Text("push", font_size=20).next_to(arrow_push_3, UP, buff=0.1)
-
-        self.play(GrowArrow(arrow_push_3), Write(label_push_3))
-        self.play(FadeIn(frame_3))
-        self.wait(0.5)
-        self.play(FadeOut(arrow_push_3), FadeOut(label_push_3))
-
-        # Step 2: Push factorial(2)
-        frame_2 = create_frame("factorial(2)", 1)
-        frame_2.next_to(frame_3, DOWN, buff=0.2)
-        
-        arrow_push_2 = Arrow(LEFT * 3, frame_2.get_left(), buff=0.1, color=WHITE)
-        label_push_2 = Text("push", font_size=20).next_to(arrow_push_2, UP, buff=0.1)
-
-        self.play(GrowArrow(arrow_push_2), Write(label_push_2))
-        self.play(FadeIn(frame_2))
-        self.wait(0.5)
-        self.play(FadeOut(arrow_push_2), FadeOut(label_push_2))
-
-        # Step 3: Push factorial(1)
-        frame_1 = create_frame("factorial(1)", 2)
-        frame_1.next_to(frame_2, DOWN, buff=0.2)
-        
-        arrow_push_1 = Arrow(LEFT * 3, frame_1.get_left(), buff=0.1, color=WHITE)
-        label_push_1 = Text("push", font_size=20).next_to(arrow_push_1, UP, buff=0.1)
-
-        self.play(GrowArrow(arrow_push_1), Write(label_push_1))
-        self.play(FadeIn(frame_1))
-        self.wait(0.5)
-        self.play(FadeOut(arrow_push_1), FadeOut(label_push_1))
-
-        # Wait to show full stack
         self.wait(1)
 
-        # Step 4: Pop factorial(1)
-        arrow_pop_1 = Arrow(frame_1.get_right(), RIGHT * 3, buff=0.1, color=WHITE)
-        label_pop_1 = Text("pop", font_size=20).next_to(arrow_pop_1, UP, buff=0.1)
-
-        self.play(GrowArrow(arrow_pop_1), Write(label_pop_1))
-        self.play(FadeOut(frame_1))
+        # Flowchart setup
+        flowchart_group = VGroup()
+        
+        # Box for current call
+        current_box = Rectangle(width=3, height=1.5, color=BLUE, fill_opacity=0.2)
+        current_text = Text("factorial(n)", font_size=24).move_to(current_box)
+        current_group = VGroup(current_box, current_text)
+        current_group.move_to(LEFT * 4 + UP * 1)
+        
+        # Box for recursive call
+        recursive_box = Rectangle(width=3, height=1.5, color=GREEN, fill_opacity=0.2)
+        recursive_text = Text("factorial(n-1)", font_size=24).move_to(recursive_box)
+        recursive_group = VGroup(recursive_box, recursive_text)
+        recursive_group.move_to(RIGHT * 4 + DOWN * 1)
+        
+        # Arrow from current to recursive
+        arrow_down = Arrow(current_box.get_bottom(), recursive_box.get_top(), buff=0.1, color=YELLOW)
+        arrow_down_label = Text("Recursive Call", font_size=20).next_to(arrow_down, RIGHT)
+        
+        # Arrow looping back (curved)
+        arrow_loop = CurvedArrow(recursive_box.get_left(), current_box.get_left(), angle=PI/2, color=RED)
+        arrow_loop_label = Text("Loop Back", font_size=20).next_to(arrow_loop, LEFT)
+        
+        flowchart_group.add(current_group, recursive_group, arrow_down, arrow_down_label, arrow_loop, arrow_loop_label)
+        
+        self.play(Create(current_group), Create(recursive_group))
+        self.play(GrowArrow(arrow_down), Write(arrow_down_label))
+        self.play(GrowArrow(arrow_loop), Write(arrow_loop_label))
+        self.wait(2)
+        
+        # Equation
+        equation = MathTex(r"\text{factorial}(n) = n \times \text{factorial}(n-1)", font_size=40)
+        equation.next_to(flowchart_group, DOWN, buff=1)
+        
+        self.play(Write(equation))
+        self.wait(2)
+        
+        # Stack of blocks representing calls
+        # Create 3 blocks for n, n-1, n-2
+        stack_group = VGroup()
+        blocks = []
+        labels = []
+        
+        for i in range(3):
+            block = Rectangle(width=2.5, height=0.8, color=PURPLE, fill_opacity=0.3)
+            if i == 0:
+                label = MathTex(r"n", font_size=24)
+            elif i == 1:
+                label = MathTex(r"n-1", font_size=24)
+            else:
+                label = MathTex(r"n-2", font_size=24)
+            label.move_to(block)
+            block_group = VGroup(block, label)
+            blocks.append(block_group)
+            labels.append(label)
+        
+        # Position stack to the right
+        stack_pos = RIGHT * 4 + UP * 1
+        blocks[0].move_to(stack_pos)
+        blocks[1].move_to(stack_pos + DOWN * 1)
+        blocks[2].move_to(stack_pos + DOWN * 2)
+        
+        stack_group.add(*blocks)
+        
+        # Animate stack building
+        self.play(FadeOut(flowchart_group), FadeOut(equation))
+        self.play(Write(Text("Stack of Calls", font_size=30).move_to(UP * 3)))
+        
+        self.play(Create(blocks[0]))
         self.wait(0.5)
-        self.play(FadeOut(arrow_pop_1), FadeOut(label_pop_1))
-
-        # Step 5: Pop factorial(2)
-        arrow_pop_2 = Arrow(frame_2.get_right(), RIGHT * 3, buff=0.1, color=WHITE)
-        label_pop_2 = Text("pop", font_size=20).next_to(arrow_pop_2, UP, buff=0.1)
-
-        self.play(GrowArrow(arrow_pop_2), Write(label_pop_2))
-        self.play(FadeOut(frame_2))
+        self.play(Create(blocks[1]))
         self.wait(0.5)
-        self.play(FadeOut(arrow_pop_2), FadeOut(label_pop_2))
-
-        # Step 6: Pop factorial(3)
-        arrow_pop_3 = Arrow(frame_3.get_right(), RIGHT * 3, buff=0.1, color=WHITE)
-        label_pop_3 = Text("pop", font_size=20).next_to(arrow_pop_3, UP, buff=0.1)
-
-        self.play(GrowArrow(arrow_pop_3), Write(label_pop_3))
-        self.play(FadeOut(frame_3))
-        self.wait(0.5)
-        self.play(FadeOut(arrow_pop_3), FadeOut(label_pop_3))
-
-        # Final state: Stack empty
-        final_text = Text("Stack: Empty", font_size=24).move_to(ORIGIN)
-        self.play(Write(final_text))
+        self.play(Create(blocks[2]))
+        self.wait(2)
+        
+        # Highlight the recursive step in the stack
+        self.play(blocks[1].animate.set_fill(RED, opacity=0.5))
+        self.wait(1)
+        self.play(blocks[1].animate.set_fill(PURPLE, opacity=0.3))
+        
+        # Fade out
+        self.play(FadeOut(stack_group))
         self.wait(1)

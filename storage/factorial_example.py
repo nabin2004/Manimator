@@ -3,142 +3,153 @@ from manim import *
 
 class Factorial_example(Scene):
     def construct(self):
-        title = Text("Recursive Factorial", font_size=48)
+        # Title
+        title = Text("Recursion: Factorial Example", font_size=48)
         title.to_edge(UP)
         self.play(Write(title))
-        self.wait(0.5)
+        self.wait(1)
 
-        # Equation: n! = n * (n-1)!
-        equation = MathTex("n!", "=", "n", "\\times", "(n-1)!")
-        equation.next_to(title, DOWN, buff=0.8)
+        # Base Equation
+        equation = MathTex("n! = n \\times (n-1)!")
+        equation.next_to(title, DOWN, buff=0.5)
         self.play(Write(equation))
         self.wait(1)
 
-        # Highlight the recursive part
-        recursive_part = equation[4]
-        self.play(recursive_part.animate.set_color(YELLOW))
-        self.wait(0.5)
-        self.play(recursive_part.animate.set_color(WHITE))
-        
-        # Define stack positions (from top to bottom)
-        # We will show factorial(4) -> factorial(3) -> factorial(2) -> factorial(1) -> factorial(0)
-        stack_y_start = 0.5
-        stack_y_step = -1.2
-        stack_x = -5.5
-        
-        # Create stack frames
-        frames = VGroup()
-        texts = VGroup()
-        
-        calc_values = [4, 3, 2, 1, 0]
-        
-        for i, val in enumerate(calc_values):
-            # Frame rectangle
-            rect = RoundedRectangle(width=3, height=0.8, corner_radius=0.1)
-            rect.set_fill(BLACK, opacity=0.8)
-            rect.set_stroke(WHITE, width=2)
-            rect.move_to([stack_x, stack_y_start + i * stack_y_step, 0])
-            
-            # Text inside frame
-            txt = MathTex(f"\\text{{factorial}}({val})")
-            txt.scale(0.8)
-            txt.move_to(rect.get_center())
-            
-            frames.add(rect)
-            texts.add(txt)
-
-        # Animate stack buildup
-        self.play(
-            LaggedStart(*[FadeIn(f) for f in frames], lag_ratio=0.2),
-            LaggedStart(*[FadeIn(t) for t in texts], lag_ratio=0.2),
-            run_time=2
-        )
+        # Specific Example
+        example = MathTex("5! = 5 \\times 4!").scale(1.2)
+        example.move_to(equation)
+        self.play(Transform(equation, example))
         self.wait(1)
 
-        # Base case handling: factorial(0) = 1
-        base_frame = frames[4]
-        base_text = texts[4]
-        base_result = MathTex("= 1").next_to(base_frame, RIGHT, buff=0.2)
+        # Setup for Tree Visualization
+        self.play(FadeOut(equation))
         
-        self.play(base_frame.animate.set_fill(BLUE_E, opacity=0.5))
-        self.play(Write(base_result))
+        # Tree Nodes positions (Calculated for 5! depth)
+        # Level 0: 5!
+        # Level 1: 4!
+        # Level 2: 3!
+        # Level 3: 2!
+        # Level 4: 1!
+        
+        # Define nodes as VGroups
+        nodes = VGroup()
+        node_map = {}
+        
+        # Helper to create node
+        def create_node(text, pos):
+            circle = Circle(radius=0.4, color=BLUE, fill_opacity=0.2)
+            label = MathTex(text, font_size=24)
+            node = VGroup(circle, label)
+            node.move_to(pos)
+            return node
+
+        # Calculate positions
+        # Vertical spacing
+        y_start = 3
+        y_step = -1.5
+        # Horizontal spacing (centered)
+        x_center = 0
+        
+        # Level 0
+        pos_5 = [x_center, y_start, 0]
+        n_5 = create_node("5!", pos_5)
+        node_map["5!"] = n_5
+        
+        # Level 1
+        pos_4 = [x_center, y_start + y_step, 0]
+        n_4 = create_node("4!", pos_4)
+        node_map["4!"] = n_4
+        
+        # Level 2
+        pos_3 = [x_center, y_start + 2*y_step, 0]
+        n_3 = create_node("3!", pos_3)
+        node_map["3!"] = n_3
+        
+        # Level 3
+        pos_2 = [x_center, y_start + 3*y_step, 0]
+        n_2 = create_node("2!", pos_2)
+        node_map["2!"] = n_2
+        
+        # Level 4
+        pos_1 = [x_center, y_start + 4*y_step, 0]
+        n_1 = create_node("1!", pos_1)
+        node_map["1!"] = n_1
+        
+        # Base case result
+        pos_0 = [x_center, y_start + 5*y_step, 0]
+        n_0 = create_node("1", pos_0)
+        n_0[0].set_color(GREEN)
+        node_map["1"] = n_0
+
+        nodes.add(n_5, n_4, n_3, n_2, n_1, n_0)
+
+        # Lines connecting nodes
+        lines = VGroup()
+        line_5_4 = Line(n_5.get_bottom(), n_4.get_top(), buff=0.1)
+        line_4_3 = Line(n_4.get_bottom(), n_3.get_top(), buff=0.1)
+        line_3_2 = Line(n_3.get_bottom(), n_2.get_top(), buff=0.1)
+        line_2_1 = Line(n_2.get_bottom(), n_1.get_top(), buff=0.1)
+        line_1_0 = Line(n_1.get_bottom(), n_0.get_top(), buff=0.1)
+        lines.add(line_5_4, line_4_3, line_3_2, line_2_1, line_1_0)
+
+        # Animation: Building the Tree (Call Stack)
+        self.play(LaggedStart(
+            Write(n_5),
+            GrowFromCenter(line_5_4),
+            Write(n_4),
+            GrowFromCenter(line_4_3),
+            Write(n_3),
+            GrowFromCenter(line_3_2),
+            Write(n_2),
+            GrowFromCenter(line_2_1),
+            Write(n_1),
+            GrowFromCenter(line_1_0),
+            Write(n_0),
+            lag_ratio=0.5
+        ))
+        self.wait(1)
+
+        # Text for "Base Case Reached"
+        base_text = Text("Base Case Reached (1! = 1)", font_size=24, color=GREEN)
+        base_text.next_to(n_0, DOWN, buff=0.5)
+        self.play(Write(base_text))
+        self.wait(1)
+
+        # Animation: Unwinding the Stack (Calculation)
+        # We will show the results popping up
+        
+        # 1! = 1 (Already shown as '1')
+        
+        # 2! = 2 * 1!
+        res_2 = MathTex("= 2 \\times 1 = 2", color=YELLOW).scale(0.7)
+        res_2.next_to(n_2, RIGHT)
+        self.play(Write(res_2))
+        self.play(n_2[0].animate.set_color(GREEN))
         self.wait(0.5)
 
-        # Return arrows showing multiplication results
-        # We go up the stack: 1 -> 1*1 -> 2*1 -> 3*2 -> 4*6
-        # Actually: 
-        # fact(1) returns 1 * fact(0)=1 -> 1
-        # fact(2) returns 2 * fact(1)=1 -> 2
-        # fact(3) returns 3 * fact(2)=2 -> 6
-        # fact(4) returns 4 * fact(3)=6 -> 24
-        
-        results = [1, 1, 2, 6, 24] # Index 0 is fact(4), index 4 is fact(0)
-        # Wait, let's trace carefully:
-        # fact(0) -> 1
-        # fact(1) -> 1 * 1 = 1
-        # fact(2) -> 2 * 1 = 2
-        # fact(3) -> 3 * 2 = 6
-        # fact(4) -> 4 * 6 = 24
-        
-        # We will animate the return path from bottom (index 4) to top (index 0)
-        # But the calculation happens as we return.
-        
-        # Let's show the return values next to the frames
-        return_values = VGroup()
-        
-        # Base case return
-        ret_0 = MathTex("1").scale(0.8).set_color(GREEN).next_to(frames[4], RIGHT, buff=0.2)
-        self.play(Transform(base_result, ret_0))
+        # 3! = 3 * 2!
+        res_3 = MathTex("= 3 \\times 2 = 6", color=YELLOW).scale(0.7)
+        res_3.next_to(n_3, RIGHT)
+        self.play(Write(res_3))
+        self.play(n_3[0].animate.set_color(GREEN))
         self.wait(0.5)
-        
-        # Step up to fact(1)
-        # 1 * 1 = 1
-        ret_1_val = MathTex("1 \\times 1 = 1").scale(0.7).set_color(GREEN)
-        ret_1_val.next_to(frames[3], RIGHT, buff=0.2)
-        
-        # Arrow from fact(0) result to fact(1)
-        arrow_1 = Arrow(frames[4].get_right(), frames[3].get_right(), buff=0.1, color=YELLOW)
-        
-        self.play(GrowArrow(arrow_1))
-        self.play(Write(ret_1_val))
+
+        # 4! = 4 * 3!
+        res_4 = MathTex("= 4 \\times 6 = 24", color=YELLOW).scale(0.7)
+        res_4.next_to(n_4, RIGHT)
+        self.play(Write(res_4))
+        self.play(n_4[0].animate.set_color(GREEN))
         self.wait(0.5)
-        
-        # Step up to fact(2)
-        # 2 * 1 = 2
-        ret_2_val = MathTex("2 \\times 1 = 2").scale(0.7).set_color(GREEN)
-        ret_2_val.next_to(frames[2], RIGHT, buff=0.2)
-        
-        arrow_2 = Arrow(frames[3].get_right(), frames[2].get_right(), buff=0.1, color=YELLOW)
-        
-        self.play(GrowArrow(arrow_2))
-        self.play(Write(ret_2_val))
-        self.wait(0.5)
-        
-        # Step up to fact(3)
-        # 3 * 2 = 6
-        ret_3_val = MathTex("3 \\times 2 = 6").scale(0.7).set_color(GREEN)
-        ret_3_val.next_to(frames[1], RIGHT, buff=0.2)
-        
-        arrow_3 = Arrow(frames[2].get_right(), frames[1].get_right(), buff=0.1, color=YELLOW)
-        
-        self.play(GrowArrow(arrow_3))
-        self.play(Write(ret_3_val))
-        self.wait(0.5)
-        
-        # Step up to fact(4)
-        # 4 * 6 = 24
-        ret_4_val = MathTex("4 \\times 6 = 24").scale(0.7).set_color(GREEN)
-        ret_4_val.next_to(frames[0], RIGHT, buff=0.2)
-        
-        arrow_4 = Arrow(frames[1].get_right(), frames[0].get_right(), buff=0.1, color=YELLOW)
-        
-        self.play(GrowArrow(arrow_4))
-        self.play(Write(ret_4_val))
+
+        # 5! = 5 * 4!
+        res_5 = MathTex("= 5 \\times 24 = 120", color=YELLOW).scale(0.7)
+        res_5.next_to(n_5, RIGHT)
+        self.play(Write(res_5))
+        self.play(n_5[0].animate.set_color(GREEN))
         self.wait(1)
-        
-        # Final result highlight
-        final_res = MathTex("4! = 24").scale(1.2).set_color(GREEN)
-        final_res.next_to(frames[0], DOWN, buff=1)
-        
-        self.play(Write(final_res))
+
+        # Final Result Display
+        final_result = Text("5! = 120", font_size=48, color=GREEN)
+        final_result.move_to([0, -3.5, 0])
+        self.play(Write(final_result))
         self.wait(2)

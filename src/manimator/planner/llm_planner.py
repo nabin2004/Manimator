@@ -1,3 +1,4 @@
+from cmath import phase
 from manimator.planner.schema import SceneSpec, ScriptPlan
 import json 
 
@@ -43,7 +44,7 @@ def create_llm_plan(llm, intent) -> ScriptPlan:
         audience=intent.audience,
         density=intent.visual_density
     )
-    response = llm.invoke(prompt)
+    response = llm.invoke(prompt, phase="plan_generation")
     
     response = json.loads(response.content)
 

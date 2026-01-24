@@ -4,59 +4,77 @@ from manim import *
 class Scene_02(Scene):
     def construct(self):
         # Title
-        title = Text("Recursive Function Structure", font_size=48)
+        title = Text("Base Case in Recursion", font_size=48)
         title.to_edge(UP)
         self.play(Write(title))
-        self.wait(0.5)
-
-        # Code snippet
-        code_str = "def factorial(n):\n    if n <= 1:\n        return 1\n    else:\n        return n * factorial(n-1)"
-        code = Code(code=code_str, language="python", font="Monospace", background="rectangle", background_stroke_color=WHITE, background_stroke_width=1, background_fill_color=BLACK, insert_line_no=False, style="monokai")
-        code.scale(0.8)
-        code.shift(DOWN * 0.5)
-        
-        self.play(Write(code))
         self.wait(1)
 
-        # Highlight Base Case
-        base_case_box = SurroundingRectangle(code.code[1:3], color=YELLOW, buff=0.15)
-        base_case_label = Text("Base Case (Stopping Condition)", color=YELLOW, font_size=28)
-        base_case_label.next_to(base_case_box, DOWN, buff=0.3)
-        
-        self.play(Create(base_case_box))
-        self.play(Write(base_case_label))
-        self.wait(2)
-        
-        self.play(FadeOut(base_case_box), FadeOut(base_case_label))
+        # Flowchart setup
+        start_node = Rectangle(width=2, height=1, color=BLUE, fill_opacity=0.2)
+        start_text = Text("Start", font_size=24).move_to(start_node)
+        start_group = VGroup(start_node, start_text)
+        start_group.move_to(LEFT * 4 + UP * 1)
 
-        # Highlight Recursive Step
-        recursive_box = SurroundingRectangle(code.code[3:5], color=GREEN, buff=0.15)
-        recursive_label = Text("Recursive Step (Reduces Problem Size)", color=GREEN, font_size=28)
-        recursive_label.next_to(recursive_box, DOWN, buff=0.3)
-        
-        self.play(Create(recursive_box))
-        self.play(Write(recursive_label))
+        arrow1 = Arrow(start_node.get_bottom(), start_node.get_bottom() + DOWN * 1.5, buff=0.1)
+
+        recursive_node = Rectangle(width=3, height=1.5, color=YELLOW, fill_opacity=0.2)
+        recursive_text = Text("Recursive Step", font_size=24).move_to(recursive_node)
+        recursive_group = VGroup(recursive_node, recursive_text)
+        recursive_group.next_to(arrow1, DOWN, buff=0)
+
+        arrow2 = Arrow(recursive_node.get_bottom(), recursive_node.get_bottom() + DOWN * 1.5, buff=0.1)
+
+        base_node = Rectangle(width=2.5, height=1.5, color=GREEN, fill_opacity=0.3)
+        base_text = Text("Base Case", font_size=28, color=GREEN_D).move_to(base_node)
+        base_group = VGroup(base_node, base_text)
+        base_group.next_to(arrow2, DOWN, buff=0)
+
+        # Checklist icon near Base Case
+        checklist = VGroup(
+            Square(side_length=0.3, color=GREEN, fill_opacity=0.5),
+            Line(LEFT * 0.1 + UP * 0.05, RIGHT * 0.1 + DOWN * 0.1, color=WHITE, stroke_width=3),
+            Line(RIGHT * 0.1 + DOWN * 0.1, RIGHT * 0.25 + UP * 0.15, color=WHITE, stroke_width=3)
+        )
+        checklist.next_to(base_node, LEFT, buff=0.5)
+        checklist_label = Text("Base Case", font_size=20, color=GREEN).next_to(checklist, RIGHT, buff=0.2)
+
+        # Example text
+        example = Text("Example: factorial(0) = 1", font_size=30, color=WHITE)
+        example.next_to(base_group, DOWN, buff=0.5)
+
+        # Warning text for infinite loop
+        warning_text = Text("Without Base Case: Infinite Recursion!", font_size=24, color=RED)
+        warning_text.next_to(recursive_group, RIGHT, buff=1)
+
+        # Draw flowchart
+        self.play(Create(start_node), Write(start_text))
+        self.play(Create(arrow1))
+        self.play(Create(recursive_node), Write(recursive_text))
+        self.play(Create(arrow2))
+        self.play(Create(base_node), Write(base_text))
+        self.wait(1)
+
+        # Add checklist
+        self.play(Create(checklist), Write(checklist_label))
+        self.wait(0.5)
+
+        # Show example
+        self.play(Write(example))
+        self.wait(1)
+
+        # Highlight the importance
+        self.play(Indicate(base_node, color=GREEN))
+        self.wait(0.5)
+
+        # Show warning (conceptual)
+        self.play(Write(warning_text))
         self.wait(2)
 
-        # Arrow pointing to the recursive call specifically
-        # code.code[4] is the line "        return n * factorial(n-1)"
-        # We want to highlight the specific text "factorial(n-1)"
-        # Since Code object breaks lines into VGroup of characters/words, we locate the substring.
-        # Note: Accessing specific words in Code object depends on Manim version. 
-        # A robust way is to create a separate highlight for the specific function call text.
-        
-        # Extract the specific part visually by creating a copy or overlay
-        # Since exact sub-indexing in Code object is complex, we will highlight the whole line 
-        # and then emphasize the specific call with a brace or arrow.
-        
-        call_text = Text("factorial(n-1)", font_size=24, color=WHITE)
-        # Position approximation based on the code layout
-        call_text.move_to(code.code[4]).shift(RIGHT * 1.5) 
-        
-        arrow = Arrow(call_text.get_left(), code.code[4].get_right() + RIGHT*0.5, buff=0.1, color=GREEN)
-        
-        self.play(GrowArrow(arrow), Write(call_text))
+        # Fade out warning and emphasize base case
+        self.play(FadeOut(warning_text))
+        self.play(Indicate(base_group, color=GREEN))
         self.wait(2)
 
-        # Cleanup
-        self.play(FadeOut(Group(title, code, recursive_box, recursive_label, arrow, call_text)))
+        # Clean up
+        self.play(FadeOut(VGroup(title, start_group, arrow1, recursive_group, arrow2, base_group, checklist, checklist_label, example)))
+        self.wait(1)

@@ -22,7 +22,7 @@ Return valid JSON ONLY. No extra explanation, no markdown.
 
 def classify_with_llm(llm, topic: str) -> dict:
     logging.info(f"Classifying topic with LLM: {topic}")
-    response = llm.invoke(INTENT_PROMPT.format(topic=topic))
+    response = llm.invoke(INTENT_PROMPT.format(topic=topic), phase="intent_classification")
     logging.info("LLM classification completed.")
     logging.debug(f"LLM Response: {response}")
     content = response.content

@@ -1,3 +1,4 @@
+from manimator.llm.llm import LLMWithMetrics
 from src.manimator.orchestration.langgraph_pipeline import run_pipeline
 from src.manimator.intent.resolve import resolve_intent
 from src.manimator.planner.resolve import plan_topic
@@ -5,6 +6,9 @@ import os
 from langchain_openai import ChatOpenAI
 from dotenv import load_dotenv
 import json
+
+from manimator.metrics.run_metrics import RunMetrics
+
 
 load_dotenv()
 
@@ -15,12 +19,16 @@ def test_pipeline():
     os.environ["OPENAI_API_KEY"] = os.getenv("OPENROUTER_API_KEY")
     os.environ["OPENAI_BASE_URL"] = os.getenv("OPENAI_BASE_URL")
 
-    llm = ChatOpenAI(model="xiaomi/mimo-v2-flash:free",temperature=0.0)
+    llm_base = ChatOpenAI(model="xiaomi/mimo-v2-flash:free",temperature=0.0)
 
-    result = llm.invoke("How are you today?")
-    print("DIR DIR DIR DIR:", result.response_metadata)
-    json.dump(result.response_metadata, open("metadata.json", "w"), indent=2)
-    quit()
+    run_metrics = RunMetrics()
+    # run_id = "run_2026_01_24_001"
+    llm = LLMWithMetrics(llm_base)
+
+    # result = llm.invoke("How are you today?")
+    # print("DIR DIR DIR DIR:", result.response_metadata)
+    # json.dump(result.response_metadata, open("metadata.json", "w"), indent=2)
+    # quit()
  
     # Step 1: User input
     topic = "Explain the concept of recursion in computer science."

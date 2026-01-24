@@ -1,4 +1,5 @@
 
+from cmath import phase
 from manimator.codegen.template import MANIM_SCENE_TEMPLATE, indent_code
 from manimator.planner.schema import SceneSpec
 import json
@@ -27,7 +28,7 @@ def generate_scene_code(llm, scene: SceneSpec) -> str:
         narrative=scene.narrative_intent,
         scene_class_name=scene_class_name
     )
-    scene_body = llm.invoke(prompt)
+    scene_body = llm.invoke(prompt, phase="scene_code_generation")
     response = scene_body.content
     return MANIM_SCENE_TEMPLATE.format(
         scene_class_name=scene_class_name,

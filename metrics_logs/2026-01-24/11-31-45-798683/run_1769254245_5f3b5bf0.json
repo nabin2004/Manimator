@@ -1,0 +1,53 @@
+{
+  "run_id": "run_1769254245_5f3b5bf0",
+  "timestamp": "2026-01-24T11:31:45.798683",
+  "metrics": {
+    "run_id": "run_1769254245_5f3b5bf0",
+    "phase": "scene_code_generation",
+    "latency_s": 60.00798678398132,
+    "model_provider": "openai",
+    "model_name": "xiaomi/mimo-v2-flash:free",
+    "request_id": "gen-1769254246-kKPvHyQWE3T7RxXaerly",
+    "finish_reason": "stop",
+    "prompt_tokens": 169,
+    "completion_tokens": 1926,
+    "total_tokens": 2095,
+    "cached_tokens": 30,
+    "reasoning_tokens": 0,
+    "cost": 0,
+    "is_byok": false,
+    "raw_metadata": {
+      "token_usage": {
+        "completion_tokens": 1926,
+        "prompt_tokens": 169,
+        "total_tokens": 2095,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": null,
+          "reasoning_tokens": 0,
+          "rejected_prediction_tokens": null,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 30,
+          "video_tokens": 0
+        },
+        "cost": 0,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": null,
+          "upstream_inference_prompt_cost": 0,
+          "upstream_inference_completions_cost": 0
+        }
+      },
+      "model_provider": "openai",
+      "model_name": "xiaomi/mimo-v2-flash:free",
+      "system_fingerprint": null,
+      "id": "gen-1769254246-kKPvHyQWE3T7RxXaerly",
+      "finish_reason": "stop",
+      "logprobs": null
+    },
+    "result": "from manim import *\n\nclass Scene_05(Scene):\n    def construct(self):\n        # Title\n        title = Text(\"Recursion vs Iteration\", font_size=48)\n        title.to_edge(UP)\n        self.play(Write(title))\n        self.wait(1)\n\n        # Create side-by-side panels\n        left_panel = Rectangle(width=6, height=5, color=BLUE, fill_opacity=0.1)\n        right_panel = Rectangle(width=6, height=5, color=GREEN, fill_opacity=0.1)\n        left_panel.shift(LEFT * 3.5)\n        right_panel.shift(RIGHT * 3.5)\n        \n        left_label = Text(\"Recursion\", font_size=24).next_to(left_panel, UP)\n        right_label = Text(\"Iteration\", font_size=24).next_to(right_panel, UP)\n        \n        self.play(Create(left_panel), Create(right_panel))\n        self.play(Write(left_label), Write(right_label))\n        self.wait(0.5)\n\n        # Recursion flowchart\n        rec_box1 = Rectangle(width=2, height=0.8, color=BLUE).move_to(left_panel.get_center() + UP * 1.5)\n        rec_text1 = Text(\"factorial(n)\", font_size=18).move_to(rec_box1.get_center())\n        rec_box2 = Rectangle(width=2, height=0.8, color=BLUE).move_to(left_panel.get_center())\n        rec_text2 = Text(\"n <= 1?\", font_size=18).move_to(rec_box2.get_center())\n        rec_box3 = Rectangle(width=2, height=0.8, color=BLUE).move_to(left_panel.get_center() + DOWN * 1.5)\n        rec_text3 = Text(\"return 1\", font_size=18).move_to(rec_box3.get_center())\n        rec_box4 = Rectangle(width=2, height=0.8, color=BLUE).move_to(left_panel.get_center() + DOWN * 3)\n        rec_text4 = Text(\"return n * factorial(n-1)\", font_size=18).move_to(rec_box4.get_center())\n        \n        rec_arrow1 = Arrow(rec_box1.get_bottom(), rec_box2.get_top(), buff=0.1, color=BLUE)\n        rec_arrow2 = Arrow(rec_box2.get_bottom(), rec_box3.get_top(), buff=0.1, color=BLUE)\n        rec_arrow3 = Arrow(rec_box2.get_right(), rec_box4.get_left(), buff=0.1, color=BLUE)\n        \n        self.play(\n            Create(rec_box1), Write(rec_text1),\n            Create(rec_box2), Write(rec_text2),\n            Create(rec_box3), Write(rec_text3),\n            Create(rec_box4), Write(rec_text4),\n            Create(rec_arrow1), Create(rec_arrow2), Create(rec_arrow3)\n        )\n        self.wait(1)\n\n        # Iteration flowchart\n        iter_box1 = Rectangle(width=2, height=0.8, color=GREEN).move_to(right_panel.get_center() + UP * 1.5)\n        iter_text1 = Text(\"result = 1\", font_size=18).move_to(iter_box1.get_center())\n        iter_box2 = Rectangle(width=2, height=0.8, color=GREEN).move_to(right_panel.get_center())\n        iter_text2 = Text(\"for i in range(1, n+1)\", font_size=18).move_to(iter_box2.get_center())\n        iter_box3 = Rectangle(width=2, height=0.8, color=GREEN).move_to(right_panel.get_center() + DOWN * 1.5)\n        iter_text3 = Text(\"result *= i\", font_size=18).move_to(iter_box3.get_center())\n        iter_box4 = Rectangle(width=2, height=0.8, color=GREEN).move_to(right_panel.get_center() + DOWN * 3)\n        iter_text4 = Text(\"return result\", font_size=18).move_to(iter_box4.get_center())\n        \n        iter_arrow1 = Arrow(iter_box1.get_bottom(), iter_box2.get_top(), buff=0.1, color=GREEN)\n        iter_arrow2 = Arrow(iter_box2.get_bottom(), iter_box3.get_top(), buff=0.1, color=GREEN)\n        iter_arrow3 = Arrow(iter_box3.get_bottom(), iter_box4.get_top(), buff=0.1, color=GREEN)\n        \n        self.play(\n            Create(iter_box1), Write(iter_text1),\n            Create(iter_box2), Write(iter_text2),\n            Create(iter_box3), Write(iter_text3),\n            Create(iter_box4), Write(iter_text4),\n            Create(iter_arrow1), Create(iter_arrow2), Create(iter_arrow3)\n        )\n        self.wait(1)\n\n        # Code snippets\n        code_title = Text(\"Code Comparison\", font_size=32).next_to(left_panel, DOWN, buff=0.5)\n        self.play(Write(code_title))\n        self.wait(0.5)\n\n        # Recursive code\n        rec_code = VGroup(\n            Text(\"def factorial(n):\", font_size=16),\n            Text(\"    if n <= 1:\", font_size=16),\n            Text(\"        return 1\", font_size=16),\n            Text(\"    return n * factorial(n-1)\", font_size=16)\n        )\n        rec_code.arrange(DOWN, aligned_edge=LEFT)\n        rec_code.move_to(left_panel.get_center() + DOWN * 2.5)\n        \n        # Iterative code\n        iter_code = VGroup(\n            Text(\"def factorial(n):\", font_size=16),\n            Text(\"    result = 1\", font_size=16),\n            Text(\"    for i in range(1, n+1):\", font_size=16),\n            Text(\"        result *= i\", font_size=16),\n            Text(\"    return result\", font_size=16)\n        )\n        iter_code.arrange(DOWN, aligned_edge=LEFT)\n        iter_code.move_to(right_panel.get_center() + DOWN * 2.5)\n\n        self.play(Write(rec_code), Write(iter_code))\n        self.wait(1)\n\n        # Pros/Cons icons\n        pros_cons_title = Text(\"Trade-offs\", font_size=32).to_edge(DOWN)\n        self.play(Write(pros_cons_title))\n        self.wait(0.5)\n\n        # Recursion pros/cons\n        rec_pros = VGroup(\n            Circle(radius=0.3, color=GREEN, fill_opacity=0.3),\n            Text(\"\u2713\", font_size=20, color=GREEN)\n        ).arrange(RIGHT, buff=0.1)\n        rec_pros_label = Text(\"Elegant\", font_size=16).next_to(rec_pros, RIGHT)\n        \n        rec_cons = VGroup(\n            Circle(radius=0.3, color=RED, fill_opacity=0.3),\n            Text(\"\u2717\", font_size=20, color=RED)\n        ).arrange(RIGHT, buff=0.1)\n        rec_cons_label = Text(\"Stack overflow\", font_size=16).next_to(rec_cons, RIGHT)\n        \n        rec_pros.move_to(left_panel.get_center() + DOWN * 4.5)\n        rec_pros_label.next_to(rec_pros, RIGHT)\n        rec_cons.move_to(left_panel.get_center() + DOWN * 5.5)\n        rec_cons_label.next_to(rec_cons, RIGHT)\n\n        # Iteration pros/cons\n        iter_pros = VGroup(\n            Circle(radius=0.3, color=GREEN, fill_opacity=0.3),\n            Text(\"\u2713\", font_size=20, color=GREEN)\n        ).arrange(RIGHT, buff=0.1)\n        iter_pros_label = Text(\"Efficient\", font_size=16).next_to(iter_pros, RIGHT)\n        \n        iter_cons = VGroup(\n            Circle(radius=0.3, color=RED, fill_opacity=0.3),\n            Text(\"\u2717\", font_size=20, color=RED)\n        ).arrange(RIGHT, buff=0.1)\n        iter_cons_label = Text(\"Verbose\", font_size=16).next_to(iter_cons, RIGHT)\n        \n        iter_pros.move_to(right_panel.get_center() + DOWN * 4.5)\n        iter_pros_label.next_to(iter_pros, RIGHT)\n        iter_cons.move_to(right_panel.get_center() + DOWN * 5.5)\n        iter_cons_label.next_to(iter_cons, RIGHT)\n\n        self.play(\n            Create(rec_pros), Write(rec_pros_label),\n            Create(rec_cons), Write(rec_cons_label),\n            Create(iter_pros), Write(iter_pros_label),\n            Create(iter_cons), Write(iter_cons_label)\n        )\n        self.wait(2)\n\n        # Final summary\n        summary = Text(\"Choose recursion for clarity, iteration for performance\", font_size=24)\n        summary.move_to(ORIGIN + DOWN * 3.5)\n        self.play(Write(summary))\n        self.wait(2)"
+  }
+}
