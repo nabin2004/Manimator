@@ -1,8 +1,8 @@
 from manimator.llm.llm import LLMWithMetrics
 # from src.manimator.orchestration.langgraph_pipeline import run_pipeline
-from src.manimator.orchestration.new_langgraph import run_pipeline
-from src.manimator.intent.resolve import resolve_intent
-from src.manimator.planner.resolve import plan_topic
+from manimator.orchestration.langgraph_pipeline import run_pipeline
+from manimator.intent.resolve import resolve_intent
+from manimator.planner.resolve import plan_topic
 import os
 from langchain_openai import ChatOpenAI
 from dotenv import load_dotenv
@@ -20,7 +20,7 @@ def test_pipeline():
     os.environ["OPENAI_API_KEY"] = os.getenv("OPENROUTER_API_KEY")
     os.environ["OPENAI_BASE_URL"] = os.getenv("OPENAI_BASE_URL")
 
-    llm_base = ChatOpenAI(model="xiaomi/mimo-v2-flash:free",temperature=0.0)
+    llm_base = ChatOpenAI(model="google/gemini-3-flash-preview",temperature=0.0)
 
     run_metrics = RunMetrics()
     # run_id = "run_2026_01_24_001"
@@ -32,7 +32,14 @@ def test_pipeline():
     # quit()
  
     # Step 1: User input
-    topic = "Explain the concept of recursion in computer science."
+    topic = """
+    I want to understand two concepts:
+
+    1. What is a Multi-Layer Perceptron (MLP) in machine learning?
+    2. What is recursion in computer science?
+    
+    Explain both concepts clearly with simple examples.
+    """
 
     # Step 2: Intent resolution
     intent = resolve_intent(topic, llm=llm)

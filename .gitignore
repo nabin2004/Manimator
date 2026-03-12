@@ -9,6 +9,7 @@ logs/**.log
 *.mp4
 metrics_logs/*.json
 
+storage/*
 storage/images
 storage/videos
 storage/Tex
