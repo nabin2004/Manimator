@@ -27,8 +27,15 @@ def list_providers() -> list[str]:
 
 
 def _auto_register() -> None:
-    """Import built-in providers so they self-register on import."""
-    from manimator.tts.providers import kitten  # noqa: F401
+    """Import built-in providers so they self-register on import.
+
+    Providers whose dependencies are missing are silently skipped —
+    they simply won't appear in list_providers().
+    """
+    try:
+        from manimator.tts.providers import kitten  # noqa: F401
+    except ImportError:
+        pass
 
 
 _auto_register()

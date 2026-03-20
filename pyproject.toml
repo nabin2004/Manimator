@@ -18,5 +18,13 @@ dependencies = [
 
 [project.optional-dependencies]
 tts-kitten = [
-    "kittentts>=0.8.1",
+    "kittentts @ https://github.com/KittenML/KittenTTS/releases/download/0.8.1/kittentts-0.8.1-py3-none-any.whl",
 ]
+
+[project.scripts]
+manimator-api = "uvicorn:main"
+
+[tool.uvicorn]
+app = "manimator.api.app:app"
+host = "0.0.0.0"
+port = 8042

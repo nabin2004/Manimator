@@ -1,7 +1,10 @@
 """Manimator FastAPI application.
 
 Run with:
-    uvicorn manimator.api.app:app --reload --port 8000
+    uvicorn manimator.api.app:app --reload --port 8042
+
+Or directly:
+    python -m manimator.api.app
 """
 
 from __future__ import annotations
@@ -50,3 +53,8 @@ def root():
 @app.get("/health", tags=["root"])
 def health():
     return {"status": "ok"}
+
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run("manimator.api.app:app", host="0.0.0.0", port=8042, reload=True)
