@@ -1,7 +1,7 @@
 [project]
 name = "manimator"
-version = "0.1.0"
-description = "Add your description here"
+version = "0.2.0"
+description = "Agentic math-animation pipeline with TTS and flashcard generation"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
@@ -9,4 +9,14 @@ dependencies = [
     "langchain-openai>=1.1.7",
     "manim>=0.19.2",
     "prometheus-client>=0.24.1",
+    "fastapi>=0.115.0",
+    "uvicorn[standard]>=0.34.0",
+    "soundfile>=0.13.0",
+    "numpy>=1.26.0",
+    "python-dotenv>=1.1.0",
+]
+
+[project.optional-dependencies]
+tts-kitten = [
+    "kittentts>=0.8.1",
 ]
