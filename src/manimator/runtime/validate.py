@@ -1,6 +1,6 @@
 import ast
 
-ALLOWED_IMPORTS = {"manim"}
+ALLOWED_IMPORTS = {"manim", "numpy", "math", "random", "itertools", "collections", "typing"}
 
 def validate_scene_code(code: str):
     """

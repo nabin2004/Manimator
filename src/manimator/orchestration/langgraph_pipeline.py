@@ -1,10 +1,13 @@
 from langgraph.graph import StateGraph, START, END
 from pydantic import BaseModel
-from typing import List
+from typing import List, Optional
 from manimator.runtime.resolve import run_runtime
 from manimator.runtime.validate import validate_scene_code
 from manimator.runtime.repair import repair_scene
 from manimator.codegen.resolve import generate_code_for_plan
+from manimator.narration.narrate import generate_narration
+from manimator.runtime.audio_merge import synthesize_narration, merge_audio_video
+from manimator.api.dependencies import get_tts_engine
 
 MAX_RETRIES = 3
 
@@ -15,8 +18,11 @@ class SceneStateLG(BaseModel):
     scene_id: str
     status: str = "PLANNED"
     retries: int = 0
-    error_log: str = None
-    video_path: str = None
+    error_log: Optional[str] = None
+    video_path: Optional[str] = None
+    narration: Optional[str] = None
+    audio_path: Optional[str] = None
+
 
 class PipelineStateLG(BaseModel):
     topic: str
@@ -88,24 +94,64 @@ def validate_and_route(state, llm):
             scene.status = "CODE_GENERATED"  # retry path
     return state
 
+
+def narrate_node(state, llm, plan):
+    """Generate narration audio and merge it with each rendered scene video."""
+    import os
+
+    tts_engine = get_tts_engine()
+
+    # Build a lookup from scene_id to the planner's SceneSpec
+    scene_specs = {s.scene_id: s for s in plan.scenes}
+
+    for scene in state.scenes:
+        if scene.status != "RENDERED" or not scene.video_path:
+            print(f"Skipping narration for scene {scene.scene_id} (status={scene.status})")
+            continue
+
+        spec = scene_specs.get(scene.scene_id)
+        if not spec:
+            print(f"No plan spec found for scene {scene.scene_id}, skipping narration")
+            continue
+
+        try:
+            # 1. Generate narration script via LLM
+            print(f"Generating narration for scene {scene.scene_id}...")
+            narration_text = generate_narration(llm, spec)
+            scene.narration = narration_text
+            print(f"Narration ({len(narration_text)} chars): {narration_text[:100]}...")
+
+            # 2. Synthesize to WAV via TTS
+            audio_dir = os.path.join(state.output_dir, "audio")
+            os.makedirs(audio_dir, exist_ok=True)
+            wav_path = os.path.join(audio_dir, f"{scene.scene_id}.wav")
+            synthesize_narration(tts_engine, narration_text, wav_path)
+            scene.audio_path = wav_path
+
+            # 3. Merge audio + video via ffmpeg
+            merged_path = merge_audio_video(scene.video_path, wav_path)
+            scene.video_path = merged_path  # update to narrated video
+            scene.status = "NARRATED"
+            print(f"Scene {scene.scene_id} narrated → {merged_path}")
+
+        except Exception as e:
+            print(f"Narration failed for scene {scene.scene_id}: {e}")
+            scene.error_log = f"Narration error: {e}"
+            # Don't change status — keep RENDERED so the silent video is still usable
+
+    return state
+
+
 # ----------------------------
 # Build LangGraph
 # ----------------------------
 
 def build_pipeline_graph(llm, plan, output_dir):
-    # Initialize pipeline state
-    # print("=========================================")
-    # print("TOPIC: ", plan.topic)
-    # print("Type of plan topic:", type(plan.topic))
-    # print("Plan:", plan)
-    # print("=========================================")
-    # quit()
     pipeline_state = PipelineStateLG(
         topic=plan.topic,
         scenes=[SceneStateLG(scene_id=s.scene_id) for s in plan.scenes],
         output_dir=output_dir,
     )
-    # store output_dir in state
     pipeline_state.output_dir = output_dir
 
     graph = StateGraph(PipelineStateLG)
@@ -113,28 +159,15 @@ def build_pipeline_graph(llm, plan, output_dir):
     # Add nodes
     graph.add_node("codegen", lambda s: codegen_node(s, llm, plan))
     graph.add_node("validate_and_route", lambda s: validate_and_route(s, llm))
-    # graph.add_node("repair", lambda s: repair_node(s, llm))
     graph.add_node("render", lambda s: render_node(s, llm))
+    graph.add_node("narrate", lambda s: narrate_node(s, llm, plan))
 
-    # Add edges
-    # graph.add_edge(START, "codegen")
-    # graph.add_edge("codegen", "validate")
-    # # graph.add_edge("validate", "render")
-    # graph.add_edge("validate", "repair")   # failed validation goes to repair
-    # graph.add_edge("repair", "codegen")    # retry after repair
-    # graph.add_edge("render", END)
-
-    # graph.add_edge(START, "codegen")
-    # graph.add_edge("codegen", "validate")
-    # graph.add_edge("validate", "render")  # validated scenes go to render
-    # graph.add_edge("validate", "repair")  # failed scenes go to repair
-    # graph.add_edge("repair", "codegen")   # retry failed scenes
-    # graph.add_edge("render", END)
-
+    # Pipeline: codegen → validate → render → narrate → END
     graph.add_edge(START, "codegen")
     graph.add_edge("codegen", "validate_and_route")
     graph.add_edge("validate_and_route", "render")
-    graph.add_edge("render", END)
+    graph.add_edge("render", "narrate")
+    graph.add_edge("narrate", END)
 
     return graph, pipeline_state
 

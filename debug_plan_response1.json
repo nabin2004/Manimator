@@ -1,72 +1,64 @@
 {
   "scenes": [
     {
-      "scene_id": "IntroScene",
-      "goal": "Introduce the two main topics of the video.",
+      "scene_id": "IntroductionArchitecture",
+      "goal": "Establish the basic structure of a neural network.",
       "visual_elements": [
-        "Text label: Multi-Layer Perceptron (MLP)",
-        "Text label: Recursion",
-        "Split screen layout"
-      ],
-      "estimated_duration_sec": 10,
-      "narrative_intent": "Establish the roadmap for the explanation."
-    },
-    {
-      "scene_id": "MLPStructure",
-      "goal": "Visualize the architecture of an MLP.",
-      "visual_elements": [
-        "Input layer with 3 circles",
-        "Hidden layer with 4 circles",
-        "Output layer with 1 circle",
-        "Connecting lines representing weights"
+        "Input layer nodes representing pixel values",
+        "Hidden layer nodes with connecting edges",
+        "Output layer nodes representing class labels",
+        "Flowing pulses of light moving left to right"
       ],
       "estimated_duration_sec": 20,
-      "narrative_intent": "Show that an MLP is a series of connected layers that process information."
+      "narrative_intent": "Define the network as a mathematical function that maps inputs to outputs through layers."
     },
     {
-      "scene_id": "MLPExample",
-      "goal": "Explain MLP logic using a simple decision example.",
+      "scene_id": "ForwardPassError",
+      "goal": "Demonstrate how an untrained network produces an error.",
       "visual_elements": [
-        "Input icons: Is it sunny? Is it a weekend?",
-        "Hidden layer processing icons",
-        "Output icon: Go to the beach (Yes/No)"
+        "Input image of a digit '3'",
+        "Activations lighting up across layers",
+        "Output node '7' glowing brightest",
+        "A 'Loss' gauge appearing and filling up to show high error"
       ],
       "estimated_duration_sec": 25,
-      "narrative_intent": "Demonstrate how inputs are weighted to produce a final classification."
+      "narrative_intent": "Show that initial predictions are wrong and quantify that wrongness using a loss function."
     },
     {
-      "scene_id": "RecursionConcept",
-      "goal": "Define recursion visually.",
+      "scene_id": "LossLandscape",
+      "goal": "Visualize the optimization problem.",
       "visual_elements": [
-        "A large box containing a smaller version of itself",
-        "A mirror reflecting another mirror",
-        "Text: A function calling itself"
+        "3D topographical mesh representing the loss surface",
+        "A ball representing current weights sitting on a peak",
+        "Vector arrows pointing downhill (negative gradient)",
+        "The ball rolling towards a valley"
       ],
-      "estimated_duration_sec": 15,
-      "narrative_intent": "Introduce the idea of self-reference in problem solving."
+      "estimated_duration_sec": 25,
+      "narrative_intent": "Explain that learning is the process of finding the minimum point of the loss function."
     },
     {
-      "scene_id": "RecursionExample",
-      "goal": "Show a concrete example of recursion using a countdown.",
+      "scene_id": "Backpropagation",
+      "goal": "Show the mechanism of weight updates.",
       "visual_elements": [
-        "Number 3 calling Number 2",
-        "Number 2 calling Number 1",
-        "Number 0 (Base Case) stopping the loop",
-        "Visual stack of calls"
+        "Gradients flowing backward from output to input",
+        "Mathematical partial derivative symbols appearing over edges",
+        "Edge thickness changing to represent weight updates",
+        "Color shifts in nodes representing bias adjustments"
       ],
       "estimated_duration_sec": 30,
-      "narrative_intent": "Explain the recursive step and the importance of the base case."
+      "narrative_intent": "Detail how the chain rule is used to assign blame for the error to specific parameters."
     },
     {
-      "scene_id": "ComparisonSummary",
-      "goal": "Summarize the difference between the two concepts.",
+      "scene_id": "IterativeConvergence",
+      "goal": "Show the result of many training epochs.",
       "visual_elements": [
-        "MLP icon: Layers of neurons",
-        "Recursion icon: Spiral/Loop",
-        "Checkmarks next to key definitions"
+        "Fast-forward montage of multiple input images",
+        "Loss curve graph trending downwards to zero",
+        "Final forward pass on '3' correctly lighting up the '3' output node",
+        "Stable, optimized weight connections"
       ],
       "estimated_duration_sec": 20,
-      "narrative_intent": "Reinforce learning by contrasting the structural nature of MLPs with the procedural nature of recursion."
+      "narrative_intent": "Conclude by showing that repeated adjustments lead to a model that has 'learned' the patterns."
     }
   ]
 }

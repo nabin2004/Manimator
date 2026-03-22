@@ -22,16 +22,30 @@ def generate_animation(req: GenerateRequest):
         plan = plan_topic(intent, llm=llm)
         state = run_pipeline(llm=llm, plan=plan, output_dir=req.output_dir)
 
-        scenes = []
-        for s in state["scenes"]:
-            scenes.append(SceneResult(
-                scene_id=s["scene_id"],
-                status=s["status"],
-                video_path=s.get("video_path"),
-                error_log=s.get("error_log"),
-            ))
+        # LangGraph may return state as a dict or Pydantic model
+        topic = state["topic"] if isinstance(state, dict) else state.topic
+        raw_scenes = state["scenes"] if isinstance(state, dict) else state.scenes
 
-        return GenerateResponse(topic=state["topic"], scenes=scenes)
+        scenes = []
+        for s in raw_scenes:
+            # Scenes can be SceneStateLG Pydantic objects or dicts
+            if isinstance(s, dict):
+                scenes.append(SceneResult(
+                    scene_id=s["scene_id"],
+                    status=s["status"],
+                    video_path=s.get("video_path"),
+                    error_log=s.get("error_log"),
+                ))
+            else:
+                # Pydantic model — use attribute access
+                scenes.append(SceneResult(
+                    scene_id=s.scene_id,
+                    status=s.status,
+                    video_path=s.video_path,
+                    error_log=s.error_log,
+                ))
+
+        return GenerateResponse(topic=topic, scenes=scenes)
     except Exception as exc:
         raise HTTPException(status_code=500, detail=str(exc))
 

@@ -11,6 +11,7 @@ def repair_scene(llm, scene_file: str, scene_code: str):
             return scene_code  # valid
         except Exception as e:
             error_log = str(e)
+            print(f"Validation failed for {scene_file}:\n{error_log}\n", flush=True)
             
             # ask LLM to fix ONLY the broken code
             PROMPT_VERSION="scene_repair_v1"

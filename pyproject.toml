@@ -14,12 +14,11 @@ dependencies = [
     "soundfile>=0.13.0",
     "numpy>=1.26.0",
     "python-dotenv>=1.1.0",
-]
-
-[project.optional-dependencies]
-tts-kitten = [
+    "langgraph>=0.2.16",
     "kittentts @ https://github.com/KittenML/KittenTTS/releases/download/0.8.1/kittentts-0.8.1-py3-none-any.whl",
 ]
+
+
 
 [project.scripts]
 manimator-api = "uvicorn:main"
